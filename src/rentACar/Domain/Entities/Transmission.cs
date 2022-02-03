@@ -1,26 +1,18 @@
 ﻿using Core.Persistence.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Domain.Entities;
+
+public class Transmission : Entity
 {
-    public class Transmission: Entity
+    public Transmission()
     {
-        public Transmission()
-        {
-            Models = new HashSet<Model>();
-        }
-
-        public Transmission(int id, string name) : this()
-        {
-            Id = id;
-            Name = name;
-        }
-
-        public string Name { get; set; }
-        public virtual ICollection<Model> Models { get; set; }
+        Models = new HashSet<Model>();
     }
+    public Transmission(int id, string name) : this()
+    {
+        Id = id;
+        Name = name;
+    }
+    public string Name { get; set; }
+    public ICollection<Model> Models { get; set; }
 }

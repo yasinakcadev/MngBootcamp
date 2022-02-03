@@ -46,7 +46,7 @@ namespace Persistence
                 b.HasOne(p => p.Fuel);
                 b.HasOne(p => p.Transmission);
                 b.HasOne(p => p.Brand);
-                b.HasMany(p => p.Cars);
+                //b.HasMany(p => p.Cars);
             });
 
             modelBuilder.Entity<Car>(b =>

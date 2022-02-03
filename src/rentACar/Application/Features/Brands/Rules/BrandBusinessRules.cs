@@ -1,30 +1,23 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Application.Features.Brands.Rules
+namespace Application.Features.Brands.Rules;
+
+public class BrandBusinessRules
 {
-    public class BrandBusinessRules
+    IBrandRepository _brandRepository;
+
+    public BrandBusinessRules(IBrandRepository brandRepository)
     {
-        IBrandRepository _brandRepository;
+        _brandRepository = brandRepository;
+    }
 
-        public BrandBusinessRules(IBrandRepository brandRepository)
+    public async Task BrandNameCanNotBeDuplicatedWhenInsertedAndUpdated(string name)
+    {
+        var result = await _brandRepository.GetListAsync(b => b.Name == name);
+        if (result.Items.Any())
         {
-            _brandRepository = brandRepository;
-        }
-
-        //Gherkin
-        public async Task BrandNameCanNotBeDuplicatedWhenInserted(string name)
-        {
-            var result = await _brandRepository.GetListAsync(b => b.Name == name);
-            if (result.Items.Any())
-            {
-                throw new BusinessException("Brand name exists");
-            }
+            throw new BusinessException("Brand name exists");
         }
     }
 }

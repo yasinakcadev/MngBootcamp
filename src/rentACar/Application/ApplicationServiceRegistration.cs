@@ -17,6 +17,7 @@ namespace Application
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
             services.AddScoped<BrandBusinessRules>();
             services.AddScoped<ModelBusinessRules>();
             

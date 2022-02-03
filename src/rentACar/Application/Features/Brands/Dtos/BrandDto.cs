@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Brands.Dtos
 {
-    public class BrandListDto
+    public class BrandDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
