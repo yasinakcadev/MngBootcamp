@@ -22,6 +22,7 @@
     <Folder Include="Features\Cars\Queries\" />
     <Folder Include="Features\Cars\Rules\" />
     <Folder Include="Features\Cars\Tests\" />
+    <Folder Include="Features\Fuel\Tests\" />
     <Folder Include="Features\Models\Models\" />
     <Folder Include="Features\Models\Dtos\" />
     <Folder Include="Features\Models\Queries\" />

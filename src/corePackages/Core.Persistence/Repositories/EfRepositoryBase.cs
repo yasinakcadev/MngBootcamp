@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 namespace Core.Persistence.Repositories
 {
     public class EfRepositoryBase<TEntity, TContext> : IAsyncRepository<TEntity>
-        where TEntity : Entity 
+        where TEntity : Entity
         where TContext : DbContext
     {
         protected TContext Context { get; set; }
@@ -29,7 +29,7 @@ namespace Core.Persistence.Repositories
             int size = 10,
             bool enableTracking = true,
             CancellationToken cancellationToken = default
-        )   
+        )
         {
             IQueryable<TEntity> query = this.Query();
 
