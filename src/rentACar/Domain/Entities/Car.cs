@@ -17,7 +17,7 @@ public class Car : Entity
         ModelId = modelId;
         Plate = plate;
         ModelYear = modelYear;
-        this.CarState = carState;
+        CarState = carState;
     }
     public int ColorId { get; set; }
     public CarState CarState { get; set; }
