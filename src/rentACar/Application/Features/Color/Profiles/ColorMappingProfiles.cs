@@ -19,7 +19,6 @@ namespace Application.Features.Color.Profiles
             CreateMap<CreateColorCommand, Domain.Entities.Color>().ReverseMap();
             //CreateMap<DeleteColorCommand, Domain.Entities.Color>().ReverseMap();
             CreateMap<UpdateColorCommand, Domain.Entities.Color>().ReverseMap();
-            CreateMap<UpdateColorCommand, Domain.Entities.Color>().ReverseMap();
             CreateMap<ColorListModel, IPaginate<Domain.Entities.Color>>().ReverseMap();
             CreateMap<Domain.Entities.Color,ColorListDto>().ReverseMap();
         }

@@ -17,7 +17,7 @@ public class FuelBusinessRules
         var fuels = await _fuelRepository.GetListAsync(x => x.Name == name);
         if (fuels.Items.Any())
         {
-            throw new BusinessException("Fuel Name Dublicated");
+            throw new BusinessException("Fuel Name Duplicated");
         }
     }
 }

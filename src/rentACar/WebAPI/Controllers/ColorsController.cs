@@ -11,7 +11,7 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ColorsController : BaseController
+    public class ColorController : BaseController
     {
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] CreateColorCommand createColorCommand)
