@@ -25,6 +25,7 @@ namespace Persistence
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<IIndividualCustomerRepository, IndividualCustomerRepository>();
             services.AddScoped<ICorporateCustomerRepository, CorporateCustomerRepository>();
+            services.AddScoped<IInvoiceRepository, InvoiceRepository>();
             return services;
         }
     }

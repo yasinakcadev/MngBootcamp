@@ -23,6 +23,7 @@
     <Folder Include="Features\CorporateCustomer\Queries\" />
     <Folder Include="Features\CorporateCustomer\Profiles\" />
     <Folder Include="Features\Fuel\Tests\" />
+    <Folder Include="Features\Invoices\Tests\" />
     <Folder Include="Features\Models\Models\" />
     <Folder Include="Features\Models\Dtos\" />
     <Folder Include="Features\Models\Queries\" />

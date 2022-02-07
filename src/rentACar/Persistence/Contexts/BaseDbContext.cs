@@ -24,6 +24,7 @@ namespace Persistence
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CorporateCustomer> CorporateCustomers { get; set; }
         public DbSet<IndividualCustomer> IndividualCustomers { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -117,6 +118,19 @@ namespace Persistence
                 c.ToTable("CorporateCustomer");
                 c.Property(p => p.CompanyName).HasColumnName("CompanyName");
                 c.Property(p => p.TaxNumber).HasColumnName("TaxNumber");
+            });
+
+            modelBuilder.Entity<Invoice>(c =>
+            {
+                c.ToTable("Invoice").HasKey(i => i.Id);
+                c.Property(p => p.CreationDate).HasColumnName("CreationDate");
+                c.Property(p => p.RentStartDate).HasColumnName("RentStartDate");
+                c.Property(p => p.RentEndDate).HasColumnName("RentEndDate");
+                c.Property(p => p.TotalRentDay).HasColumnName("TotalRentDay");
+                c.Property(p => p.TotalRentAmount).HasColumnName("TotalRentAmount");
+                c.Property(p => p.CustomerId).HasColumnName("CustomerId");
+                c.HasOne(p => p.Customer);
+                c.HasMany(p => p.Cars);
             });
 
             //Data Seeding
