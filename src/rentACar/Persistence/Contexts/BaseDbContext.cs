@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.Abstarct;
 using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +21,9 @@ namespace Persistence
         public DbSet<Color> Colors { get; set; }
         public DbSet<Transmission> Transmissions { get; set; }
         public DbSet<Fuel> Fuels { get; set; }
-
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<CorporateCustomer> CorporateCustomers { get; set; }
+        public DbSet<IndividualCustomer> IndividualCustomers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -92,6 +95,28 @@ namespace Persistence
                 b.Property(p => p.Id).HasColumnName("Id");
                 b.Property(p => p.Name).HasColumnName("Name");
                 b.HasMany(p => p.Models);
+            });
+
+            modelBuilder.Entity<Customer>(c =>
+            {
+                c.ToTable("Customer").HasKey(k => k.Id);
+                c.Property(p => p.Id).HasColumnName("Id");
+                c.Property(p => p.Email).HasColumnName("Email");
+            });
+
+            modelBuilder.Entity<IndividualCustomer>(c =>
+            {
+                c.ToTable("IndividualCustomer");
+                c.Property(p => p.FirstName).HasColumnName("FirstName");
+                c.Property(p => p.Lastname).HasColumnName("Lastname");
+                c.Property(p => p.NationalId).HasColumnName("NationalId");
+            });
+
+            modelBuilder.Entity<CorporateCustomer>(c =>
+            {
+                c.ToTable("CorporateCustomer");
+                c.Property(p => p.CompanyName).HasColumnName("CompanyName");
+                c.Property(p => p.TaxNumber).HasColumnName("TaxNumber");
             });
 
             //Data Seeding
