@@ -1,6 +1,7 @@
 ﻿using Application.Features.Brands.Rules;
 using Application.Features.Cars.Rules;
 using Application.Features.Color.Rules;
+using Application.Features.IndividualCustomer.Rules;
 using Application.Features.Models.Rules;
 using Application.Features.Transmission.Rules;
 using Core.Application.Pipelines.Validation;
@@ -30,6 +31,8 @@ namespace Application
             services.AddScoped<ColorBusinessRules>();
             services.AddScoped<TransmissionBusinessRules>();
             services.AddScoped<CarBusinessRules>();
+            services.AddScoped<IndividualCustomerBusinessRules>();
+            
 
             services.AddTransient(typeof(IPipelineBehavior<,>),typeof(RequestValidationBehavior<,>));
             
