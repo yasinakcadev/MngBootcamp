@@ -62,6 +62,20 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Damage",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CarId = table.Column<int>(type: "int", nullable: false),
+                    DamageDetail = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Damage", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Fuels",
                 columns: table => new
                 {
@@ -399,6 +413,9 @@ namespace Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "CorporateCustomer");
+
+            migrationBuilder.DropTable(
+                name: "Damage");
 
             migrationBuilder.DropTable(
                 name: "IndividualCustomer");

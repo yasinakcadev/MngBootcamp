@@ -12,8 +12,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20220208154604_cityvirtual")]
-    partial class cityvirtual
+    [Migration("20220208180534_all")]
+    partial class all
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -210,6 +210,28 @@ namespace Persistence.Migrations
                             Id = 2,
                             Name = "Blue"
                         });
+                });
+
+            modelBuilder.Entity("Domain.Entities.Damage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int")
+                        .HasColumnName("CarId");
+
+                    b.Property<string>("DamageDetail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("DamageDetail");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Damage", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Fuel", b =>
