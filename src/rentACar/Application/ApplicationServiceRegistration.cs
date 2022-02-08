@@ -1,6 +1,9 @@
 ﻿using Application.Features.Brands.Rules;
 using Application.Features.Cars.Rules;
 using Application.Features.Color.Rules;
+using Application.Features.Damages.Rules;
+using Application.Features.IndividualCustomer.Rules;
+using Application.Features.Invoices.Rules;
 using Application.Features.Models.Rules;
 using Application.Features.Transmission.Rules;
 using Core.Application.Pipelines.Validation;
@@ -13,6 +16,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Features.Rents.Rules;
 
 namespace Application
 {
@@ -30,6 +34,11 @@ namespace Application
             services.AddScoped<ColorBusinessRules>();
             services.AddScoped<TransmissionBusinessRules>();
             services.AddScoped<CarBusinessRules>();
+            services.AddScoped<IndividualCustomerBusinessRules>();
+            services.AddScoped<InvoiceBusinessRules>();
+            services.AddScoped<RentBusinessRules>();
+            
+            services.AddScoped<DamageBusinessRules>();
 
             services.AddTransient(typeof(IPipelineBehavior<,>),typeof(RequestValidationBehavior<,>));
             
