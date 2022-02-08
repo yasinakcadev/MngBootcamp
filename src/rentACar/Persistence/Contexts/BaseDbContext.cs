@@ -169,6 +169,7 @@ namespace Persistence
                 r.ToTable("Damage").HasKey(i => i.Id);
                 r.Property(r => r.CarId).HasColumnName("CarId");
                 r.Property(r => r.DamageDetail).HasColumnName("DamageDetail");
+                r.HasOne(r => r.Car);
             });
 
             //Data Seeding
