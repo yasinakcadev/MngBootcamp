@@ -29,6 +29,7 @@ namespace Persistence
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Rent> Rents { get; set; }
+        public DbSet<Damage> Damages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -161,6 +162,13 @@ namespace Persistence
                 r.HasOne(x => x.TakingCity);
                 r.HasOne(x => x.Invoice);
                 r.HasOne(r => r.Car);
+            });
+
+            modelBuilder.Entity<Damage>(r =>
+            {
+                r.ToTable("Damage").HasKey(i => i.Id);
+                r.Property(r => r.CarId).HasColumnName("CarId");
+                r.Property(r => r.DamageDetail).HasColumnName("DamageDetail");
             });
 
             //Data Seeding
