@@ -24,5 +24,12 @@ namespace WebAPI.Controllers
             var result = await Mediator.Send(query);
             return Ok(result);
         }
+
+        [HttpGet("getbycustomer")]
+        public async Task<IActionResult> GetByCustomer([FromQuery] GetInvoiceListByCustomerQuery query)
+        {
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
     }
 }
