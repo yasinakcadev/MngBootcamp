@@ -197,9 +197,8 @@ namespace Persistence
             var model2 = new Model(2,"CLA 180D",600,2,1,2,"");
             modelBuilder.Entity<Model>().HasData(model1, model2);
 
-            modelBuilder.Entity<Car>().HasData(new Car(1,1,1,"06ABC06",1,2018,CarState.Available));
-            modelBuilder.Entity<Car>().HasData(new Car(2,2,2,"34ABC34",1,2018,CarState.Available));
-
+            modelBuilder.Entity<Car>().HasData(new Car(1,1,1,"06ABC06",1,2018,CarState.Available,100));
+            modelBuilder.Entity<Car>().HasData(new Car(2,2,2,"34ABC34",1,2018,CarState.Available,10));
         }
     }
 }

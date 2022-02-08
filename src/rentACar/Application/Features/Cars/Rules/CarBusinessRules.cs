@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Entities;
+using Domain.Enums;
 
 namespace Application.Features.Cars.Rules
 {
@@ -63,5 +65,28 @@ namespace Application.Features.Cars.Rules
                 throw new BusinessException("City is not exist");
         }
 
+        public Task CarCannotBeNull(Car car)
+        {
+            if (car == null)
+                throw new BusinessException("Car is not exist");
+
+            return Task.CompletedTask;
+        }
+
+        public Task CarMustNotBeAvailable(Car car)
+        {
+            if (car.CarState == CarState.Available)
+                throw new BusinessException("Car is already avaible");
+
+            return Task.CompletedTask;
+        }
+
+
+        public Task CarIndicatorValueMustBeGreaterThanBeforeValue(Car car, int requestCarIndicatorValue)
+        {
+            if(car.CurrentIndicatorValueAsKilometer > requestCarIndicatorValue)
+                throw new BusinessException("Car Indicator Value Must Be Greater Than Before Value");
+            return Task.CompletedTask;
+        }
     }
 }

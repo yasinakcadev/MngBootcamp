@@ -5,7 +5,6 @@ using Application.Features.Cars.Rules;
 using Application.Features.Rents.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
-using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Rents.Command;

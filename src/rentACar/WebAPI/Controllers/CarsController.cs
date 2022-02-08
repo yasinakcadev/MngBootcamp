@@ -26,6 +26,13 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpPut("redeliver")]
+        public async Task<IActionResult> Redeliver([FromBody] RedeliverCarCommand redeliverCarCommand)
+        {
+            var result = await Mediator.Send(redeliverCarCommand);
+            return Ok(result);
+        }
+
         [HttpPut("maintenance")]
         public async Task<IActionResult> Maintenance([FromBody] MaintenanceCarCommand maintenanceCarCommand)
         {
