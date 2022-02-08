@@ -1,5 +1,4 @@
 ﻿using Core.Persistence.Repositories;
-using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

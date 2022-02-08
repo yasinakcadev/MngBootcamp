@@ -41,6 +41,11 @@ namespace WebAPI.Controllers
             var result = await Mediator.Send(query);
             return Ok(result);
         }
-
+        [HttpGet("getbycity")]
+        public async Task<IActionResult> GetCarByCity([FromQuery] GetCarListByCityQuery query)
+        {
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
     }
 }

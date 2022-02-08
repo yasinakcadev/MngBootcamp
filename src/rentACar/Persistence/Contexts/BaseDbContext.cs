@@ -25,6 +25,8 @@ namespace Persistence
         public DbSet<CorporateCustomer> CorporateCustomers { get; set; }
         public DbSet<IndividualCustomer> IndividualCustomers { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Rent> Rents { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -64,6 +66,7 @@ namespace Persistence
                 b.Property(p => p.CarState).HasColumnName("State");
                 b.HasOne(p => p.Color);
                 b.HasOne(p => p.Model);
+                b.HasOne(p => p.City);
             });
 
             modelBuilder.Entity<Transmission>(b =>
@@ -85,6 +88,14 @@ namespace Persistence
             modelBuilder.Entity<Color>(b =>
             {
                 b.ToTable("Colors").HasKey(k => k.Id);
+                b.Property(p => p.Id).HasColumnName("Id");
+                b.Property(p => p.Name).HasColumnName("Name");
+                b.HasMany(p => p.Cars);
+            });
+
+            modelBuilder.Entity<City>(b =>
+            {
+                b.ToTable("Cities").HasKey(k => k.Id);
                 b.Property(p => p.Id).HasColumnName("Id");
                 b.Property(p => p.Name).HasColumnName("Name");
                 b.HasMany(p => p.Cars);
@@ -133,6 +144,15 @@ namespace Persistence
                 c.HasMany(p => p.Cars);
             });
 
+            modelBuilder.Entity<Rent>(r =>
+            {
+                r.ToTable("Rent").HasKey(i => i.Id);
+                r.HasOne(x => x.GivingCity);
+                r.HasOne(x => x.TakingCity);
+                r.HasOne(x => x.Invoice);
+                r.HasOne(r => r.Car);
+            });
+
             //Data Seeding
             var brand1 = new Brand(1,"BMW");
             var brand2 = new Brand(2,"Mercedes");
@@ -141,6 +161,11 @@ namespace Persistence
             var color1 = new Color(1,"Red");
             var color2 = new Color(2,"Blue");
             modelBuilder.Entity<Color>().HasData(color1, color2);
+
+            var city1 = new City(1,"istanbul");
+            var city2 = new City(2,"ankara");
+            var city3 = new City(3,"izmir");
+            modelBuilder.Entity<City>().HasData(city1, city2,city3);
 
             var transmission1 = new Transmission(1,"Manuel");
             var transmission2 = new Transmission(2,"Automatic");
@@ -154,8 +179,8 @@ namespace Persistence
             var model2 = new Model(2,"CLA 180D",600,2,1,2,"");
             modelBuilder.Entity<Model>().HasData(model1, model2);
 
-            modelBuilder.Entity<Car>().HasData(new Car(1,1,1,"06ABC06",2018,CarState.Available));
-            modelBuilder.Entity<Car>().HasData(new Car(2,2,2,"34ABC34",2018,CarState.Available));
+            modelBuilder.Entity<Car>().HasData(new Car(1,1,1,"06ABC06",1,2018,CarState.Available));
+            modelBuilder.Entity<Car>().HasData(new Car(2,2,2,"34ABC34",1,2018,CarState.Available));
 
         }
     }

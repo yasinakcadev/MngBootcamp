@@ -11,10 +11,13 @@ namespace Application.Features.Cars.Rules
     public class CarBusinessRules
     {
         ICarRepository _carRepository;
+        private ICityRepository _cityRepository;
 
-        public CarBusinessRules(ICarRepository carRepository)
+      
+        public CarBusinessRules(ICarRepository carRepository,ICityRepository cityRepository)
         {
             _carRepository = carRepository;
+            _cityRepository = cityRepository;
         }
 
         public async Task PlateCanNotBeDuplicatedWhenInsertedAndUpdated(string plate)
@@ -45,6 +48,13 @@ namespace Application.Features.Cars.Rules
             var car = await _carRepository.GetAsync(c => c.Id == id);
             if (car.CarState == Domain.Enums.CarState.Maintenance)
                 throw new BusinessException("Car can not be rent while it is maintained");
+        }
+
+        public async Task IsCarCityExist(int cityId)
+        {
+            var city = await _cityRepository.GetAsync(x => x.Id == cityId);
+            if (city == null)
+                throw new BusinessException("City is not exist");
         }
 
     }
