@@ -85,6 +85,9 @@ namespace Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("State");
 
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ColorId")
                         .HasColumnType("int")
                         .HasColumnName("ColorId");
@@ -107,6 +110,8 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CityId");
+
                     b.HasIndex("ColorId");
 
                     b.HasIndex("InvoiceId");
@@ -120,6 +125,7 @@ namespace Persistence.Migrations
                         {
                             Id = 1,
                             CarState = 1,
+                            CityId = 1,
                             ColorId = 1,
                             ModelId = 1,
                             ModelYear = (short)2018,
@@ -129,10 +135,47 @@ namespace Persistence.Migrations
                         {
                             Id = 2,
                             CarState = 1,
+                            CityId = 1,
                             ColorId = 2,
                             ModelId = 2,
                             ModelYear = (short)2018,
                             Plate = "34ABC34"
+                        });
+                });
+
+            modelBuilder.Entity("Domain.Entities.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cities", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "istanbul"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "ankara"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "izmir"
                         });
                 });
 
@@ -308,6 +351,48 @@ namespace Persistence.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Domain.Entities.Rent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("GivingCityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InvoiceId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("TakingCityId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.HasIndex("GivingCityId");
+
+                    b.HasIndex("InvoiceId");
+
+                    b.HasIndex("TakingCityId");
+
+                    b.ToTable("Rent", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Transmission", b =>
                 {
                     b.Property<int>("Id")
@@ -380,6 +465,12 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Car", b =>
                 {
+                    b.HasOne("Domain.Entities.City", "City")
+                        .WithMany("Cars")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.Color", "Color")
                         .WithMany("Cars")
                         .HasForeignKey("ColorId")
@@ -395,6 +486,8 @@ namespace Persistence.Migrations
                         .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("City");
 
                     b.Navigation("Color");
 
@@ -439,6 +532,37 @@ namespace Persistence.Migrations
                     b.Navigation("Transmission");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Rent", b =>
+                {
+                    b.HasOne("Domain.Entities.Car", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.City", "GivingCity")
+                        .WithMany()
+                        .HasForeignKey("GivingCityId");
+
+                    b.HasOne("Domain.Entities.Invoice", "Invoice")
+                        .WithMany()
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.City", "TakingCity")
+                        .WithMany()
+                        .HasForeignKey("TakingCityId");
+
+                    b.Navigation("Car");
+
+                    b.Navigation("GivingCity");
+
+                    b.Navigation("Invoice");
+
+                    b.Navigation("TakingCity");
+                });
+
             modelBuilder.Entity("Domain.Entities.CorporateCustomer", b =>
                 {
                     b.HasOne("Domain.Entities.Abstarct.Customer", null)
@@ -460,6 +584,11 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Brand", b =>
                 {
                     b.Navigation("Models");
+                });
+
+            modelBuilder.Entity("Domain.Entities.City", b =>
+                {
+                    b.Navigation("Cars");
                 });
 
             modelBuilder.Entity("Domain.Entities.Color", b =>
