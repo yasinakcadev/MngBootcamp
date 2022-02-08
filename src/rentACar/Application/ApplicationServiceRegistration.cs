@@ -15,6 +15,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Features.Rents.Rules;
 
 namespace Application
 {
@@ -34,6 +35,7 @@ namespace Application
             services.AddScoped<CarBusinessRules>();
             services.AddScoped<IndividualCustomerBusinessRules>();
             services.AddScoped<InvoiceBusinessRules>();
+            services.AddScoped<RentBusinessRules>();
             
 
             services.AddTransient(typeof(IPipelineBehavior<,>),typeof(RequestValidationBehavior<,>));

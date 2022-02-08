@@ -12,7 +12,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20220208153153_all")]
+    [Migration("20220208173803_all")]
     partial class all
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -94,6 +94,9 @@ namespace Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ColorId");
 
+                    b.Property<int>("CurrentIndicatorValueAsKilometer")
+                        .HasColumnType("int");
+
                     b.Property<int?>("InvoiceId")
                         .HasColumnType("int");
 
@@ -129,6 +132,7 @@ namespace Persistence.Migrations
                             CarState = 1,
                             CityId = 1,
                             ColorId = 1,
+                            CurrentIndicatorValueAsKilometer = 100,
                             ModelId = 1,
                             ModelYear = (short)2018,
                             Plate = "06ABC06"
@@ -139,6 +143,7 @@ namespace Persistence.Migrations
                             CarState = 1,
                             CityId = 1,
                             ColorId = 2,
+                            CurrentIndicatorValueAsKilometer = 10,
                             ModelId = 2,
                             ModelYear = (short)2018,
                             Plate = "34ABC34"
@@ -370,6 +375,9 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("EndIndicatorValueAsKilometer")
+                        .HasColumnType("int");
+
                     b.Property<int?>("GivingCityId")
                         .HasColumnType("int");
 
@@ -378,6 +386,9 @@ namespace Persistence.Migrations
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("StartIndicatorValueAsKilometer")
+                        .HasColumnType("int");
 
                     b.Property<int?>("TakingCityId")
                         .HasColumnType("int");

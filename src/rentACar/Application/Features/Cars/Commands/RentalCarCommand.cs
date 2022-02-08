@@ -33,7 +33,8 @@ namespace Application.Features.Cars.Commands
             private IRentRepository _rentRepository;
 
 
-            public RentalCarCommandHandler(CarBusinessRules carBusinessRule, ICarRepository carRepository, IMapper mapper, IMediator mediator, IRentRepository rentRepository)
+            public RentalCarCommandHandler(CarBusinessRules carBusinessRule, ICarRepository carRepository,
+                IMapper mapper, IMediator mediator, IRentRepository rentRepository)
             {
                 _carBusinessRule = carBusinessRule;
                 _carRepository = carRepository;
@@ -74,8 +75,10 @@ namespace Application.Features.Cars.Commands
 
                 var invoice = await _mediator.Send(command);
 
-                var rent = new Domain.Entities.Rent(request.Id, request.CustomerId, DateTime.Now.AddDays(request.TotalRentDay),
-                    request.GivingCityId, invoice.Id, DateTime.Now, request.TakingCityId);
+                var rent = new Domain.Entities.Rent(request.Id, request.CustomerId,
+                    DateTime.Now.AddDays(request.TotalRentDay),
+                    request.GivingCityId, invoice.Id, DateTime.Now, request.TakingCityId,
+                    car.CurrentIndicatorValueAsKilometer);
 
                 await _rentRepository.AddAsync(rent);
 

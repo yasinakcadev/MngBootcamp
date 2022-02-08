@@ -194,6 +194,7 @@ namespace Persistence.Migrations
                     ColorId = table.Column<int>(type: "int", nullable: false),
                     State = table.Column<int>(type: "int", nullable: false),
                     ModelId = table.Column<int>(type: "int", nullable: false),
+                    CurrentIndicatorValueAsKilometer = table.Column<int>(type: "int", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: false),
                     ModelYear = table.Column<short>(type: "smallint", nullable: false),
                     Plate = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -235,6 +236,8 @@ namespace Persistence.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     InvoiceId = table.Column<int>(type: "int", nullable: false),
+                    StartIndicatorValueAsKilometer = table.Column<int>(type: "int", nullable: false),
+                    EndIndicatorValueAsKilometer = table.Column<int>(type: "int", nullable: true),
                     CarId = table.Column<int>(type: "int", nullable: false),
                     GivingCityId = table.Column<int>(type: "int", nullable: true),
                     TakingCityId = table.Column<int>(type: "int", nullable: true),
@@ -326,13 +329,13 @@ namespace Persistence.Migrations
 
             migrationBuilder.InsertData(
                 table: "Cars",
-                columns: new[] { "Id", "State", "CityId", "ColorId", "InvoiceId", "ModelId", "ModelYear", "Plate" },
-                values: new object[] { 1, 1, 1, 1, null, 1, (short)2018, "06ABC06" });
+                columns: new[] { "Id", "State", "CityId", "ColorId", "CurrentIndicatorValueAsKilometer", "InvoiceId", "ModelId", "ModelYear", "Plate" },
+                values: new object[] { 1, 1, 1, 1, 100, null, 1, (short)2018, "06ABC06" });
 
             migrationBuilder.InsertData(
                 table: "Cars",
-                columns: new[] { "Id", "State", "CityId", "ColorId", "InvoiceId", "ModelId", "ModelYear", "Plate" },
-                values: new object[] { 2, 1, 1, 2, null, 2, (short)2018, "34ABC34" });
+                columns: new[] { "Id", "State", "CityId", "ColorId", "CurrentIndicatorValueAsKilometer", "InvoiceId", "ModelId", "ModelYear", "Plate" },
+                values: new object[] { 2, 1, 1, 2, 10, null, 2, (short)2018, "34ABC34" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cars_CityId",

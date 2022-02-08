@@ -28,6 +28,7 @@
     <Folder Include="Features\Models\Dtos\" />
     <Folder Include="Features\Models\Queries\" />
     <Folder Include="Features\Models\Tests\" />
+    <Folder Include="Features\Rents\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
