@@ -16,6 +16,10 @@ namespace Application.Features.Cars.Commands
             RuleFor(c => c.ModelYear).NotNull();
             RuleFor(c => c.ModelId).NotNull();
             RuleFor(c => c.CarState).IsInEnum();
+            RuleFor(c => c.MinFindexScore).NotNull();
+            RuleFor(c => c.MinFindexScore).LessThanOrEqualTo((short)1900);
+            RuleFor(c => c.MinFindexScore).GreaterThanOrEqualTo((short)0);
+
         }
     }
 }

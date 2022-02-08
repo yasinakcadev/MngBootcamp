@@ -1,4 +1,5 @@
 ﻿using Application.Features.Cars.Rules;
+using Application.Services.CredibilityServices;
 using Application.Services.Repositories;
 using Domain.Entities;
 using MediatR;
@@ -28,15 +29,20 @@ namespace Application.Features.Cars.Commands
         {
             private CarBusinessRules _carBusinessRule;
             private ICarRepository _carRepository;
+            IFindexScoreRepository _findexScoreRepository;
+            IFindexCreditService _findexCreditService;
             private IMediator _mediator;
             private IMapper _mapper;
             private IRentRepository _rentRepository;
 
 
-            public RentalCarCommandHandler(CarBusinessRules carBusinessRule, ICarRepository carRepository, IMapper mapper, IMediator mediator, IRentRepository rentRepository)
+
+            public RentalCarCommandHandler(CarBusinessRules carBusinessRule, ICarRepository carRepository, IFindexCreditService findexCreditService, IFindexScoreRepository findexScoreRepository)
             {
                 _carBusinessRule = carBusinessRule;
                 _carRepository = carRepository;
+                _findexScoreRepository = findexScoreRepository;
+                _findexCreditService = findexCreditService;
                 _mapper = mapper;
                 _mediator = mediator;
                 _rentRepository = rentRepository;

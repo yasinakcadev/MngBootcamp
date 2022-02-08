@@ -10,7 +10,7 @@ public class Car : Entity
 
     }
 
-    public Car(int id, int colorId, int modelId, string plate,int cityId, short modelYear, CarState carState) : this()
+    public Car(int id, int colorId, int modelId, string plate, short modelYear,short minFindexScore, CarState carState) : this()
     {
         Id = id;
         ColorId = colorId;
@@ -19,11 +19,13 @@ public class Car : Entity
         CityId = cityId;
         ModelYear = modelYear;
         CarState = carState;
+        MinFindexScore = minFindexScore;
     }
     public int ColorId { get; set; }
     public CarState CarState { get; set; }
     public virtual Color Color { get; set; }
     public int ModelId { get; set; }
+    public short MinFindexScore { get; set; }
     public virtual Model Model { get; set; }
     public int CityId { get; set; }
     public virtual City City { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Entities.Abstarct;
 using Domain.Enums;
+using Domain.FindexScore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
@@ -18,6 +19,7 @@ namespace Persistence
         public DbSet<Model> Brands { get; set; }
         public DbSet<Model> Models { get; set; }
         public DbSet<Car> Cars { get; set; }
+        public DbSet<FindexScore> FindexScores { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Transmission> Transmissions { get; set; }
         public DbSet<Fuel> Fuels { get; set; }
@@ -75,6 +77,14 @@ namespace Persistence
                 b.Property(p => p.Id).HasColumnName("Id");
                 b.Property(p => p.Name).HasColumnName("Name");
                 b.HasMany(p => p.Models);
+            });
+            modelBuilder.Entity<FindexScore>(b =>
+            {
+                b.ToTable("FindexScores").HasKey(k => k.Id);
+                b.Property(p => p.Id).HasColumnName("Id");
+                b.Property(p => p.CustomerId).HasColumnName("CustomerId");
+                b.Property(p => p.Score).HasColumnName("Score");
+                b.HasOne(p => p.Customer);
             });
 
             modelBuilder.Entity<Fuel>(b =>
