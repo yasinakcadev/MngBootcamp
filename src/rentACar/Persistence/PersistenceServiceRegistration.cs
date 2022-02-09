@@ -1,4 +1,6 @@
-﻿using Application.Services.Repositories;
+﻿using Application.Services.CredibilityServices;
+using Application.Services.CredibilityServices.MyFindexScoreImplementation;
+using Application.Services.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +31,7 @@ namespace Persistence
             services.AddScoped<IIndividualCustomerRepository, IndividualCustomerRepository>();
             services.AddScoped<ICorporateCustomerRepository, CorporateCustomerRepository>();
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();
+            services.AddScoped<IFindexCreditService, MyFindexScore>();
             services.AddScoped<IDamageRepository, DamageRepository>();
             return services;
         }
