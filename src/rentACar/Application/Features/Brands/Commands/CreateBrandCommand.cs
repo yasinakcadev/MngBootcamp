@@ -1,13 +1,14 @@
 ﻿using Application.Features.Brands.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Logging;
 using Core.Mailing;
 using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Brands.Commands;
 
-public class CreateBrandCommand : IRequest<Brand>
+public class CreateBrandCommand : IRequest<Brand>,ILoggableRequest
 {
     public string Name { get; set; }
 
@@ -40,7 +41,7 @@ public class CreateBrandCommand : IRequest<Brand>
                 Subject = "New Brand Added",
                 HtmlBody = "Hey, check the system!"
             };
-            _mailService.sendMail(mail);
+           // _mailService.sendMail(mail);
             return createdBrand;
         }
     }

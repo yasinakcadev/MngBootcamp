@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
 {
-    public partial class allwithuser : Migration
+    public partial class userclaims : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
