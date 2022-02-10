@@ -10,7 +10,7 @@ public class Car : Entity
 
     }
 
-    public Car(int id, int colorId, int modelId, string plate,int cityId, short modelYear, CarState carState,int currentIndicatorValueAsKilometer) : this()
+    public Car(int id, int colorId, int modelId, string plate,int cityId, short modelYear, CarState carState,int currentIndicatorValueAsKilometer,short minFindexScore) : this()
     {
         Id = id;
         ColorId = colorId;

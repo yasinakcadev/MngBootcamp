@@ -29,20 +29,15 @@ namespace Application.Features.Cars.Commands
         {
             private CarBusinessRules _carBusinessRule;
             private ICarRepository _carRepository;
-            IFindexScoreRepository _findexScoreRepository;
-            IFindexCreditService _findexCreditService;
             private IMediator _mediator;
             private IMapper _mapper;
             private IRentRepository _rentRepository;
 
 
-
-            public RentalCarCommandHandler(CarBusinessRules carBusinessRule, ICarRepository carRepository, IFindexCreditService findexCreditService, IFindexScoreRepository findexScoreRepository)
+            public RentalCarCommandHandler(CarBusinessRules carBusinessRule, ICarRepository carRepository, IMapper mapper, IMediator mediator, IRentRepository rentRepository)
             {
                 _carBusinessRule = carBusinessRule;
                 _carRepository = carRepository;
-                _findexScoreRepository = findexScoreRepository;
-                _findexCreditService = findexCreditService;
                 _mapper = mapper;
                 _mediator = mediator;
                 _rentRepository = rentRepository;
@@ -53,18 +48,21 @@ namespace Application.Features.Cars.Commands
                 await _carBusinessRule.IsExist(request.Id);
                 await _carBusinessRule.IsCarCityExist(request.TakingCityId);
                 await _carBusinessRule.IsCarCityExist(request.GivingCityId);
-                await _carBusinessRule.CarCanNotBeRentWhenIsInMaintenance(request.Id);
+                await _carBusinessRule.CarCanNotBeRentWhenIsInMaintenanceOrRented(request.Id);
 
                 //var car = await _carRepository.GetAsync(c => c.Id == request.Id);
 
                 var cars = await _carRepository.GetListAsync(include: x => x.Include(x => x.Model),
                     predicate: c => c.Id == request.Id);
+
                 var car = cars.Items.FirstOrDefault();
                 if (car == null)
                     throw new BusinessException("Car cannot find");
 
                 car.CarState = Domain.Enums.CarState.Rented;
                 await _carRepository.UpdateAsync(car);
+
+                var cityExtentPrice = request.TakingCityId == request.GivingCityId ? 0 : 500;
 
                 Random rnd = new Random();
                 var command = new CreateInvoiceCommand()
@@ -74,7 +72,7 @@ namespace Application.Features.Cars.Commands
                     RentStartDate = DateTime.Now,
                     RentEndDate = DateTime.Now.AddDays(request.TotalRentDay),
                     TotalRentDay = request.TotalRentDay,
-                    TotalRentAmount = car.Model.DailyPrice * request.TotalRentDay,
+                    TotalRentAmount = (car.Model.DailyPrice * request.TotalRentDay) + cityExtentPrice,
                     CustomerId = request.CustomerId,
                 };
 

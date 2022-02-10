@@ -43,6 +43,7 @@ public class RedeliverCarCommand : IRequest<NoContent>
 
             car.CarState = CarState.Available;
             car.CurrentIndicatorValueAsKilometer = request.CarIndicatorValue;
+            car.CityId = rent.GivingCityId.Value;
 
             await _carRepository.UpdateAsync(car);
 

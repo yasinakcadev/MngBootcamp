@@ -8,7 +8,7 @@ public class Rent : Entity
     {
     }
 
-    public Rent(int carId, int customerId, DateTime endDate, int? givingCityId, int invoiceId, DateTime startDate,
+    public Rent(int carId, int customerId, DateTime endDate, int? givingCityId, int? invoiceId, DateTime startDate,
         int? takingCityId, int startIndicatorValueAsKilometer)
     {
         CarId = carId;
