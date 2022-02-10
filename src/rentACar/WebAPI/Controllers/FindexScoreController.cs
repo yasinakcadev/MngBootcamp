@@ -5,7 +5,6 @@ using Core.Application.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static WebAPI.Controllers.BrandController;
 
 namespace WebAPI.Controllers
 {

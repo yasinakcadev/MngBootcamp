@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Core.Security.Entities;
+using Domain.Entities;
 using Domain.Entities.Abstarct;
 using Domain.Enums;
 using Domain.FindexScore;
@@ -15,7 +16,6 @@ namespace Persistence
         {
             Configuration = configuration;
         }
-
         public DbSet<Model> Brands { get; set; }
         public DbSet<Model> Models { get; set; }
         public DbSet<Car> Cars { get; set; }
@@ -30,6 +30,9 @@ namespace Persistence
         public DbSet<City> Cities { get; set; }
         public DbSet<Rent> Rents { get; set; }
         public DbSet<Damage> Damages { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,74 +45,74 @@ namespace Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            modelBuilder.Entity<Model>(b =>
+            modelBuilder.Entity<Model>(m =>
             {
-                b.ToTable("Models").HasKey(k => k.Id);
-                b.Property(p => p.Id).HasColumnName("Id");
-                b.Property(p => p.Name).HasColumnName("Name");
-                b.Property(p => p.DailyPrice).HasColumnName("DailyPrice");
-                b.Property(p => p.TransmissionId).HasColumnName("TransmissionId");
-                b.Property(p => p.FuelId).HasColumnName("FuelId");
-                b.Property(p => p.BrandId).HasColumnName("BrandId");
-                b.Property(p => p.ImageUrl).HasColumnName("ImageUrl");
-                b.HasOne(p => p.Fuel);
-                b.HasOne(p => p.Transmission);
-                b.HasOne(p => p.Brand);
+                m.ToTable("Models").HasKey(k => k.Id);
+                m.Property(p => p.Id).HasColumnName("Id");
+                m.Property(p => p.Name).HasColumnName("Name");
+                m.Property(p => p.DailyPrice).HasColumnName("DailyPrice");
+                m.Property(p => p.TransmissionId).HasColumnName("TransmissionId");
+                m.Property(p => p.FuelId).HasColumnName("FuelId");
+                m.Property(p => p.BrandId).HasColumnName("BrandId");
+                m.Property(p => p.ImageUrl).HasColumnName("ImageUrl");
+                m.HasOne(p => p.Fuel);
+                m.HasOne(p => p.Transmission);
+                m.HasOne(p => p.Brand);
                 //b.HasMany(p => p.Cars);
             });
 
-            modelBuilder.Entity<Car>(b =>
+            modelBuilder.Entity<Car>(c =>
             {
-                b.ToTable("Cars").HasKey(k => k.Id);
-                b.Property(p => p.Id).HasColumnName("Id");
-                b.Property(p => p.ModelYear).HasColumnName("ModelYear");
-                b.Property(p => p.Plate).HasColumnName("Plate");
-                b.Property(p => p.ColorId).HasColumnName("ColorId");
-                b.Property(p => p.ModelId).HasColumnName("ModelId");
-                b.Property(p => p.CarState).HasColumnName("State");
-                b.HasOne(p => p.Color);
-                b.HasOne(p => p.Model);
-                b.HasOne(p => p.City);
+                c.ToTable("Cars").HasKey(k => k.Id);
+                c.Property(p => p.Id).HasColumnName("Id");
+                c.Property(p => p.ModelYear).HasColumnName("ModelYear");
+                c.Property(p => p.Plate).HasColumnName("Plate");
+                c.Property(p => p.ColorId).HasColumnName("ColorId");
+                c.Property(p => p.ModelId).HasColumnName("ModelId");
+                c.Property(p => p.CarState).HasColumnName("State");
+                c.HasOne(p => p.Color);
+                c.HasOne(p => p.Model);
+                c.HasOne(p => p.City);
             });
 
-            modelBuilder.Entity<Transmission>(b =>
+            modelBuilder.Entity<Transmission>(t =>
             {
-                b.ToTable("Tranmissions").HasKey(k => k.Id);
-                b.Property(p => p.Id).HasColumnName("Id");
-                b.Property(p => p.Name).HasColumnName("Name");
-                b.HasMany(p => p.Models);
+                t.ToTable("Tranmissions").HasKey(k => k.Id);
+                t.Property(p => p.Id).HasColumnName("Id");
+                t.Property(p => p.Name).HasColumnName("Name");
+                t.HasMany(p => p.Models);
             });
-            modelBuilder.Entity<FindexScore>(b =>
+            modelBuilder.Entity<FindexScore>(f =>
             {
-                b.ToTable("FindexScores").HasKey(k => k.Id);
-                b.Property(p => p.Id).HasColumnName("Id");
-                b.Property(p => p.CustomerId).HasColumnName("CustomerId");
-                b.Property(p => p.Score).HasColumnName("Score");
-                b.HasOne(p => p.Customer);
-            });
-
-            modelBuilder.Entity<Fuel>(b =>
-            {
-                b.ToTable("Fuels").HasKey(k => k.Id);
-                b.Property(p => p.Id).HasColumnName("Id");
-                b.Property(p => p.Name).HasColumnName("Name");
-                b.HasMany(p => p.Models);
+                f.ToTable("FindexScores").HasKey(k => k.Id);
+                f.Property(p => p.Id).HasColumnName("Id");
+                f.Property(p => p.CustomerId).HasColumnName("CustomerId");
+                f.Property(p => p.Score).HasColumnName("Score");
+                f.HasOne(p => p.Customer);
             });
 
-            modelBuilder.Entity<Color>(b =>
+            modelBuilder.Entity<Fuel>(f =>
             {
-                b.ToTable("Colors").HasKey(k => k.Id);
-                b.Property(p => p.Id).HasColumnName("Id");
-                b.Property(p => p.Name).HasColumnName("Name");
-                b.HasMany(p => p.Cars);
+                f.ToTable("Fuels").HasKey(k => k.Id);
+                f.Property(p => p.Id).HasColumnName("Id");
+                f.Property(p => p.Name).HasColumnName("Name");
+                f.HasMany(p => p.Models);
             });
 
-            modelBuilder.Entity<City>(b =>
+            modelBuilder.Entity<Color>(c =>
             {
-                b.ToTable("Cities").HasKey(k => k.Id);
-                b.Property(p => p.Id).HasColumnName("Id");
-                b.Property(p => p.Name).HasColumnName("Name");
-                b.HasMany(p => p.Cars);
+                c.ToTable("Colors").HasKey(k => k.Id);
+                c.Property(p => p.Id).HasColumnName("Id");
+                c.Property(p => p.Name).HasColumnName("Name");
+                c.HasMany(p => p.Cars);
+            });
+
+            modelBuilder.Entity<City>(c =>
+            {
+                c.ToTable("Cities").HasKey(k => k.Id);
+                c.Property(p => p.Id).HasColumnName("Id");
+                c.Property(p => p.Name).HasColumnName("Name");
+                c.HasMany(p => p.Cars);
             });
 
             modelBuilder.Entity<Brand>(b =>
@@ -127,32 +130,32 @@ namespace Persistence
                 c.Property(p => p.Email).HasColumnName("Email");
             });
 
-            modelBuilder.Entity<IndividualCustomer>(c =>
+            modelBuilder.Entity<IndividualCustomer>(ic =>
             {
-                c.ToTable("IndividualCustomer");
-                c.Property(p => p.FirstName).HasColumnName("FirstName");
-                c.Property(p => p.Lastname).HasColumnName("Lastname");
-                c.Property(p => p.NationalId).HasColumnName("NationalId");
+                ic.ToTable("IndividualCustomer");
+                ic.Property(p => p.FirstName).HasColumnName("FirstName");
+                ic.Property(p => p.Lastname).HasColumnName("Lastname");
+                ic.Property(p => p.NationalId).HasColumnName("NationalId");
             });
 
-            modelBuilder.Entity<CorporateCustomer>(c =>
+            modelBuilder.Entity<CorporateCustomer>(cc =>
             {
-                c.ToTable("CorporateCustomer");
-                c.Property(p => p.CompanyName).HasColumnName("CompanyName");
-                c.Property(p => p.TaxNumber).HasColumnName("TaxNumber");
+                cc.ToTable("CorporateCustomer");
+                cc.Property(p => p.CompanyName).HasColumnName("CompanyName");
+                cc.Property(p => p.TaxNumber).HasColumnName("TaxNumber");
             });
 
-            modelBuilder.Entity<Invoice>(c =>
+            modelBuilder.Entity<Invoice>(i =>
             {
-                c.ToTable("Invoice").HasKey(i => i.Id);
-                c.Property(p => p.CreationDate).HasColumnName("CreationDate");
-                c.Property(p => p.RentStartDate).HasColumnName("RentStartDate");
-                c.Property(p => p.RentEndDate).HasColumnName("RentEndDate");
-                c.Property(p => p.TotalRentDay).HasColumnName("TotalRentDay");
-                c.Property(p => p.TotalRentAmount).HasColumnName("TotalRentAmount");
-                c.Property(p => p.CustomerId).HasColumnName("CustomerId");
-                c.HasOne(p => p.Customer);
-                c.HasMany(p => p.Cars);
+                i.ToTable("Invoice").HasKey(i => i.Id);
+                i.Property(p => p.CreationDate).HasColumnName("CreationDate");
+                i.Property(p => p.RentStartDate).HasColumnName("RentStartDate");
+                i.Property(p => p.RentEndDate).HasColumnName("RentEndDate");
+                i.Property(p => p.TotalRentDay).HasColumnName("TotalRentDay");
+                i.Property(p => p.TotalRentAmount).HasColumnName("TotalRentAmount");
+                i.Property(p => p.CustomerId).HasColumnName("CustomerId");
+                i.HasOne(p => p.Customer);
+                i.HasMany(p => p.Cars);
             });
 
             modelBuilder.Entity<Rent>(r =>
@@ -164,12 +167,36 @@ namespace Persistence
                 r.HasOne(r => r.Car);
             });
 
-            modelBuilder.Entity<Damage>(r =>
+            modelBuilder.Entity<Damage>(d =>
             {
-                r.ToTable("Damage").HasKey(i => i.Id);
-                r.Property(r => r.CarId).HasColumnName("CarId");
-                r.Property(r => r.DamageDetail).HasColumnName("DamageDetail");
-                r.HasOne(r => r.Car);
+                d.ToTable("Damage").HasKey(i => i.Id);
+                d.Property(r => r.CarId).HasColumnName("CarId");
+                d.Property(r => r.DamageDetail).HasColumnName("DamageDetail");
+                d.HasOne(r => r.Car);
+            });
+
+            modelBuilder.Entity<User>(r =>
+            {
+                r.ToTable("Users").HasKey(i => i.Id);
+                r.Property(r => r.FirstName).HasColumnName("FirstName");
+                r.Property(r => r.LastName).HasColumnName("LastName");
+                r.Property(r => r.Email).HasColumnName("Email");
+                r.Property(r => r.PasswordHash).HasColumnName("PasswordHash");
+                r.Property(r => r.PasswordSalt).HasColumnName("PasswordSalt");
+                r.Property(r => r.Status).HasColumnName("Status");
+            });
+
+            modelBuilder.Entity<OperationClaim>(r =>
+            {
+                r.ToTable("OperationClaims").HasKey(i => i.Id);
+                r.Property(r => r.Name).HasColumnName("Name");
+            });
+
+            modelBuilder.Entity<UserOperationClaim>(r =>
+            {
+                r.ToTable("UserOperationClaims").HasKey(i => i.Id);
+                r.Property(r => r.UserId).HasColumnName("UserId");
+                r.Property(r => r.OperationClaimId).HasColumnName("OperationClaimId");
             });
 
             //Data Seeding
