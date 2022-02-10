@@ -18,6 +18,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Features.Rents.Rules;
 using Application.Features.FindexScores.Rules;
+using Application.Features.Users.Rules;
+using Core.Security.Jwt;
+using Core.CrossCuttingConcerns.Logging.Serilog;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
+using Core.Application.Pipelines.Logging;
 
 namespace Application
 {
@@ -28,6 +33,7 @@ namespace Application
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddSingleton<LoggerServiceBase, FileLogger>();
 
             services.AddScoped<BrandBusinessRules>();
             services.AddScoped<ModelBusinessRules>();
@@ -39,11 +45,12 @@ namespace Application
             services.AddScoped<InvoiceBusinessRules>();
             services.AddScoped<RentBusinessRules>();
             services.AddScoped<FindexScoreBusinessRules>();
-
             services.AddScoped<DamageBusinessRules>();
+            services.AddScoped<UserBusinessRules>();
 
             services.AddTransient(typeof(IPipelineBehavior<,>),typeof(RequestValidationBehavior<,>));
-            
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+
             return services;
         }
     }

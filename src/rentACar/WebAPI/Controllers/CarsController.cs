@@ -4,7 +4,6 @@ using Application.Features.Cars.Commands;
 using Application.Features.Cars.Queries;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;
-using static WebAPI.Controllers.BrandController;
 
 namespace WebAPI.Controllers
 {
