@@ -22,7 +22,7 @@ public class Rent : Entity
     }
 
     public int CustomerId { get; set; }
-    public int InvoiceId { get; set; }
+    public int? InvoiceId { get; set; }
     public int StartIndicatorValueAsKilometer { get; set; }
     public int? EndIndicatorValueAsKilometer { get; set; }
     public int CarId { get; set; }
