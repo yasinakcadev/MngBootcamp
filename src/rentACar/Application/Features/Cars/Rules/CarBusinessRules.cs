@@ -45,12 +45,13 @@ namespace Application.Features.Cars.Rules
                 throw new BusinessException("Car is not exist");
         }
 
-        public async Task CarCanNotBeRentWhenIsInMaintenance(int id)
+        public async Task CarCanNotBeRentWhenIsInMaintenanceOrRented(int id)
         {
             var car = await _carRepository.GetAsync(c => c.Id == id);
-            if (car.CarState == Domain.Enums.CarState.Maintenance)
-                throw new BusinessException("Car can not be rent while it is maintained");
+            if (car.CarState == Domain.Enums.CarState.Maintenance || car.CarState == CarState.Rented)
+                throw new BusinessException("Car can not be rent while it is maintained or rented");
         }
+
         public async Task FindexScoreMustBeBetween(int id)
         {
             var car = await _carRepository.GetAsync(c => c.Id == id);

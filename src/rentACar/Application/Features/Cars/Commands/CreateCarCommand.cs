@@ -17,6 +17,7 @@ namespace Application.Features.Cars.Commands
         public int ColorId { get; set; }
         public int ModelId { get; set; }
         public string Plate { get; set; }
+        public int CityId { get; set; }
         public int ModelYear { get; set; }
         public short MinFindexScore { get; set; }
         public CarState CarState { get; set; }
