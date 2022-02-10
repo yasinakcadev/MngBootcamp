@@ -34,7 +34,8 @@ namespace Application.Features.Cars.Commands
             private IRentRepository _rentRepository;
 
 
-            public RentalCarCommandHandler(CarBusinessRules carBusinessRule, ICarRepository carRepository, IMapper mapper, IMediator mediator, IRentRepository rentRepository)
+
+            public RentalCarCommandHandler(CarBusinessRules carBusinessRule, ICarRepository carRepository, IFindexCreditService findexCreditService, IFindexScoreRepository findexScoreRepository, IMapper mapper, IMediator mediator, IRentRepository rentRepository)
             {
                 _carBusinessRule = carBusinessRule;
                 _carRepository = carRepository;

@@ -8,6 +8,6 @@ namespace Application.Services.CredibilityServices
 {
     public interface IFindexCreditService
     {
-        short GetFindexScore(string Id);
+        short GetFindexScore(int Id);
     }
 }
