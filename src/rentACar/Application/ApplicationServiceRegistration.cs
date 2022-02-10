@@ -17,6 +17,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Features.Rents.Rules;
+using Application.Features.FindexScores.Rules;
 
 namespace Application
 {
@@ -37,7 +38,8 @@ namespace Application
             services.AddScoped<IndividualCustomerBusinessRules>();
             services.AddScoped<InvoiceBusinessRules>();
             services.AddScoped<RentBusinessRules>();
-            
+            services.AddScoped<FindexScoreBusinessRules>();
+
             services.AddScoped<DamageBusinessRules>();
 
             services.AddTransient(typeof(IPipelineBehavior<,>),typeof(RequestValidationBehavior<,>));

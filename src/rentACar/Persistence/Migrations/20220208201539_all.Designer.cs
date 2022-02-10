@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
@@ -11,9 +12,10 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    partial class BaseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220208201539_all")]
+    partial class all
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -134,7 +136,7 @@ namespace Persistence.Migrations
                             CityId = 1,
                             ColorId = 1,
                             CurrentIndicatorValueAsKilometer = 100,
-                            MinFindexScore = (short)300,
+                            MinFindexScore = (short)1500,
                             ModelId = 1,
                             ModelYear = (short)2018,
                             Plate = "06ABC06"
@@ -146,7 +148,7 @@ namespace Persistence.Migrations
                             CityId = 1,
                             ColorId = 2,
                             CurrentIndicatorValueAsKilometer = 10,
-                            MinFindexScore = (short)500,
+                            MinFindexScore = (short)1500,
                             ModelId = 2,
                             ModelYear = (short)2018,
                             Plate = "34ABC34"
