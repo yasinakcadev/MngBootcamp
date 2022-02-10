@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Services.CredibilityServices;
+using Core.Security.Jwt;
 
 namespace Persistence
 {
@@ -20,6 +21,7 @@ namespace Persistence
         {
             services.AddDbContext<BaseDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("rentACarConnectionString")));
+            
             services.AddScoped<IBrandRepository, BrandRepository>();
             services.AddScoped<IModelRepository, ModelRepository>();
             services.AddScoped<IFuelRepository, FuelRepository>();
@@ -34,6 +36,9 @@ namespace Persistence
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();
             services.AddScoped<IFindexCreditService, MyFindexScore>();
             services.AddScoped<IDamageRepository, DamageRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITokenHelper,JwtHelper>();
+
             return services;
         }
     }

@@ -6,7 +6,6 @@ using Application.Features.IndividualCustomer.Commands;
 using Application.Features.IndividualCustomer.Queries;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;
-using static WebAPI.Controllers.BrandController;
 
 namespace WebAPI.Controllers
 {

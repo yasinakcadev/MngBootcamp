@@ -6,7 +6,6 @@ using Application.Features.Transmission.Commands;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static WebAPI.Controllers.BrandController;
 
 namespace WebAPI.Controllers
 {

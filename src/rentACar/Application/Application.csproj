@@ -30,6 +30,7 @@
     <Folder Include="Features\Models\Queries\" />
     <Folder Include="Features\Models\Tests\" />
     <Folder Include="Features\Rents\Queries\" />
+    <Folder Include="Features\Users\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

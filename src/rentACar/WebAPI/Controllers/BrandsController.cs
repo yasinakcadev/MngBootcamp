@@ -2,7 +2,6 @@
 using Application.Features.Brands.Queries;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;
-using static WebAPI.Controllers.BrandController;
 
 namespace WebAPI.Controllers
 {
