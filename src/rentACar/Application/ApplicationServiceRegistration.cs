@@ -23,6 +23,7 @@ using Core.Security.Jwt;
 using Core.CrossCuttingConcerns.Logging.Serilog;
 using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Application.Pipelines.Logging;
+using Core.Application.Pipelines.Caching;
 
 namespace Application
 {
@@ -50,6 +51,7 @@ namespace Application
 
             services.AddTransient(typeof(IPipelineBehavior<,>),typeof(RequestValidationBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
 
             return services;
         }
