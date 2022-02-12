@@ -16,6 +16,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Features.AdditionalServices.Rules;
 using Application.Features.Rents.Rules;
 using Application.Features.FindexScores.Rules;
 using Application.Features.Users.Rules;
@@ -48,6 +49,7 @@ namespace Application
             services.AddScoped<FindexScoreBusinessRules>();
             services.AddScoped<DamageBusinessRules>();
             services.AddScoped<UserBusinessRules>();
+            services.AddScoped<AdditionelServicesBusinessRules>();
 
             services.AddTransient(typeof(IPipelineBehavior<,>),typeof(RequestValidationBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));

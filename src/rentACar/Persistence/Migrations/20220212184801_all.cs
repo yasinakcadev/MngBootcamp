@@ -5,10 +5,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
 {
-    public partial class userclaims : Migration
+    public partial class all : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AdditionalService",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DailyPrice = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdditionalService", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Brand",
                 columns: table => new
@@ -369,6 +383,30 @@ namespace Persistence.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "AdditionalServiceRent",
+                columns: table => new
+                {
+                    AdditionalServicesId = table.Column<int>(type: "int", nullable: false),
+                    RentsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdditionalServiceRent", x => new { x.AdditionalServicesId, x.RentsId });
+                    table.ForeignKey(
+                        name: "FK_AdditionalServiceRent_AdditionalService_AdditionalServicesId",
+                        column: x => x.AdditionalServicesId,
+                        principalTable: "AdditionalService",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AdditionalServiceRent_Rent_RentsId",
+                        column: x => x.RentsId,
+                        principalTable: "Rent",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Brand",
                 columns: new[] { "Id", "Name" },
@@ -434,6 +472,11 @@ namespace Persistence.Migrations
                 table: "Cars",
                 columns: new[] { "Id", "State", "CityId", "ColorId", "CurrentIndicatorValueAsKilometer", "InvoiceId", "MinFindexScore", "ModelId", "ModelYear", "Plate" },
                 values: new object[] { 2, 1, 1, 2, 10, null, (short)500, 2, (short)2018, "34ABC34" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AdditionalServiceRent_RentsId",
+                table: "AdditionalServiceRent",
+                column: "RentsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cars_CityId",
@@ -519,6 +562,9 @@ namespace Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AdditionalServiceRent");
+
+            migrationBuilder.DropTable(
                 name: "CorporateCustomer");
 
             migrationBuilder.DropTable(
@@ -531,19 +577,22 @@ namespace Persistence.Migrations
                 name: "IndividualCustomer");
 
             migrationBuilder.DropTable(
-                name: "Rent");
-
-            migrationBuilder.DropTable(
                 name: "UserOperationClaims");
 
             migrationBuilder.DropTable(
-                name: "Cars");
+                name: "AdditionalService");
+
+            migrationBuilder.DropTable(
+                name: "Rent");
 
             migrationBuilder.DropTable(
                 name: "OperationClaims");
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Cars");
 
             migrationBuilder.DropTable(
                 name: "Cities");

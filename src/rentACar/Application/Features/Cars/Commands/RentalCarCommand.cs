@@ -24,6 +24,7 @@ namespace Application.Features.Cars.Commands
         public int CustomerId { get; set; }
         public int TotalRentDay { get; set; }
 
+        public List<int> AdditionalServices { get; set; }
 
         public class RentalCarCommandHandler : IRequestHandler<RentalCarCommand, CarDto>
         {
@@ -32,11 +33,13 @@ namespace Application.Features.Cars.Commands
             private IMediator _mediator;
             private IMapper _mapper;
             private IRentRepository _rentRepository;
+            private IAdditionalServiceRepository _additionalServiceRepository;
 
-
-
-            public RentalCarCommandHandler(CarBusinessRules carBusinessRule, ICarRepository carRepository, IFindexCreditService findexCreditService, IFindexScoreRepository findexScoreRepository, IMapper mapper, IMediator mediator, IRentRepository rentRepository)
+            public RentalCarCommandHandler(IAdditionalServiceRepository additionalServiceRepository,
+                CarBusinessRules carBusinessRule, ICarRepository carRepository, IMapper mapper, IMediator mediator,
+                IRentRepository rentRepository)
             {
+                _additionalServiceRepository = additionalServiceRepository;
                 _carBusinessRule = carBusinessRule;
                 _carRepository = carRepository;
                 _mapper = mapper;
@@ -63,7 +66,23 @@ namespace Application.Features.Cars.Commands
                 car.CarState = Domain.Enums.CarState.Rented;
                 await _carRepository.UpdateAsync(car);
 
-                var cityExtentPrice = request.TakingCityId == request.GivingCityId ? 0 : 500;
+                double additionalServicesTotalAmount = 0;
+                List<AdditionalService> additionalServices = default;
+
+                if (request.AdditionalServices != null)
+                {
+                    var additionalServicesList =
+                        await _additionalServiceRepository.GetListAsync(x => request.AdditionalServices.Contains(x.Id));
+
+                    additionalServices = additionalServicesList.Items.ToList();
+
+                    foreach (var additionalService in additionalServicesList.Items)
+                    {
+                        additionalServicesTotalAmount += additionalService.DailyPrice * request.TotalRentDay;
+                    }
+                }
+
+                int cityExtentPrice = request.TakingCityId == request.GivingCityId ? 0 : 500;
 
                 Random rnd = new Random();
                 var command = new CreateInvoiceCommand()
@@ -74,6 +93,7 @@ namespace Application.Features.Cars.Commands
                     RentEndDate = DateTime.Now.AddDays(request.TotalRentDay),
                     TotalRentDay = request.TotalRentDay,
                     TotalRentAmount = (car.Model.DailyPrice * request.TotalRentDay) + cityExtentPrice,
+                    AdditionalRentAmount = additionalServicesTotalAmount,
                     CustomerId = request.CustomerId,
                 };
 
@@ -83,6 +103,8 @@ namespace Application.Features.Cars.Commands
                     DateTime.Now.AddDays(request.TotalRentDay),
                     request.GivingCityId, invoice.Id, DateTime.Now, request.TakingCityId,
                     car.CurrentIndicatorValueAsKilometer);
+
+                rent.AdditionalServices = additionalServices;
 
                 await _rentRepository.AddAsync(rent);
 

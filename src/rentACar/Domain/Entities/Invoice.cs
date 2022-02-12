@@ -16,11 +16,12 @@ namespace Domain.Entities
         public DateTime RentStartDate { get; set; }
         public int TotalRentDay { get; set; }
         public double TotalRentAmount { get; set; }
+        public double AdditionalRentAmount { get; set; }
         public int CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual ICollection<Car> Cars { get; set; }
 
-        public Invoice(int id,int invoiceNo, DateTime creationDate, DateTime rentEndDate, DateTime rentStartDate, int totalRentDay, double totalRentAmount, int customerId, Customer customer): this()
+        public Invoice(int id,int invoiceNo, DateTime creationDate, DateTime rentEndDate, DateTime rentStartDate, int totalRentDay, double totalRentAmount, int customerId, Customer customer,double additionalRentAmount): this()
         {
             Id = id;
             InvoiceNo = invoiceNo;
@@ -31,6 +32,7 @@ namespace Domain.Entities
             TotalRentAmount = totalRentAmount;
             CustomerId = customerId;
             Customer = customer;
+            AdditionalRentAmount = additionalRentAmount;
         }
 
         public Invoice()

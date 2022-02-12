@@ -12,8 +12,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20220210180749_userclaims")]
-    partial class userclaims
+    [Migration("20220212201946_invoiceprop")]
+    partial class invoiceprop
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,21 @@ namespace Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("AdditionalServiceRent", b =>
+                {
+                    b.Property<int>("AdditionalServicesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RentsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AdditionalServicesId", "RentsId");
+
+                    b.HasIndex("RentsId");
+
+                    b.ToTable("AdditionalServiceRent");
+                });
 
             modelBuilder.Entity("Core.Security.Entities.OperationClaim", b =>
                 {
@@ -126,6 +141,28 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customer", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.AdditionalService", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<double>("DailyPrice")
+                        .HasColumnType("float")
+                        .HasColumnName("DailyPrice");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AdditionalService", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Brand", b =>
@@ -369,6 +406,9 @@ namespace Persistence.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<double>("AdditionalRentAmount")
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2")
@@ -615,6 +655,21 @@ namespace Persistence.Migrations
                         .HasColumnName("NationalId");
 
                     b.ToTable("IndividualCustomer", (string)null);
+                });
+
+            modelBuilder.Entity("AdditionalServiceRent", b =>
+                {
+                    b.HasOne("Domain.Entities.AdditionalService", null)
+                        .WithMany()
+                        .HasForeignKey("AdditionalServicesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Rent", null)
+                        .WithMany()
+                        .HasForeignKey("RentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Core.Security.Entities.UserOperationClaim", b =>

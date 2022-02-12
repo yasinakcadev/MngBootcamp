@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\AdditionalServices\Commands\" />
+    <Folder Include="Features\AdditionalServices\Models\" />
+    <Folder Include="Features\AdditionalServices\Profiles\" />
+    <Folder Include="Features\AdditionalServices\Rules\" />
     <Folder Include="Features\Brands\Tests\" />
     <Folder Include="Features\Cars\Tests\" />
     <Folder Include="Features\CorporateCustomer\Dtos\" />

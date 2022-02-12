@@ -19,6 +19,7 @@ namespace Application.Features.Invoices.Commands
         public DateTime RentEndDate { get; set; }
         public int TotalRentDay { get; set; }
         public double TotalRentAmount { get; set; }
+        public double AdditionalRentAmount { get; set; }
         public int CustomerId { get; set; }
 
         public class CreateInvoiceCommandHandler : IRequestHandler<CreateInvoiceCommand, Invoice>

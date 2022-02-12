@@ -31,6 +31,7 @@ public class Rent : Entity
     public bool IsCompleted { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
+    public virtual ICollection<AdditionalService> AdditionalServices { get; set; }
     public virtual Car Car { get; set; }
     public virtual City? GivingCity { get; set; }
     public virtual City? TakingCity { get; set; }

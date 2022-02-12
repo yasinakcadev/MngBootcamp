@@ -165,6 +165,15 @@ namespace Persistence
                 r.HasOne(x => x.TakingCity);
                 r.HasOne(x => x.Invoice);
                 r.HasOne(r => r.Car);
+                r.HasMany(x => x.AdditionalServices);
+            });
+
+            modelBuilder.Entity<AdditionalService>(a =>
+            {
+                a.ToTable("AdditionalService").HasKey(i => i.Id);
+                a.Property(x => x.Name).HasColumnName("Name");
+                a.Property(x => x.DailyPrice).HasColumnName("DailyPrice");
+                a.HasMany(x => x.Rents);
             });
 
             modelBuilder.Entity<Damage>(d =>
