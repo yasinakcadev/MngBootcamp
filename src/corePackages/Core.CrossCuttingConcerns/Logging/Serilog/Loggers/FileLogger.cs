@@ -2,11 +2,6 @@
 using Core.CrossCuttingConcerns.Logging.Serilog.Messages;
 using Microsoft.Extensions.Configuration;
 using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.CrossCuttingConcerns.Logging.Serilog.Loggers
 {
@@ -17,17 +12,11 @@ namespace Core.CrossCuttingConcerns.Logging.Serilog.Loggers
         {
             _configuration = configuration;
 
-
-
             var logConfig = configuration.GetSection("SeriLogConfigurations:FileLogConfiguration")
                                 .Get<FileLogConfiguration>() ??
                             throw new Exception(SerilogMessages.NullOptionsMessage);
 
-
-
             var logFilePath = string.Format("{0}{1}", Directory.GetCurrentDirectory() + logConfig.FolderPath, ".txt");
-
-
 
             Logger = new LoggerConfiguration()
                 .WriteTo.File(
