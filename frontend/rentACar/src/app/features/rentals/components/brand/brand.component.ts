@@ -1,7 +1,8 @@
-import { BrandListModel } from './../models/brandListModel';
+import { BrandService } from './../../services/brand.service';
+import { BrandListModel } from '../../models/brandListModel';
 import { ListResponseModel } from './../../../../core/models/listResponseModel';
 import { Component, OnInit } from '@angular/core';
-import { BrandService } from '../services/brand.service';
+
 
 @Component({
   selector: 'app-brand',
