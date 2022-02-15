@@ -14,13 +14,21 @@ namespace WebAPI.Controllers
         {
             var result = await Mediator.Send(createModelCommand);
             return Created("", result);
-        }
+        }   
 
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
         {
             var query = new GetModelListQuery();
             query.PageRequest = pageRequest;
+            var result = await Mediator.Send(query);
+            return Ok(result);
+
+        }
+
+        [HttpPost("getallbybrandid")]
+        public async Task<IActionResult> GetAllByBrandId([FromBody] GetModelByBrandIdQuery query)
+        {
             var result = await Mediator.Send(query);
             return Ok(result);
 

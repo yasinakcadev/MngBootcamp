@@ -3,7 +3,7 @@ export interface ModelListModel{
   brandName:string;
   colorName:string;
   transmissionName:string;
-  modelName:string;
+  Name:string;
   dailyPrice:number;
   minScore:number;
   imageUrl:string;
