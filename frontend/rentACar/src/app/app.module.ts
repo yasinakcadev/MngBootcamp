@@ -9,11 +9,13 @@ import {ListboxModule} from 'primeng/listbox';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { ModelComponent } from './features/rentals/components/model/model.component';
 import {CardModule} from 'primeng/card';
+import { ColorComponent } from './features/rentals/components/color/color.component';
 @NgModule({
   declarations: [
     AppComponent,
     BrandComponent,
-    ModelComponent
+    ModelComponent,
+    ColorComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
-import { ModelListModel } from './../models/modelListModel';
-import { ModelService } from './../services/model.service';
+import { ModelService } from './../../services/model.service';
+import { ModelListModel } from '../../models/modelListModel';
+
 
 import { Component, OnInit } from '@angular/core';
 import { ListResponseModel } from 'src/app/core/models/listResponseModel';
