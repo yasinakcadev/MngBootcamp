@@ -1,4 +1,5 @@
 ﻿using Application.Features.Models.Commands;
+using Application.Features.Models.Dtos;
 using Application.Features.Models.Queries;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,7 @@ namespace WebAPI.Controllers
         {
             var result = await Mediator.Send(createModelCommand);
             return Created("", result);
-        }   
+        }
 
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
@@ -23,15 +24,16 @@ namespace WebAPI.Controllers
             query.PageRequest = pageRequest;
             var result = await Mediator.Send(query);
             return Ok(result);
-
         }
 
-        [HttpPost("getallbybrandid")]
-        public async Task<IActionResult> GetAllByBrandId([FromBody] GetModelByBrandIdQuery query)
+        [HttpGet("getallbybrandid")]
+        public async Task<IActionResult> GetAllByBrandId([FromQuery] PageRequest pageRequest, int brandId)
         {
+            var query = new GetModelByBrandIdQuery();
+            query.PageRequest = pageRequest;
+            query.BrandId = brandId;
             var result = await Mediator.Send(query);
             return Ok(result);
-
         }
 
         [HttpPut("update")]

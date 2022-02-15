@@ -1,5 +1,4 @@
 ﻿using Application.Features.Users.Commands;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers

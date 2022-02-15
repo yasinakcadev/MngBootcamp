@@ -22,8 +22,8 @@ namespace Application.Features.Models.Profiles
             CreateMap<Model, ModelDto>().ReverseMap();
 
             CreateMap<Model, ModelListDto>().ReverseMap();
+            //CreateMap<Model, ModelListByBrandDto>().ReverseMap();
             CreateMap<ModelListModel, IPaginate<Model>>().ReverseMap();
-            //  CreateMap<BrandListModel, IPaginate<Brand>>().ReverseMap();
         }
     }
 }

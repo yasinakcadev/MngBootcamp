@@ -1,6 +1,6 @@
 <p-card
-  *ngFor="let item of models.items"
-  header="{{ item.brandName }}"
+  *ngFor="let item of modelsByBrand.items"
+  header="zxcxzcx"
   subheader="{{ item.id }}"
   [style]="{ width: '360px' }"
   styleClass="p-card-shadow"
@@ -11,9 +11,10 @@
       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFY1yc1H4MuHgtwBamxvEQwg5MwXfXY18Utg&usqp=CAU"
     />
   </ng-template>
-  {{ item.brandName }}
+  {{ item.brandId }}
 
   <ng-template pTemplate="footer">
     {{ item.dailyPrice }}
   </ng-template>
 </p-card>
+jkagdsyu

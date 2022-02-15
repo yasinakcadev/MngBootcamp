@@ -10,12 +10,14 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { ModelComponent } from './features/rentals/components/model/model.component';
 import {CardModule} from 'primeng/card';
 import { ColorComponent } from './features/rentals/components/color/color.component';
+import { FuelComponent } from './features/rentals/components/fuel/fuel.component';
 @NgModule({
   declarations: [
     AppComponent,
     BrandComponent,
     ModelComponent,
-    ColorComponent
+    ColorComponent,
+    FuelComponent
   ],
   imports: [
     BrowserModule,
