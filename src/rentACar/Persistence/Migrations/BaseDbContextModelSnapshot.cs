@@ -138,7 +138,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer", (string)null);
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.AdditionalService", b =>
@@ -160,7 +160,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdditionalService", (string)null);
+                    b.ToTable("AdditionalServices", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Brand", b =>
@@ -179,7 +179,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brand", (string)null);
+                    b.ToTable("Brands", (string)null);
 
                     b.HasData(
                         new
@@ -363,7 +363,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("CarId");
 
-                    b.ToTable("Damage", (string)null);
+                    b.ToTable("Damages", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Fuel", b =>
@@ -439,7 +439,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Invoice", (string)null);
+                    b.ToTable("Invoices", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Model", b =>
@@ -558,7 +558,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("TakingCityId");
 
-                    b.ToTable("Rent", (string)null);
+                    b.ToTable("Rents", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Transmission", b =>
@@ -630,7 +630,7 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("TaxNumber");
 
-                    b.ToTable("CorporateCustomer", (string)null);
+                    b.ToTable("CorporateCustomers", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.IndividualCustomer", b =>
@@ -642,17 +642,17 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("FirstName");
 
-                    b.Property<string>("Lastname")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Lastname");
+                        .HasColumnName("LastName");
 
                     b.Property<string>("NationalId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("NationalId");
 
-                    b.ToTable("IndividualCustomer", (string)null);
+                    b.ToTable("IndividualCustomers", (string)null);
                 });
 
             modelBuilder.Entity("AdditionalServiceRent", b =>
@@ -708,7 +708,7 @@ namespace Persistence.Migrations
                         .HasForeignKey("InvoiceId");
 
                     b.HasOne("Domain.Entities.Model", "Model")
-                        .WithMany()
+                        .WithMany("Cars")
                         .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -848,6 +848,11 @@ namespace Persistence.Migrations
                 });
 
             modelBuilder.Entity("Domain.Entities.Invoice", b =>
+                {
+                    b.Navigation("Cars");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Model", b =>
                 {
                     b.Navigation("Cars");
                 });

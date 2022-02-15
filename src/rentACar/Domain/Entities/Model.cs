@@ -4,7 +4,11 @@ namespace Domain.Entities;
 
 public class Model : Entity
 {
-    public Model(int id, string name, double dailyPrice, int transmissionId, int fuelId, int brandId, string imageUrl)
+    public Model()
+    {
+
+    }
+    public Model(int id, string name, double dailyPrice, int transmissionId, int fuelId, int brandId, string imageUrl):this()
     {
         Id = id;
         Name = name;
@@ -19,9 +23,11 @@ public class Model : Entity
     public double DailyPrice { get; set; }
     public string ImageUrl { get; set; }
     public int TransmissionId { get; set; }
-    public virtual Transmission Transmission { get; set; }
     public int FuelId { get; set; }
-    public virtual Fuel Fuel { get; set; }
     public int BrandId { get; set; }
+
+    public virtual Fuel Fuel { get; set; }
+    public virtual Transmission Transmission { get; set; }
     public virtual Brand Brand { get; set; }
+    public virtual ICollection<Car> Cars { get; set; }
 }

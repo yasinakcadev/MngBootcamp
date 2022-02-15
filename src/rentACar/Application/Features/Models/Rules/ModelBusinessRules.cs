@@ -19,7 +19,7 @@ namespace Application.Features.Models.Rules
             _brandRepository = brandRepository;
         }
 
-        public async Task ModelNameCanNotBeDuplicateWhenInserted(string name)
+        public async Task ModelNameCanNotBeDuplicate(string name)
         {
             var result = await _modelRepository.GetListAsync(b => b.Name == name);
             if (result.Items.Any())

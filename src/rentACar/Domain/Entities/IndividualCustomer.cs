@@ -9,15 +9,13 @@ namespace Domain.Entities
 {
     public class IndividualCustomer: Customer
     {
-        public string FirstName { get; set; }
-        public string Lastname { get; set; }
-        public string NationalId { get; set; }
 
-        public IndividualCustomer(int id,string firstName, string lastname, string nationalId): this()
+
+        public IndividualCustomer(int id,string firstName, string lastName, string nationalId): this()
         {
             Id = id;
             FirstName = firstName;
-            Lastname = lastname;
+            LastName = lastName;
             NationalId = nationalId;
         }
 
@@ -25,5 +23,8 @@ namespace Domain.Entities
         {
 
         }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string NationalId { get; set; }
     }
 }

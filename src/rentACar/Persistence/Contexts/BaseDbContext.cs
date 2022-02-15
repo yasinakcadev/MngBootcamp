@@ -16,7 +16,7 @@ namespace Persistence
         {
             Configuration = configuration;
         }
-        public DbSet<Model> Brands { get; set; }
+        public DbSet<Brand> Brands { get; set; }
         public DbSet<Model> Models { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<FindexScore> FindexScores { get; set; }
@@ -58,7 +58,7 @@ namespace Persistence
                 m.HasOne(p => p.Fuel);
                 m.HasOne(p => p.Transmission);
                 m.HasOne(p => p.Brand);
-                //b.HasMany(p => p.Cars);
+                m.HasMany(p => p.Cars);
             });
 
             modelBuilder.Entity<Car>(c =>
@@ -117,7 +117,7 @@ namespace Persistence
 
             modelBuilder.Entity<Brand>(b =>
             {
-                b.ToTable("Brand").HasKey(k => k.Id);
+                b.ToTable("Brands").HasKey(k => k.Id);
                 b.Property(p => p.Id).HasColumnName("Id");
                 b.Property(p => p.Name).HasColumnName("Name");
                 b.HasMany(p => p.Models);
@@ -125,29 +125,29 @@ namespace Persistence
 
             modelBuilder.Entity<Customer>(c =>
             {
-                c.ToTable("Customer").HasKey(k => k.Id);
+                c.ToTable("Customers").HasKey(k => k.Id);
                 c.Property(p => p.Id).HasColumnName("Id");
                 c.Property(p => p.Email).HasColumnName("Email");
             });
 
             modelBuilder.Entity<IndividualCustomer>(ic =>
             {
-                ic.ToTable("IndividualCustomer");
+                ic.ToTable("IndividualCustomers");
                 ic.Property(p => p.FirstName).HasColumnName("FirstName");
-                ic.Property(p => p.Lastname).HasColumnName("Lastname");
+                ic.Property(p => p.LastName).HasColumnName("LastName");
                 ic.Property(p => p.NationalId).HasColumnName("NationalId");
             });
 
             modelBuilder.Entity<CorporateCustomer>(cc =>
             {
-                cc.ToTable("CorporateCustomer");
+                cc.ToTable("CorporateCustomers");
                 cc.Property(p => p.CompanyName).HasColumnName("CompanyName");
                 cc.Property(p => p.TaxNumber).HasColumnName("TaxNumber");
             });
 
             modelBuilder.Entity<Invoice>(i =>
             {
-                i.ToTable("Invoice").HasKey(i => i.Id);
+                i.ToTable("Invoices").HasKey(i => i.Id);
                 i.Property(p => p.CreationDate).HasColumnName("CreationDate");
                 i.Property(p => p.RentStartDate).HasColumnName("RentStartDate");
                 i.Property(p => p.RentEndDate).HasColumnName("RentEndDate");
@@ -160,7 +160,7 @@ namespace Persistence
 
             modelBuilder.Entity<Rent>(r =>
             {
-                r.ToTable("Rent").HasKey(i => i.Id);
+                r.ToTable("Rents").HasKey(i => i.Id);
                 r.HasOne(x => x.GivingCity);
                 r.HasOne(x => x.TakingCity);
                 r.HasOne(x => x.Invoice);
@@ -170,7 +170,7 @@ namespace Persistence
 
             modelBuilder.Entity<AdditionalService>(a =>
             {
-                a.ToTable("AdditionalService").HasKey(i => i.Id);
+                a.ToTable("AdditionalServices").HasKey(i => i.Id);
                 a.Property(x => x.Name).HasColumnName("Name");
                 a.Property(x => x.DailyPrice).HasColumnName("DailyPrice");
                 a.HasMany(x => x.Rents);
@@ -178,7 +178,7 @@ namespace Persistence
 
             modelBuilder.Entity<Damage>(d =>
             {
-                d.ToTable("Damage").HasKey(i => i.Id);
+                d.ToTable("Damages").HasKey(i => i.Id);
                 d.Property(r => r.CarId).HasColumnName("CarId");
                 d.Property(r => r.DamageDetail).HasColumnName("DamageDetail");
                 d.HasOne(r => r.Car);

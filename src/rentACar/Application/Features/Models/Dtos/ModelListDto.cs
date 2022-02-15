@@ -1,6 +1,6 @@
 ﻿namespace Application.Features.Models.Dtos;
 
-public class ModelDto
+public class ModelListDto
 {
     public int Id { get; set; }
     public string Name { get; set; }

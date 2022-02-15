@@ -29,9 +29,6 @@
     <Folder Include="Features\CorporateCustomer\Profiles\" />
     <Folder Include="Features\Fuel\Tests\" />
     <Folder Include="Features\Invoices\Tests\" />
-    <Folder Include="Features\Models\Models\" />
-    <Folder Include="Features\Models\Dtos\" />
-    <Folder Include="Features\Models\Queries\" />
     <Folder Include="Features\Models\Tests\" />
     <Folder Include="Features\Rents\Queries\" />
     <Folder Include="Features\Users\Queries\" />

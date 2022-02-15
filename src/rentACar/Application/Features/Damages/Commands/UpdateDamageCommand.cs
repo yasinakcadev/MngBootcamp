@@ -16,6 +16,7 @@ namespace Application.Features.Damages.Commands
     {
         public int Id { get; set; }
         public int CarId { get; set; }
+        public string DamageDetail { get; set; }
 
         public class UpdateDamageCommandHandler : IRequestHandler<UpdateDamageCommand, DamageDto>
         {
