@@ -23,14 +23,15 @@ public class Car : Entity
         MinFindexScore = minFindexScore;
     }
     public int ColorId { get; set; }
-    public CarState CarState { get; set; }
-    public virtual Color Color { get; set; }
     public int ModelId { get; set; }
     public short MinFindexScore { get; set; }
     public int CurrentIndicatorValueAsKilometer { get; set; }
-    public virtual Model Model { get; set; }
     public int CityId { get; set; }
-    public virtual City City { get; set; }
     public short ModelYear { get; set; }
     public string Plate { get; set; }
+
+    public virtual Model Model { get; set; }
+    public CarState CarState { get; set; }
+    public virtual Color Color { get; set; }
+    public virtual City City { get; set; }
 }

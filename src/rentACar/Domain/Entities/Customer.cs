@@ -9,7 +9,7 @@ namespace Domain.Entities.Abstarct
 {
     public class Customer: Entity
     {
-        public string Email { get; set; }
+
 
         public Customer(int id,string email):this()
         {
@@ -21,5 +21,6 @@ namespace Domain.Entities.Abstarct
         {
 
         }
+        public string Email { get; set; }
     }
 }

@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
 {
-    public partial class last : Migration
+    public partial class withModelBrandFix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AdditionalService",
+                name: "AdditionalServices",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -20,11 +20,11 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdditionalService", x => x.Id);
+                    table.PrimaryKey("PK_AdditionalServices", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Brand",
+                name: "Brands",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -33,7 +33,7 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Brand", x => x.Id);
+                    table.PrimaryKey("PK_Brands", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -63,7 +63,7 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Customer",
+                name: "Customers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -72,7 +72,7 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customer", x => x.Id);
+                    table.PrimaryKey("PK_Customers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -133,7 +133,7 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CorporateCustomer",
+                name: "CorporateCustomers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
@@ -142,11 +142,11 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CorporateCustomer", x => x.Id);
+                    table.PrimaryKey("PK_CorporateCustomers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CorporateCustomer_Customer_Id",
+                        name: "FK_CorporateCustomers_Customers_Id",
                         column: x => x.Id,
-                        principalTable: "Customer",
+                        principalTable: "Customers",
                         principalColumn: "Id");
                 });
 
@@ -163,34 +163,34 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_FindexScores", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FindexScores_Customer_CustomerId",
+                        name: "FK_FindexScores_Customers_CustomerId",
                         column: x => x.CustomerId,
-                        principalTable: "Customer",
+                        principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "IndividualCustomer",
+                name: "IndividualCustomers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NationalId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IndividualCustomer", x => x.Id);
+                    table.PrimaryKey("PK_IndividualCustomers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_IndividualCustomer_Customer_Id",
+                        name: "FK_IndividualCustomers_Customers_Id",
                         column: x => x.Id,
-                        principalTable: "Customer",
+                        principalTable: "Customers",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Invoice",
+                name: "Invoices",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -206,11 +206,11 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Invoice", x => x.Id);
+                    table.PrimaryKey("PK_Invoices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Invoice_Customer_CustomerId",
+                        name: "FK_Invoices_Customers_CustomerId",
                         column: x => x.CustomerId,
-                        principalTable: "Customer",
+                        principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -232,9 +232,9 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Models", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Models_Brand_BrandId",
+                        name: "FK_Models_Brands_BrandId",
                         column: x => x.BrandId,
-                        principalTable: "Brand",
+                        principalTable: "Brands",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -284,13 +284,13 @@ namespace Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ColorId = table.Column<int>(type: "int", nullable: false),
-                    State = table.Column<int>(type: "int", nullable: false),
                     ModelId = table.Column<int>(type: "int", nullable: false),
                     MinFindexScore = table.Column<short>(type: "smallint", nullable: false),
                     CurrentIndicatorValueAsKilometer = table.Column<int>(type: "int", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: false),
                     ModelYear = table.Column<short>(type: "smallint", nullable: false),
                     Plate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    State = table.Column<int>(type: "int", nullable: false),
                     InvoiceId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -309,9 +309,9 @@ namespace Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Cars_Invoice_InvoiceId",
+                        name: "FK_Cars_Invoices_InvoiceId",
                         column: x => x.InvoiceId,
-                        principalTable: "Invoice",
+                        principalTable: "Invoices",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Cars_Models_ModelId",
@@ -322,7 +322,7 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Damage",
+                name: "Damages",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -332,9 +332,9 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Damage", x => x.Id);
+                    table.PrimaryKey("PK_Damages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Damage_Cars_CarId",
+                        name: "FK_Damages_Cars_CarId",
                         column: x => x.CarId,
                         principalTable: "Cars",
                         principalColumn: "Id",
@@ -342,7 +342,7 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rent",
+                name: "Rents",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -360,27 +360,27 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rent", x => x.Id);
+                    table.PrimaryKey("PK_Rents", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Rent_Cars_CarId",
+                        name: "FK_Rents_Cars_CarId",
                         column: x => x.CarId,
                         principalTable: "Cars",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Rent_Cities_GivingCityId",
+                        name: "FK_Rents_Cities_GivingCityId",
                         column: x => x.GivingCityId,
                         principalTable: "Cities",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Rent_Cities_TakingCityId",
+                        name: "FK_Rents_Cities_TakingCityId",
                         column: x => x.TakingCityId,
                         principalTable: "Cities",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Rent_Invoice_InvoiceId",
+                        name: "FK_Rents_Invoices_InvoiceId",
                         column: x => x.InvoiceId,
-                        principalTable: "Invoice",
+                        principalTable: "Invoices",
                         principalColumn: "Id");
                 });
 
@@ -395,21 +395,21 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_AdditionalServiceRent", x => new { x.AdditionalServicesId, x.RentsId });
                     table.ForeignKey(
-                        name: "FK_AdditionalServiceRent_AdditionalService_AdditionalServicesId",
+                        name: "FK_AdditionalServiceRent_AdditionalServices_AdditionalServicesId",
                         column: x => x.AdditionalServicesId,
-                        principalTable: "AdditionalService",
+                        principalTable: "AdditionalServices",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AdditionalServiceRent_Rent_RentsId",
+                        name: "FK_AdditionalServiceRent_Rents_RentsId",
                         column: x => x.RentsId,
-                        principalTable: "Rent",
+                        principalTable: "Rents",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Brand",
+                table: "Brands",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
@@ -500,8 +500,8 @@ namespace Persistence.Migrations
                 column: "ModelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Damage_CarId",
-                table: "Damage",
+                name: "IX_Damages_CarId",
+                table: "Damages",
                 column: "CarId");
 
             migrationBuilder.CreateIndex(
@@ -510,8 +510,8 @@ namespace Persistence.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Invoice_CustomerId",
-                table: "Invoice",
+                name: "IX_Invoices_CustomerId",
+                table: "Invoices",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
@@ -530,23 +530,23 @@ namespace Persistence.Migrations
                 column: "TransmissionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rent_CarId",
-                table: "Rent",
+                name: "IX_Rents_CarId",
+                table: "Rents",
                 column: "CarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rent_GivingCityId",
-                table: "Rent",
+                name: "IX_Rents_GivingCityId",
+                table: "Rents",
                 column: "GivingCityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rent_InvoiceId",
-                table: "Rent",
+                name: "IX_Rents_InvoiceId",
+                table: "Rents",
                 column: "InvoiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rent_TakingCityId",
-                table: "Rent",
+                name: "IX_Rents_TakingCityId",
+                table: "Rents",
                 column: "TakingCityId");
 
             migrationBuilder.CreateIndex(
@@ -566,25 +566,25 @@ namespace Persistence.Migrations
                 name: "AdditionalServiceRent");
 
             migrationBuilder.DropTable(
-                name: "CorporateCustomer");
+                name: "CorporateCustomers");
 
             migrationBuilder.DropTable(
-                name: "Damage");
+                name: "Damages");
 
             migrationBuilder.DropTable(
                 name: "FindexScores");
 
             migrationBuilder.DropTable(
-                name: "IndividualCustomer");
+                name: "IndividualCustomers");
 
             migrationBuilder.DropTable(
                 name: "UserOperationClaims");
 
             migrationBuilder.DropTable(
-                name: "AdditionalService");
+                name: "AdditionalServices");
 
             migrationBuilder.DropTable(
-                name: "Rent");
+                name: "Rents");
 
             migrationBuilder.DropTable(
                 name: "OperationClaims");
@@ -602,16 +602,16 @@ namespace Persistence.Migrations
                 name: "Colors");
 
             migrationBuilder.DropTable(
-                name: "Invoice");
+                name: "Invoices");
 
             migrationBuilder.DropTable(
                 name: "Models");
 
             migrationBuilder.DropTable(
-                name: "Customer");
+                name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "Brand");
+                name: "Brands");
 
             migrationBuilder.DropTable(
                 name: "Fuels");

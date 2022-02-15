@@ -1,4 +1,5 @@
 ﻿using Application.Features.Brands.Rules;
+using Application.Features.Models.Dtos;
 using Application.Features.Models.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -7,17 +8,17 @@ using MediatR;
 
 namespace Application.Features.Models.Commands;
 
-public class CreateModelCommand : IRequest<Model>
+public class CreateModelCommand : IRequest<ModelDto>
 {
 
     public string Name { get; set; }
     public double DailyPrice { get; set; }
-    public int ImageUrl { get; set; }
+    public string ImageUrl { get; set; }
     public int TransmissionId { get; set; }
     public int FuelId { get; set; }
     public int BrandId { get; set; }
 
-    public class CreateModelCommandHandler : IRequestHandler<CreateModelCommand, Model>
+    public class CreateModelCommandHandler : IRequestHandler<CreateModelCommand, ModelDto>
     {
         IModelRepository _modelRepository;
         IMapper _mapper;
@@ -31,9 +32,9 @@ public class CreateModelCommand : IRequest<Model>
             _modelBusinessRules = modelBusinessRules;
         }
 
-        public async Task<Model> Handle(CreateModelCommand request, CancellationToken cancellationToken)
+        public async Task<ModelDto> Handle(CreateModelCommand request, CancellationToken cancellationToken)
         {
-            await _modelBusinessRules.ModelNameCanNotBeDuplicateWhenInserted(request.Name);
+            await _modelBusinessRules.ModelNameCanNotBeDuplicate(request.Name);
             await _modelBusinessRules.BrandIsExist(request.BrandId);
             await _modelBusinessRules.FuelIsExist(request.FuelId);
             await _modelBusinessRules.TransmissionIsExist(request.TransmissionId);
@@ -41,8 +42,10 @@ public class CreateModelCommand : IRequest<Model>
 
             var mappedModel = _mapper.Map<Model>(request);
 
-            var createdBrand = await _modelRepository.AddAsync(mappedModel);
-            return createdBrand;
+            var createdModel = await _modelRepository.AddAsync(mappedModel);
+
+            var createdModelDto= _mapper.Map<ModelDto>(createdModel);
+            return createdModelDto;
         }
     }
 }

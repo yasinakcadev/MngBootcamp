@@ -10,17 +10,10 @@ namespace Domain.Entities
 {
     public class Invoice: Entity
     {
-        public int InvoiceNo { get; set; }
-        public DateTime CreationDate { get; set; }
-        public DateTime RentEndDate { get; set; }
-        public DateTime RentStartDate { get; set; }
-        public int TotalRentDay { get; set; }
-        public double TotalRentAmount { get; set; }
-        public double AdditionalRentAmount { get; set; }
-        public int CustomerId { get; set; }
-        public virtual Customer Customer { get; set; }
-        public virtual ICollection<Car> Cars { get; set; }
-
+        public Invoice()
+        {
+            Cars = new HashSet<Car>();
+        }
         public Invoice(int id,int invoiceNo, DateTime creationDate, DateTime rentEndDate, DateTime rentStartDate, int totalRentDay, double totalRentAmount, int customerId, Customer customer,double additionalRentAmount): this()
         {
             Id = id;
@@ -35,9 +28,17 @@ namespace Domain.Entities
             AdditionalRentAmount = additionalRentAmount;
         }
 
-        public Invoice()
-        {
-            Cars = new HashSet<Car>();
-        }
+   
+        public int InvoiceNo { get; set; }
+        public DateTime CreationDate { get; set; }
+        public DateTime RentEndDate { get; set; }
+        public DateTime RentStartDate { get; set; }
+        public int TotalRentDay { get; set; }
+        public double TotalRentAmount { get; set; }
+        public double AdditionalRentAmount { get; set; }
+        public int CustomerId { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual ICollection<Car> Cars { get; set; }
+
     }
 }
