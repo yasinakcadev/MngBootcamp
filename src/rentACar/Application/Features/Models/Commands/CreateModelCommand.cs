@@ -1,4 +1,5 @@
 ﻿using Application.Features.Brands.Rules;
+using Application.Features.Models.Dtos;
 using Application.Features.Models.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -7,17 +8,17 @@ using MediatR;
 
 namespace Application.Features.Models.Commands;
 
-public class CreateModelCommand : IRequest<Model>
+public class CreateModelCommand : IRequest<CreateModelDto>
 {
 
     public string Name { get; set; }
     public double DailyPrice { get; set; }
-    public int ImageUrl { get; set; }
+    public string ImageUrl { get; set; }
     public int TransmissionId { get; set; }
     public int FuelId { get; set; }
     public int BrandId { get; set; }
 
-    public class CreateModelCommandHandler : IRequestHandler<CreateModelCommand, Model>
+    public class CreateModelCommandHandler : IRequestHandler<CreateModelCommand, CreateModelDto>
     {
         IModelRepository _modelRepository;
         IMapper _mapper;
@@ -31,7 +32,7 @@ public class CreateModelCommand : IRequest<Model>
             _modelBusinessRules = modelBusinessRules;
         }
 
-        public async Task<Model> Handle(CreateModelCommand request, CancellationToken cancellationToken)
+        public async Task<CreateModelDto> Handle(CreateModelCommand request, CancellationToken cancellationToken)
         {
             await _modelBusinessRules.ModelNameCanNotBeDuplicateWhenInserted(request.Name);
             await _modelBusinessRules.BrandIsExist(request.BrandId);
@@ -42,7 +43,8 @@ public class CreateModelCommand : IRequest<Model>
             var mappedModel = _mapper.Map<Model>(request);
 
             var createdBrand = await _modelRepository.AddAsync(mappedModel);
-            return createdBrand;
+            var createModel = _mapper.Map<CreateModelDto>(createdBrand);
+            return createModel;
         }
     }
 }
