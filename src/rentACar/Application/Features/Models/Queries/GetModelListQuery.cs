@@ -7,10 +7,8 @@ using MediatR;
 namespace Application.Features.Models.Queries;
 
 public class GetModelListQuery : IRequest<ModelListModel>
-    
 {
     public PageRequest PageRequest { get; set; }
-
 
     public class GetModelListQueryHandler : IRequestHandler<GetModelListQuery, ModelListModel>
     {
