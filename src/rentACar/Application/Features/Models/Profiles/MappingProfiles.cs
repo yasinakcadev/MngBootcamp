@@ -17,7 +17,11 @@ namespace Application.Features.Brands.Profiles
         public ModelMappingProfiles()
         {
             CreateMap<Model, CreateModelCommand>().ReverseMap();
+            CreateMap<Model, DeleteModelCommand>().ReverseMap();
+            CreateMap<Model, UpdateModelCommand>().ReverseMap();
+
             CreateMap<Model, ModelDto>().ReverseMap();
+            CreateMap<Model, CreateModelDto>().ReverseMap();
         }
     }
 }
