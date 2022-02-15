@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
 {
-    public partial class all : Migration
+    public partial class last : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -201,6 +201,7 @@ namespace Persistence.Migrations
                     RentStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalRentDay = table.Column<int>(type: "int", nullable: false),
                     TotalRentAmount = table.Column<double>(type: "float", nullable: false),
+                    AdditionalRentAmount = table.Column<double>(type: "float", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

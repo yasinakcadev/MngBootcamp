@@ -1,0 +1,10 @@
+<p-card *ngFor="let item of models.items" header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}" styleClass="p-card-shadow">
+  <ng-template  pTemplate="header">
+      <img alt="Card" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFY1yc1H4MuHgtwBamxvEQwg5MwXfXY18Utg&usqp=CAU">
+  </ng-template>
+  {{item.modelName}
+
+  <ng-template pTemplate="footer">
+      {{item.dailyPrice}}
+  </ng-template>
+</p-card>
