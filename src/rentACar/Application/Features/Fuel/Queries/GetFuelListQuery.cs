@@ -3,17 +3,12 @@ using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Requests;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Features.Fuel.Queries
 {
     public class GetFuelListQuery : IRequest<FuelListModel>
     {
-        public PageRequest pageRequest;
+        public PageRequest PageRequest;
 
         public class GetFuelListHandler : IRequestHandler<GetFuelListQuery, FuelListModel>
         {
@@ -28,8 +23,8 @@ namespace Application.Features.Fuel.Queries
 
             public async Task<FuelListModel> Handle(GetFuelListQuery request, CancellationToken cancellationToken)
             {
-                var fuels = await _fuelRepository.GetListAsync(index: request.pageRequest.Page,
-                    size: request.pageRequest.PageSize);
+                var fuels = await _fuelRepository.GetListAsync(index: request.PageRequest.Page,
+                    size: request.PageRequest.PageSize);
 
                 var mappedFuels = _mapper.Map<FuelListModel>(fuels);
 

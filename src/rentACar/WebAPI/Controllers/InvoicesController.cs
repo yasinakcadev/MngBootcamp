@@ -1,7 +1,5 @@
 ﻿using Application.Features.Invoices.Commands;
 using Application.Features.Invoices.Queries;
-using Core.Application.Requests;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers

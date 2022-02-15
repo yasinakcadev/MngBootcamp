@@ -1,8 +1,4 @@
-﻿using Application.Features.Brands.Commands;
-using Application.Features.Brands.Queries;
-using Application.Features.Cars.Commands;
-using Application.Features.Cars.Queries;
-using Application.Features.IndividualCustomer.Commands;
+﻿using Application.Features.IndividualCustomer.Commands;
 using Application.Features.IndividualCustomer.Queries;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;

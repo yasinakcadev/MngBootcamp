@@ -1,10 +1,4 @@
-﻿using Application.Features.Color.Commands;
-using Application.Features.Color.Dtos;
-using Application.Features.Color.Queries;
-using Application.Features.Fuel.Commands;
-using Application.Features.Transmission.Commands;
-using Core.Application.Requests;
-using Microsoft.AspNetCore.Http;
+﻿using Application.Features.Transmission.Commands;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers

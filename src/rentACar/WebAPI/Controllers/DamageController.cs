@@ -1,7 +1,6 @@
 ﻿using Application.Features.Damages.Commands;
 using Application.Features.Damages.Queries;
 using Core.Application.Requests;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -38,7 +37,7 @@ namespace WebAPI.Controllers
             query.PageRequest = pageRequest;
             var result = await Mediator.Send(query);
             return Ok(result);
-           
+
         }
     }
 }

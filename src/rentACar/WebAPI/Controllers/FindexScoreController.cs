@@ -1,9 +1,6 @@
 ﻿using Application.Features.FindexScores.Commands;
 using Application.Features.FindexScores.Queries;
-using Application.Features.Fuel.Commands;
 using Core.Application.Requests;
-using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers

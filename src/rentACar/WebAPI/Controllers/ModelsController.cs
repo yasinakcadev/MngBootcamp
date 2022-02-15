@@ -14,7 +14,7 @@ namespace WebAPI.Controllers
         {
             var result = await Mediator.Send(createModelCommand);
             return Created("", result);
-        }   
+        }
 
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
