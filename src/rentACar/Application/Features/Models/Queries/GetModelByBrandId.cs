@@ -1,4 +1,5 @@
-﻿using Application.Features.Models.Models;
+﻿using Application.Features.Models.Dtos;
+using Application.Features.Models.Models;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Requests;
@@ -25,7 +26,7 @@ namespace Application.Features.Models.Queries
             public async Task<ModelListModel> Handle(GetModelByBrandIdQuery request, CancellationToken cancellationToken)
             {
                 var models = await _modelRepository.GetListAsync(
-                    index: request.PageRequest.Page,size: request.PageRequest.PageSize, predicate:p => p.BrandId == request.BrandId );
+                    index: request.PageRequest.Page,size: request.PageRequest.PageSize, predicate:p => p.BrandId == request.BrandId);
 
                 var mappedModels = _mapper.Map<ModelListModel>(models);
                 return mappedModels;
