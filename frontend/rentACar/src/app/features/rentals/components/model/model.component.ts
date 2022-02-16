@@ -33,6 +33,7 @@ export class ModelComponent implements OnInit {
   getModelByBrandId(){
     this.modelService.getModelByBrandId(0,100,1).subscribe(data=>{
       this.modelsByBrand = data;
+      console.log("gelen data" + data.items);
     });
   }
 

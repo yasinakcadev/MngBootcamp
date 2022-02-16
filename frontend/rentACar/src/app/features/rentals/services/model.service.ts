@@ -15,12 +15,14 @@ export class ModelService {
   constructor(private httpClient:HttpClient) { }
 
   getModel(page: number, size: number):Observable<ListResponseModel<ModelListModel>>{
-    let newPath=this.apiUrl+'getAll?Page'+ page + "&PageSize="+ size;
+    let newPath=this.apiUrl+'getAll?Page='+ page + "&PageSize="+ size;
     return this.httpClient.get<ListResponseModel<ModelListModel>>(newPath);
   }
 
   getModelByBrandId(page: number, size: number,brandId: number):Observable<ListResponseModel<ModelModel>>{
-    let newPath=this.apiUrl+'getallbybrandid?Page'+ page + "&PageSize="+ size + "&brandId" + brandId;
-    return this.httpClient.get<ListResponseModel<ModelModel>>(newPath);
+    let newPath=this.apiUrl+'getallbybrandid?Page='+ page + "&PageSize="+ size + "&brandId=" + brandId;
+    let result =  this.httpClient.get<ListResponseModel<ModelModel>>(newPath);
+    //result.subscribe(x => console.log(x.items));
+    return result;
   }
 }
