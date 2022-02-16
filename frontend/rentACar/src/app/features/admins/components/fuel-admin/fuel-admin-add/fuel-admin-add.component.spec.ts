@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ColorAdminComponent } from './color-admin.component';
+import { FuelAdminAddComponent } from './fuel-admin-add.component';
 
-describe('ColorAdminComponent', () => {
-  let component: ColorAdminComponent;
-  let fixture: ComponentFixture<ColorAdminComponent>;
+describe('FuelAdminAddComponent', () => {
+  let component: FuelAdminAddComponent;
+  let fixture: ComponentFixture<FuelAdminAddComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ColorAdminComponent ]
+      declarations: [ FuelAdminAddComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ColorAdminComponent);
+    fixture = TestBed.createComponent(FuelAdminAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

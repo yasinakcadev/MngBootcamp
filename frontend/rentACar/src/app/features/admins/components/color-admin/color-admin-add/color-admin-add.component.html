@@ -1,0 +1,15 @@
+<div class="card-body">
+  <form *ngIf="colorForm" [formGroup]="colorForm">
+    <div class="form-group mb-3">
+      <label for="model-name-input" class="fw-bold mb-3">Name</label>
+      <input
+        type="text"
+        id="model-name-input"
+        formControlName="name"
+        class="form-control"
+        placeholder="Color name"
+      />
+    </div>
+  </form>
+  <button class="btn btn-primary" (click)="addColor()">Add Color</button>
+</div>
