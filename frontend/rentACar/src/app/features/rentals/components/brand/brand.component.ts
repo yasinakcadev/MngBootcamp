@@ -3,7 +3,6 @@ import { BrandListModel } from '../../models/brandListModel';
 import { ListResponseModel } from './../../../../core/models/listResponseModel';
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-brand',
   templateUrl: './brand.component.html',
