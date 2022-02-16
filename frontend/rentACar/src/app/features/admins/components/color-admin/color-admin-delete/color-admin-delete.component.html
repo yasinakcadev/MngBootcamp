@@ -1,0 +1,15 @@
+<div class="card-body">
+  <form *ngIf="colorForm" [formGroup]="colorForm">
+    <div class="form-group mb-3">
+      <label for="model-name-input" class="fw-bold mb-3">Id</label>
+      <input
+        type="number"
+        id="model-name-input"
+        formControlName="id"
+        class="form-control"
+        placeholder="color id"
+      />
+    </div>
+  </form>
+  <button class="btn btn-primary" (click)="deleteColor()">Delete Color</button>
+</div>
