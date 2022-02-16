@@ -1,6 +1,7 @@
 <p-card
   *ngFor="let item of modelsByBrand.items"
   header="{{ item.name }}"
+  routerLink="/models/brand/{{ item.brandId }}"
   subheader="{{ item.id }}"
   [style]="{ width: '360px' }"
   styleClass="p-card-shadow"

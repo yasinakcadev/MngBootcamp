@@ -3,18 +3,20 @@
     <div class="col-md-3">
       <app-brand></app-brand>
     </div>
-    <div class="col-md-3">
-      <app-color></app-color>
+    <div class="col-md-9">
+      <router-outlet></router-outlet>
+
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <app-color-admin></app-color-admin>
     </div>
     <div class="col-md-6">
       <app-fuel></app-fuel>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-3">
-      <app-model></app-model>
-    </div>
-  </div>
   <br />
-  <router-outlet></router-outlet>
+
 </div>
