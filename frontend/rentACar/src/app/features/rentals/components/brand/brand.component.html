@@ -1,2 +1,3 @@
-<p-listbox [options]="brands.items" [(ngModel)]="selectedBrand" optionLabel="name" ></p-listbox>
+<p-listbox [options]="brands.items"  (click)="setCurrentBrand()" [routerLink]="getRouterLink()"  [(ngModel)]="selectedBrand" optionLabel="name" ></p-listbox>
+
 

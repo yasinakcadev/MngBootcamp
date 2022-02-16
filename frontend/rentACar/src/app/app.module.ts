@@ -1,6 +1,11 @@
+
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
+import {ToastrModule} from 'ngx-toastr'
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,13 +16,16 @@ import { ModelComponent } from './features/rentals/components/model/model.compon
 import {CardModule} from 'primeng/card';
 import { ColorComponent } from './features/rentals/components/color/color.component';
 import { FuelComponent } from './features/rentals/components/fuel/fuel.component';
+import { ColorAdminComponent } from './features/admins/components/color-admin/color-admin.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     BrandComponent,
     ModelComponent,
     ColorComponent,
-    FuelComponent
+    FuelComponent,
+    ColorAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +34,13 @@ import { FuelComponent } from './features/rentals/components/fuel/fuel.component
     ListboxModule,
     FormsModule,
     ReactiveFormsModule,
-    CardModule
+    CardModule,
+    ToastrModule.forRoot({
+      positionClass: "toast-bottom-right"
+
+    }),
+    BrowserAnimationsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
