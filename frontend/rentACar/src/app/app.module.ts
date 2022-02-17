@@ -21,6 +21,7 @@ import { ColorAdminDeleteComponent } from './features/admins/components/color-ad
 import { ColorAdminUpdateComponent } from './features/admins/components/color-admin/color-admin-update/color-admin-update.component';
 import { LoginComponent } from './core/components/login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { RegisterComponent } from './core/components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     ColorAdminDeleteComponent,
     ColorAdminUpdateComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

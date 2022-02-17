@@ -1,3 +1,4 @@
+import { RegisterComponent } from './core/components/register/register.component';
 import { ModelComponent } from './features/rentals/components/model/model.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,12 +15,16 @@ const routes: Routes = [
     component: ColorAdminAddComponent,
     canActivate: [ClaimGuard],
     data: {
-      requiredClaims: ['admin'],
-    },
+      requiredClaims: ["admin"]
+    }
   },
   {
     path: 'login',
-    component: LoginComponent,
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
 ];
 

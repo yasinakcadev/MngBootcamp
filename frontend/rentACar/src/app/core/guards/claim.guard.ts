@@ -32,7 +32,7 @@ export class ClaimGuard implements CanActivate {
     if (!isAuthenticated) {
       this.toasterService.error("You're not autharized to access");
       this.router.navigateByUrl('');
-      console.log('gelen deger' + requiredClaims);
+
       return false;
     }
 

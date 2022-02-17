@@ -52,7 +52,7 @@ namespace Application.Features.Users.Commands
                 var accessToken = _tokenHelper.CreateToken(createUser, claims);
 
                 var dtoUser = _mapper.Map<CreateUserDto>(createUser);
-                dtoUser.AcessToken = accessToken;
+                dtoUser.AccessToken = accessToken;
 
                 return dtoUser;
             }

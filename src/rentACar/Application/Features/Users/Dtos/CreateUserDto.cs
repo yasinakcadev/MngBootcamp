@@ -13,6 +13,6 @@ namespace Application.Features.Users.Dtos
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public AccessToken AcessToken { get; set; }
+        public AccessToken AccessToken { get; set; }
     }
 }
