@@ -1,0 +1,39 @@
+<div class="card-body">
+  <form *ngIf="registerForm" [formGroup]="registerForm">
+    <div class="form-group mb-3">
+      <label for="email-input" class="fw-bold mb-3">Email</label>
+      <input
+        type="text"
+        id="email-input"
+        formControlName="email"
+        class="form-control"
+        placeholder="email"
+      />
+      <label for="password-input" class="fw-bold mb-3">Password</label>
+      <input
+        type="password"
+        id="password-input"
+        formControlName="password"
+        class="form-control"
+        placeholder="password"
+      />
+      <label for="firstName-input" class="fw-bold mb-3">First Name</label>
+      <input
+        type="text"
+        id="firstName-input"
+        formControlName="firstName"
+        class="form-control"
+        placeholder="firstName"
+      />
+      <label for="lastName-input" class="fw-bold mb-3">Last Name</label>
+      <input
+        type="text"
+        id="lastName-input"
+        formControlName="lastName"
+        class="form-control"
+        placeholder="lastName"
+      />
+    </div>
+  </form>
+  <button class="btn btn-primary" (click)="register()">Register</button>
+</div>

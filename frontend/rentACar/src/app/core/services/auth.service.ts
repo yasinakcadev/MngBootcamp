@@ -1,3 +1,5 @@
+import { RegisterResponseModel } from './../models/registerResponseModel';
+import { RegisterModel } from './../models/registerModel';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -22,6 +24,10 @@ export class AuthService {
     let newPath = this.apiUrl + 'login';
     return this.httpClient.post<LoginResponseModel>(newPath, loginModel);
   }
+  register(registerModel: RegisterModel): Observable<RegisterResponseModel> {
+    let newPath = this.apiUrl + 'register';
+    return this.httpClient.post<RegisterResponseModel>(newPath, registerModel);
+  }
 
   logout() {
     localStorage.removeItem('token');
@@ -34,6 +40,8 @@ export class AuthService {
     if (!decodedToken) {
       return false;
     }
+
+
     const tokenUserModel: TokenUserModel = {
       id: decodedToken[
         'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
@@ -43,10 +51,15 @@ export class AuthService {
         'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
       ],
       claims:
+      decodedToken[
+        'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+      ]?
         decodedToken[
           'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
-        ].split(','),
+        ].split(",") : []
     };
+
+
 
     if (this.jwtHelperService.isTokenExpired()) {
       this.logout();
