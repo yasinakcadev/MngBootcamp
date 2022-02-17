@@ -22,6 +22,9 @@ import { ColorAdminUpdateComponent } from './features/admins/components/color-ad
 import { LoginComponent } from './core/components/login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RegisterComponent } from './core/components/register/register.component';
+import { NaviComponent } from './features/admins/adminsLayout/components/navi/navi.component';
+import { FooterComponent } from './features/admins/adminsLayout/components/footer/footer.component';
+import { MenuComponent } from './features/admins/adminsLayout/components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { RegisterComponent } from './core/components/register/register.component
     ColorAdminUpdateComponent,
     LoginComponent,
     RegisterComponent,
+    NaviComponent,
+    FooterComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
