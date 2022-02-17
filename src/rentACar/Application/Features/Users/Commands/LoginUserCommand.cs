@@ -45,7 +45,7 @@ namespace Application.Features.Users.Commands
 
                 return new LoginUserDto
                 {
-                    AcessToken = accessToken
+                    AccessToken = accessToken
                 };
             }
         }
