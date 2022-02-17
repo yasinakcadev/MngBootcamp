@@ -1,0 +1,23 @@
+<div class="card-body">
+  <form *ngIf="loginForm" [formGroup]="loginForm">
+    <div class="form-group mb-3">
+      <label for="email-input" class="fw-bold mb-3">Email</label>
+      <input
+        type="text"
+        id="email-input"
+        formControlName="email"
+        class="form-control"
+        placeholder="email"
+      />
+      <label for="password-input" class="fw-bold mb-3">Password</label>
+      <input
+        type="password"
+        id="password-input"
+        formControlName="password"
+        class="form-control"
+        placeholder="password"
+      />
+    </div>
+  </form>
+  <button class="btn btn-primary" (click)="login()">Login</button>
+</div>

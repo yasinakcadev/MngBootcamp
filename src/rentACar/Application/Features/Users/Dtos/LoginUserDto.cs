@@ -9,6 +9,6 @@ namespace Application.Features.Users.Dtos
 {
     public class LoginUserDto
     {
-        public AccessToken AcessToken { get; set; }
+        public AccessToken AccessToken { get; set; }
     }
 }
