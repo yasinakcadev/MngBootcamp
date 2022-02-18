@@ -7,19 +7,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  selected:""
+  selectedMenuItem
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  change(){
+  setCurrentMenuItem(){
 
-    this.selected=
+
 
   }
+
+  getRouterLink(){
+
+    if(this.selectedMenuItem!=null){
+      console.log(this.selectedMenuItem)
+      return this.selectedMenuItem
+
+
+    }else{
+      return ""
+    }
+    }
+
+
   getClass(){
-    if(this.selected){
+    if(this.selectedMenuItem){
       return "list-group-item active"
     }
     else{

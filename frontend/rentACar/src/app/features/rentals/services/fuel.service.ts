@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { FuelListModel } from 'src/app/core/models/listModels/fuelListModel';
 import { ListResponseModel } from 'src/app/core/models/listResponseModel';
-import { FuelListModel } from '../models/fuelListModel';
+
 
 @Injectable({
   providedIn: 'root'
