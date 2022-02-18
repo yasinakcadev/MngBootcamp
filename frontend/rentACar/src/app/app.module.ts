@@ -28,6 +28,7 @@ import { MenuComponent } from './features/admins/adminsLayout/components/menu/me
 import { FuelComponent } from './core/components/fuel/fuel.component';
 import { ColorComponent } from './core/components/color/color.component';
 import { ModelComponent } from './core/components/model/model.component';
+import { HomeComponent } from './features/rentals/components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ModelComponent } from './core/components/model/model.component';
     NaviComponent,
     FooterComponent,
     MenuComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

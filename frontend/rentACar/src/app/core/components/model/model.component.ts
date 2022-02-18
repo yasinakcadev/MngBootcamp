@@ -8,45 +8,61 @@ import { ModelService } from '../../services/model.service';
 @Component({
   selector: 'app-model',
   templateUrl: './model.component.html',
-  styleUrls: ['./model.component.css']
+  styleUrls: ['./model.component.css'],
 })
 export class ModelComponent implements OnInit {
-
-  models: ListResponseModel<ModelListModel> = {items :[]}
-  modelsByBrand: ListResponseModel<ModelModel> = {items :[]}
-  selectedModel : ModelListModel;
-  constructor(private modelService:ModelService, private activatedRoute:ActivatedRoute) { }
+  models: ListResponseModel<ModelListModel> = { items: [] };
+  modelsByBrand: ListResponseModel<ModelModel> = { items: [] };
+  selectedModel: ModelListModel;
+  constructor(
+    private modelService: ModelService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.getModelDetails();
-  }
-
-  getModelDetails(){
-    this.modelService.getModelDetails(0,100).subscribe(data=>{
-      this.models=data;
+    this.activatedRoute.params.subscribe((params) => {
+      if (params['brandId']) {
+        this.getModelDetailsByBrandId(params['brandId']);
+      } else {
+        this.getModelDetails();
+      }
     });
   }
 
-  getModel(){
-    this.modelService.getModel(0,100).subscribe(data=>{
-      this.models=data;
+  getModelDetails() {
+    this.modelService.getModelDetails(0, 100).subscribe((data) => {
+      this.models = data;
+      console.log(this.models.items);
     });
   }
 
-  getModelByBrandId(brandId:number){
-    this.modelService.getModelByBrandId(0,100,brandId).subscribe(data=>{
+  getModel() {
+    this.modelService.getModel(0, 100).subscribe((data) => {
+      this.models = data;
+    });
+  }
+
+  getModelDetailsByBrandId(brandId: number) {
+    this.modelService
+      .getModelDetailsByBrandId(0, 100, brandId)
+      .subscribe((data) => {
+        this.models = data;
+      });
+  }
+
+  getModelByBrandId(brandId: number) {
+    this.modelService.getModelByBrandId(0, 100, brandId).subscribe((data) => {
       this.modelsByBrand = data;
-
     });
   }
 
-     // this.activatedRoute.params.subscribe(params=>{
-    //   if(params["brandId"]){
-    //     this.getModelByBrandId(params["brandId"]);
+  // this.activatedRoute.params.subscribe(params=>{
+  //   if(params["brandId"]){
+  //     this.getModelByBrandId(params["brandId"]);
 
-    //   }else{
-    //     this.getModel();
-    //   }
-    // }
-    //   )
+  //   }else{
+  //     this.getModel();
+  //   }
+  // }
+  //   )
 }

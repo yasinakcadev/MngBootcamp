@@ -10,10 +10,5 @@ namespace Domain.Dtos
         public string TransmissionName { get; set; }
         public string FuelName { get; set; }
         public string BrandName { get; set; }
-
-    
-       
-
-
     }
 }
