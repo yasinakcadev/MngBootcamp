@@ -1,4 +1,4 @@
-<div class="card-body">
+<!-- <div class="card-body">
   <form *ngIf="registerForm" [formGroup]="registerForm">
     <div class="form-group mb-3">
       <label for="email-input" class="fw-bold mb-3">Email</label>
@@ -37,3 +37,40 @@
   </form>
   <button class="btn btn-primary" (click)="register()">Register</button>
 </div>
+ -->
+
+
+<body class="text-center">
+
+  <main class="form-signin">
+    <form *ngIf="registerForm" [formGroup]="registerForm">
+
+      <h1 class="h3 mb-3 fw-normal">Register</h1>
+
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingInput"  formControlName="email" placeholder="name@example.com">
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword"    formControlName="password" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput"  formControlName="firstName" placeholder="FirstName">
+        <label for="floatingInput">First Name</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput"     formControlName="lastName" placeholder="LastName">
+        <label for="floatingInput">Last Name</label>
+      </div>
+
+
+      <button class="w-100 btn btn-lg btn-primary" (click)="register()">Register</button>
+
+
+    </form>
+  </main>
+
+
+
+    </body>

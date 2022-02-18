@@ -9,6 +9,7 @@ namespace Application.Features.Cars.Dtos
 {
     public class CarDto
     {
+        public int Id { get; set; }
         public int ColorId { get; set; }
         public int ModelId { get; set; }
         public string Plate { get; set; }

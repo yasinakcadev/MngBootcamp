@@ -25,6 +25,15 @@ namespace WebAPI.Controllers
             var result = await Mediator.Send(query);
             return Ok(result);
         }
+        [HttpGet("getallmodeldetails")]
+        public async Task<IActionResult> GetAllModelDetails([FromQuery] PageRequest pageRequest)
+        {
+            var query = new GetModelDetailListQuery();
+            query.PageRequest = pageRequest;
+
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
 
         [HttpGet("getallbybrandid")]
         public async Task<IActionResult> GetAllByBrandId([FromQuery] PageRequest pageRequest, int brandId)

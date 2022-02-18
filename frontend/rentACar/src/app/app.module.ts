@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,7 +10,7 @@ import { AppComponent } from './app.component';
 import { BrandComponent } from './features/rentals/components/brand/brand.component';
 import { ListboxModule } from 'primeng/listbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ModelComponent } from './features/rentals/components/model/model.component';
+
 import { CardModule } from 'primeng/card';
 
 import { FuelAdminAddComponent } from './features/admins/components/fuel-admin/fuel-admin-add/fuel-admin-add.component';
@@ -26,12 +27,13 @@ import { FooterComponent } from './features/admins/adminsLayout/components/foote
 import { MenuComponent } from './features/admins/adminsLayout/components/menu/menu.component';
 import { FuelComponent } from './core/components/fuel/fuel.component';
 import { ColorComponent } from './core/components/color/color.component';
+import { ModelComponent } from './core/components/model/model.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BrandComponent,
-    ModelComponent,
+     ModelComponent,
     FuelComponent,
     ColorComponent,
     FuelAdminAddComponent,

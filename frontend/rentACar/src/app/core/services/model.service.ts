@@ -1,10 +1,13 @@
-import { ModelListModel } from './../models/modelListModel';
-import { ListResponseModel } from './../../../core/models/listResponseModel';
+
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BrandListModel } from '../models/brandListModel';
+
 import { Observable } from 'rxjs';
-import { ModelModel } from '../models/modelModel';
+
+import { ModelListModel } from 'src/app/core/models/listModels/modelListModel';
+import { ModelModel } from 'src/app/features/rentals/models/modelModel';
+import { ListResponseModel } from '../models/listResponseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +19,11 @@ export class ModelService {
 
   getModel(page: number, size: number):Observable<ListResponseModel<ModelListModel>>{
     let newPath=this.apiUrl+'getAll?Page='+ page + "&PageSize="+ size;
+    return this.httpClient.get<ListResponseModel<ModelListModel>>(newPath);
+  }
+
+    getModelDetails(page: number, size: number):Observable<ListResponseModel<ModelListModel>>{
+    let newPath=this.apiUrl+'getallmodeldetails?Page='+ page + "&PageSize="+ size;
     return this.httpClient.get<ListResponseModel<ModelListModel>>(newPath);
   }
 
