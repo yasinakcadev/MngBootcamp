@@ -1,8 +1,9 @@
-export interface ModelListModel{
-  id:number;
-  brandName:string;
-  transmissionName:string;
-  modelName:string;
-  dailyPrice:number;
-  imageUrl:string;
+export interface ModelListModel {
+  id: number;
+  name: string;
+  dailyPrice: number;
+  imageUrl: string;
+  transmissionName: string;
+  fuelName: string;
+  brandName: string;
 }

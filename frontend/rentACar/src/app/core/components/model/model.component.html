@@ -19,10 +19,10 @@
   </ng-template>
 </p-card> -->
 
-<p-card
+<!-- <p-card
   *ngFor="let item of models.items"
   header="{{ item.brandName }}"
-  subheader="{{ item.id}}"
+  subheader="{{ item.id }}"
   [style]="{ width: '360px' }"
   styleClass="p-card-shadow"
 >
@@ -33,13 +33,33 @@
     />
   </ng-template>
 
-
   <ng-template pTemplate="footer">
     {{ item.dailyPrice }}
     {{ item.transmissionName }}
     {{ item.modelName }}
-
   </ng-template>
-</p-card>
-çalıştım
-
+</p-card> -->
+<ul>
+  <li *ngFor="let item of models.items">
+    <div class="card mb-3" style="max-width: 540px">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src="{{ item.imageUrl }}"
+            class="img-fluid rounded-start"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <p class="card-text">Günlük fiyat {{ item.dailyPrice }}</p>
+            <p class="card-text">
+              {{ item.brandName }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
