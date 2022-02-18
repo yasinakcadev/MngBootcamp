@@ -1,6 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { FuelListModel } from 'src/app/core/models/listModels/fuelListModel';
+import { ListResponseModel } from 'src/app/core/models/listResponseModel';
+import { ModelListModel } from '../../rentals/models/modelListModel';
 import { Fuel } from '../models/fuel';
 
 @Injectable({
@@ -10,6 +13,11 @@ export class FuelCrudService {
 
   apiUrl="http://localhost:5228/api/Fuels/"
   constructor(private httpClient: HttpClient) { }
+
+  getFuels(page: number, size: number):Observable<ListResponseModel<FuelListModel>>{
+    let newPath=this.apiUrl+'getAll?Page='+ page + "&PageSize="+ size;
+    return this.httpClient.get<ListResponseModel<FuelListModel>>(newPath);
+  }
 
   addFuel(fuel: Fuel):Observable<Fuel> {
     let newPath = this.apiUrl + "add";

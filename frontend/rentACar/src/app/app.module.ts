@@ -11,8 +11,7 @@ import { ListboxModule } from 'primeng/listbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModelComponent } from './features/rentals/components/model/model.component';
 import { CardModule } from 'primeng/card';
-import { ColorComponent } from './features/rentals/components/color/color.component';
-import { FuelComponent } from './features/rentals/components/fuel/fuel.component';
+
 import { FuelAdminAddComponent } from './features/admins/components/fuel-admin/fuel-admin-add/fuel-admin-add.component';
 import { FuelAdminUpdateComponent } from './features/admins/components/fuel-admin/fuel-admin-update/fuel-admin-update.component';
 import { FuelAdminDeleteComponent } from './features/admins/components/fuel-admin/fuel-admin-delete/fuel-admin-delete.component';
@@ -25,14 +24,16 @@ import { RegisterComponent } from './core/components/register/register.component
 import { NaviComponent } from './features/admins/adminsLayout/components/navi/navi.component';
 import { FooterComponent } from './features/admins/adminsLayout/components/footer/footer.component';
 import { MenuComponent } from './features/admins/adminsLayout/components/menu/menu.component';
+import { FuelComponent } from './core/components/fuel/fuel.component';
+import { ColorComponent } from './core/components/color/color.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BrandComponent,
     ModelComponent,
-    ColorComponent,
     FuelComponent,
+    ColorComponent,
     FuelAdminAddComponent,
     FuelAdminUpdateComponent,
     FuelAdminDeleteComponent,

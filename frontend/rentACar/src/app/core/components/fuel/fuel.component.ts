@@ -1,7 +1,8 @@
+import { FuelListModel } from './../../models/listModels/fuelListModel';
+
 import { Component, OnInit } from '@angular/core';
-import { ListResponseModel } from 'src/app/core/models/listResponseModel';
-import { FuelListModel } from '../../models/fuelListModel';
-import { FuelService } from '../../services/fuel.service';
+import { FuelCrudService } from 'src/app/features/admins/services/fuel-crud.service';
+import { ListResponseModel } from '../../models/listResponseModel';
 
 @Component({
   selector: 'app-fuel',
@@ -10,18 +11,17 @@ import { FuelService } from '../../services/fuel.service';
 })
 export class FuelComponent implements OnInit {
 
+
   fuels: ListResponseModel<FuelListModel>={items:[]};
   selectedFuel: FuelListModel
-
-  constructor(private fuelService: FuelService) { }
+  constructor(private fuelCrudService:FuelCrudService) { }
 
   ngOnInit(): void {
     this.getFuels()
   }
 
   getFuels() {
-    this.fuelService.getFuels(0,100).subscribe(data =>
+    this.fuelCrudService.getFuels(0,100).subscribe(data =>
       this.fuels = data)
   }
-
 }

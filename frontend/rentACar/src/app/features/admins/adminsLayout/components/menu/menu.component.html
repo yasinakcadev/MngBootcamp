@@ -1,7 +1,7 @@
 <ul  class="list-group">
-  <li (click)="change()" [class]="getClass()" aria-current="true">Color </li>
-  <li (click)="change()"  [class]="getClass()" >Brand </li>
-  <li (click)="change()"  [class]="getClass()" >Model </li>
-  <li (click)="change()"  [class]="getClass()" >Fuel </li>
+  <li id="colors" (click)="setCurrentMenuItem()"  routerLink="/colors/" [class]="getClass()" > Color </li>
+  <li id="fuels" (click)="setCurrentMenuItem()" routerLink="/fuels/"   [class]="getClass()" >Fuel </li>
 </ul>
 
+  <!-- <li (click)="change()"  [class]="getClass()" >Brand </li>
+  <li (click)="change()"  [class]="getClass()" >Model </li> -->
