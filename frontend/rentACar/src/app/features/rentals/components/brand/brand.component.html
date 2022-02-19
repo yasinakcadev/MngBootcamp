@@ -1,24 +1,33 @@
-<p-listbox
-  [options]="brands.items"
-  (click)="setCurrentBrand()"
-  [routerLink]="getRouterLink()"
-  [(ngModel)]="selectedBrand"
-  optionLabel="name"
-></p-listbox>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+      <p-listbox
+        *ngIf="isLoaded == true"
+        [options]="brands.items"
+        [routerLink]="getRouterLink()"
+        [(ngModel)]="selectedBrand"
+        optionLabel="name"
+      ></p-listbox>
 
-<!-- <div class="container mt-5">
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
-      <div class="card" *ngFor="let brand of brands.items">
-        <img src="" class="card-img-top" alt="..." />
-        <div class="card-body" (click)="setCurrentBrand()">
-          <h1 class="card-title">{{ brand.name }}</h1>
-          <p class="card-text">
-            This is a longer card with supporting text below as a natural
-            lead-in to additional content. This content is a little bit longer.
-          </p>
+      <!-- <div
+        *ngFor="let brand of brands.items"
+        (click)="setCurrentBrand(brand)"
+        [routerLink]="getRouterLink()"
+        class="card"
+        style="width: 18rem"
+      >
+        <div class="card-body">
+          <h2>{{ brand.name }}</h2>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
-</div> -->
+  <div
+    *ngIf="isLoaded == false"
+    class="spinner-border text-primary"
+    role="status"
+  >
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>

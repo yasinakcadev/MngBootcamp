@@ -1,8 +1,8 @@
 import { ActivatedRoute } from '@angular/router';
 import { BrandService } from './../../services/brand.service';
-import { BrandListModel } from '../../models/brandListModel';
 import { ListResponseModel } from './../../../../core/models/listResponseModel';
 import { Component, OnInit } from '@angular/core';
+import { BrandListModel } from '../../models/brandListModel';
 
 @Component({
   selector: 'app-brand',
@@ -13,6 +13,7 @@ export class BrandComponent implements OnInit {
   brands: ListResponseModel<BrandListModel> = { items: [] };
   selectedBrand: BrandListModel;
   constructor(private brandService: BrandService) {}
+  isLoaded: boolean = false;
 
   ngOnInit(): void {
     this.getBrands();
@@ -20,15 +21,18 @@ export class BrandComponent implements OnInit {
   getBrands() {
     this.brandService.getBrands(0, 100).subscribe((data) => {
       this.brands = data;
+      this.isLoaded = true;
     });
   }
 
-  setCurrentBrand() {
+  setCurrentBrand(brand: BrandListModel) {
+    this.selectedBrand = brand;
     console.log(this.selectedBrand.name);
   }
 
   getRouterLink() {
     if (this.selectedBrand != null) {
+      console.log(this.selectedBrand.id);
       return '/models/brand/' + this.selectedBrand.id;
     } else {
       return '/models/';
