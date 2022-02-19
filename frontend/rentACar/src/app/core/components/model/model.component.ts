@@ -1,9 +1,9 @@
-import { ModelModel } from './../../../features/rentals/models/modelModel';
 import { ModelListModel } from './../../models/listModels/modelListModel';
 import { ListResponseModel } from './../../models/listResponseModel';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ModelService } from '../../services/model.service';
+import { ModelModel } from 'src/app/features/rentals/models/modelModel';
 
 @Component({
   selector: 'app-model',

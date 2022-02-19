@@ -1,65 +1,33 @@
-<!-- <p-card
-  *ngFor="let item of modelsByBrand.items"
-  header="{{ item.name }}"
-  routerLink="/models/brand/{{ item.brandId }}"
-  subheader="{{ item.id }}"
-  [style]="{ width: '360px' }"
-  styleClass="p-card-shadow"
->
-  <ng-template pTemplate="header">
-    <img
-      alt="Card"
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFY1yc1H4MuHgtwBamxvEQwg5MwXfXY18Utg&usqp=CAU"
-    />
-  </ng-template>
-  {{ item.brandId }}
-
-  <ng-template pTemplate="footer">
-    {{ item.dailyPrice }}
-  </ng-template>
-</p-card> -->
-
-<!-- <p-card
-  *ngFor="let item of models.items"
-  header="{{ item.brandName }}"
-  subheader="{{ item.id }}"
-  [style]="{ width: '360px' }"
-  styleClass="p-card-shadow"
->
-  <ng-template pTemplate="header">
-    <img
-      alt="Card"
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFY1yc1H4MuHgtwBamxvEQwg5MwXfXY18Utg&usqp=CAU"
-    />
-  </ng-template>
-
-  <ng-template pTemplate="footer">
-    {{ item.dailyPrice }}
-    {{ item.transmissionName }}
-    {{ item.modelName }}
-  </ng-template>
-</p-card> -->
-<ul>
-  <li *ngFor="let item of models.items">
-    <div class="card mb-3" style="max-width: 540px">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img
-            src="{{ item.imageUrl }}"
-            class="img-fluid rounded-start"
-            alt="..."
-          />
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">{{ item.name }}</h5>
-            <p class="card-text">Günlük fiyat {{ item.dailyPrice }}</p>
-            <p class="card-text">
-              {{ item.brandName }}
-            </p>
-          </div>
-        </div>
-      </div>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-3">
+      <app-brand></app-brand>
     </div>
-  </li>
-</ul>
+    <div class="col-md-9">
+      <ul>
+        <li *ngFor="let item of models.items">
+          <div class="card mb-3" style="max-width: 540px">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img
+                  src="{{ item.imageUrl }}"
+                  class="img-fluid rounded-start"
+                  alt="..."
+                />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ item.name }}</h5>
+                  <p class="card-text">Günlük fiyat {{ item.dailyPrice }}</p>
+                  <p class="card-text">
+                    {{ item.brandName }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
