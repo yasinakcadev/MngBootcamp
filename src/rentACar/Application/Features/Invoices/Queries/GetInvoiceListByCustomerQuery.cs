@@ -14,7 +14,7 @@ namespace Application.Features.Invoices.Queries
     public class GetInvoiceListByCustomerQuery: IRequest<InvoiceListModel>
     {
         public PageRequest PageRequest { get; set; }
-        public int CustomerId { get; set; }
+        public int UserId { get; set; }
 
         public class GetInvoicesBuCustomerHandler : IRequestHandler<GetInvoiceListByCustomerQuery, InvoiceListModel>
         {
@@ -30,7 +30,7 @@ namespace Application.Features.Invoices.Queries
             public async Task<InvoiceListModel> Handle(GetInvoiceListByCustomerQuery request, CancellationToken cancellationToken)
             {
                 var invoices = await _invoiceRepository.GetListAsync(index: request.PageRequest.Page,
-                    size: request.PageRequest.PageSize, predicate: p => p.CustomerId == request.CustomerId);
+                    size: request.PageRequest.PageSize, predicate: p => p.UserId == request.UserId);
                 var mappedInvoices = _mapper.Map<InvoiceListModel>(invoices);
                 return mappedInvoices;
             }

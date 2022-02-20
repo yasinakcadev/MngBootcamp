@@ -15,6 +15,6 @@ namespace Application.Features.Invoices.Dtos
         public DateTime? RentStartDate { get; set; }
         public int TotalRentDay { get; set; }
         public double TotalRentAmount { get; set; }
-        public int CustomerId { get; set; }
+        public int UserId { get; set; }
     }
 }

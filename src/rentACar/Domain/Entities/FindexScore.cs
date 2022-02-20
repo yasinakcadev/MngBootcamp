@@ -1,6 +1,7 @@
 ﻿using Core.Persistence.Repositories;
+using Core.Security.Entities;
 using Domain.Entities;
-using Domain.Entities.Abstarct;
+
 
 namespace Domain.FindexScore;
 
@@ -10,14 +11,14 @@ public class FindexScore : Entity
     {
         
     }
-    public FindexScore(int id, int customerId, short score) : this()
+    public FindexScore(int id, int userId, short score) : this()
     {
         Id = id;
-        CustomerId = customerId;
+        UserId = userId;
         Score = score;
     }
 
-    public int CustomerId { get; set; }
+    public int UserId { get; set; }
     public short Score { get; set; }
-    public virtual Customer Customer { get; set; }
+    public virtual User User { get; set; }
 }

@@ -11,6 +11,7 @@ namespace Application.Features.IndividualCustomer.Rules
     public class IndividualCustomerBusinessRules
     {
         IIndividualCustomerRepository _individualCustomerRepository;
+        IUserRepository _userRespository;
 
         public IndividualCustomerBusinessRules(IIndividualCustomerRepository individualCustomerRepository)
         {
@@ -25,5 +26,6 @@ namespace Application.Features.IndividualCustomer.Rules
                 throw new BusinessException("NationalId cannot be dublicated");
             }
         }
+
     }
 }

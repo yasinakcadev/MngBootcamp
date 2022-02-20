@@ -21,7 +21,7 @@ namespace Application.Features.Cars.Commands
         public int Id { get; set; }
         public int TakingCityId { get; set; }
         public int GivingCityId { get; set; }
-        public int CustomerId { get; set; }
+        public int UserId { get; set; }
         public int TotalRentDay { get; set; }
 
         public List<int> AdditionalServices { get; set; }
@@ -94,12 +94,12 @@ namespace Application.Features.Cars.Commands
                     TotalRentDay = request.TotalRentDay,
                     TotalRentAmount = (car.Model.DailyPrice * request.TotalRentDay) + cityExtentPrice,
                     AdditionalRentAmount = additionalServicesTotalAmount,
-                    CustomerId = request.CustomerId,
+                    UserId = request.UserId,
                 };
 
                 var invoice = await _mediator.Send(command);
 
-                var rent = new Domain.Entities.Rent(request.Id, request.CustomerId,
+                var rent = new Domain.Entities.Rent(request.Id, request.UserId,
                     DateTime.Now.AddDays(request.TotalRentDay),
                     request.GivingCityId, invoice.Id, DateTime.Now, request.TakingCityId,
                     car.CurrentIndicatorValueAsKilometer);
