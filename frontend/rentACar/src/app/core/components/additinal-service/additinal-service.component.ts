@@ -27,7 +27,13 @@ export class AdditinalServiceComponent implements OnInit {
     });
   }
 
-  getSelectedList(selectedItem: AdditionalServiceListModel) {
-    console.log('selected item', selectedItem);
+  addSelectedList(item:AdditionalServiceListModel) {
+
+
+    this.selectedList.items.push(item);
+   this.getSelectedList()
+  }
+  getSelectedList(){
+    console.log('selected item', this.selectedList);
   }
 }
