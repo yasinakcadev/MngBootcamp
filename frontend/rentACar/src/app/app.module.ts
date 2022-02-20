@@ -29,6 +29,7 @@ import { FuelComponent } from './core/components/fuel/fuel.component';
 import { ColorComponent } from './core/components/color/color.component';
 import { ModelComponent } from './core/components/model/model.component';
 import { HomeComponent } from './features/rentals/components/home/home.component';
+import { CityComponent } from './core/components/city/city.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { HomeComponent } from './features/rentals/components/home/home.component
     FooterComponent,
     MenuComponent,
     HomeComponent,
+    CityComponent,
   ],
   imports: [
     BrowserModule,
