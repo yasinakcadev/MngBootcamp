@@ -25,6 +25,7 @@ using Core.CrossCuttingConcerns.Logging.Serilog;
 using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Application.Pipelines.Logging;
 using Core.Application.Pipelines.Caching;
+using Application.Features.Cities.Rules;
 
 namespace Application
 {
@@ -41,6 +42,7 @@ namespace Application
             services.AddScoped<ModelBusinessRules>();
             services.AddScoped<FuelBusinessRules>();
             services.AddScoped<ColorBusinessRules>();
+            services.AddScoped<CityBusinessRules>();
             services.AddScoped<TransmissionBusinessRules>();
             services.AddScoped<CarBusinessRules>();
             services.AddScoped<IndividualCustomerBusinessRules>();
