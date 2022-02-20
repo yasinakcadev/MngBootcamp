@@ -15,7 +15,7 @@
                 <label for="disabledTextInput" class="form-label"
                   >Alış şehri</label
                 >
-                <app-city></app-city>
+                <app-city (giveSelectedCityIdEvent)="SetAlisSehri($event)"></app-city>
               </div>
             </div>
 
@@ -24,7 +24,7 @@
                 <label for="disabledTextInput" class="form-label"
                   >Veriş şehri</label
                 >
-                <app-city></app-city>
+                <app-city (giveSelectedCityIdEvent)="SetVerisSehri($event)"></app-city>
               </div>
             </div>
           </div>
@@ -44,6 +44,7 @@
               </div>
             </div>
           </div>
+          <button (click)="sehirleriYaz()" type="text" class="btn btn-primary">Console'a şehirleri yaz</button>
           <button routerLink="brands" type="submit" class="btn btn-primary">
             Listele
           </button>
