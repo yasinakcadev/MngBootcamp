@@ -1,6 +1,7 @@
 <select
   [(ngModel)]="selectedCity"
-  (change)="getSelectedCity(selectedCity)"
+  (change)="giveSelectedCityId()"
+
   id="disabledSelect"
   class="form-select"
 >
@@ -8,4 +9,8 @@
   <option *ngFor="let city of cities.items" value="{{ city.id }}">
     {{ city.name }}
   </option>
+
 </select>
+
+
+
