@@ -10,6 +10,7 @@ import { ColorComponent } from './core/components/color/color.component';
 import { FuelComponent } from './core/components/fuel/fuel.component';
 import { ModelComponent } from './core/components/model/model.component';
 import { HomeComponent } from './features/rentals/components/home/home.component';
+import { CityComponent } from './core/components/city/city.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'colors', component: ColorComponent },
   { path: 'fuels', component: FuelComponent },
   { path: 'brands', component: BrandComponent },
+  { path: 'cities', component: CityComponent },
   {
     path: 'admins/color/add',
     component: ColorAdminAddComponent,

@@ -30,6 +30,7 @@ import { ColorComponent } from './core/components/color/color.component';
 import { ModelComponent } from './core/components/model/model.component';
 import { HomeComponent } from './features/rentals/components/home/home.component';
 import { CityComponent } from './core/components/city/city.component';
+import { AdditinalServiceComponent } from './core/components/additinal-service/additinal-service.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { CityComponent } from './core/components/city/city.component';
     MenuComponent,
     HomeComponent,
     CityComponent,
+    AdditinalServiceComponent,
   ],
   imports: [
     BrowserModule,
