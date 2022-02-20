@@ -1,4 +1,3 @@
-
 html,
 body {
   height: 100%;
@@ -10,7 +9,6 @@ body {
 
 /* Other Classes for Page Styling */
 
-body {
-  background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
+body>footer {
+  background-color: #1C658C !important;
 }
