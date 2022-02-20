@@ -29,9 +29,9 @@ public class RentBusinessRules
             throw new BusinessException("Must Be EndDate Greater Than Start Date");
         return Task.CompletedTask;
     }
-    public async Task<bool> CustomersFindexScoreMustBeGreaterOrEqualToCarsMinFindexScore(int customerId, int carId)
+    public async Task<bool> CustomersFindexScoreMustBeGreaterOrEqualToCarsMinFindexScore(int userId, int carId)
     {
-        var findexScoreOfTheCustomer = await _findexScoreRepository.GetAsync(c => c.CustomerId == customerId);
+        var findexScoreOfTheCustomer = await _findexScoreRepository.GetAsync(c => c.UserId == userId);
         if (findexScoreOfTheCustomer == null) throw new BusinessException("Customer has to have a findex score to rent a car");
         var car = await _carRepository.GetAsync(c => c.Id == carId);
         var carMinFindexScore = car.MinFindexScore;

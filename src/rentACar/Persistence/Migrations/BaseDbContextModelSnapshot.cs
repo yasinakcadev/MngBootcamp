@@ -53,6 +53,18 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OperationClaims", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Member"
+                        });
                 });
 
             modelBuilder.Entity("Core.Security.Entities.User", b =>
@@ -67,16 +79,6 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Email");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("FirstName");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("LastName");
 
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
@@ -120,25 +122,6 @@ namespace Persistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserOperationClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Entities.Abstarct.Customer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Email");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.AdditionalService", b =>
@@ -406,15 +389,12 @@ namespace Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<double>("AdditionalRentAmount")
-                        .HasColumnType("float");
+                        .HasColumnType("float")
+                        .HasColumnName("AdditionalRentAmount");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("CreationDate");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int")
-                        .HasColumnName("CustomerId");
 
                     b.Property<int>("InvoiceNo")
                         .HasColumnType("int");
@@ -435,9 +415,13 @@ namespace Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("TotalRentDay");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Invoices", (string)null);
                 });
@@ -601,24 +585,24 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int")
-                        .HasColumnName("CustomerId");
-
                     b.Property<short>("Score")
                         .HasColumnType("smallint")
                         .HasColumnName("Score");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("FindexScores", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.CorporateCustomer", b =>
                 {
-                    b.HasBaseType("Domain.Entities.Abstarct.Customer");
+                    b.HasBaseType("Core.Security.Entities.User");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -635,7 +619,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.IndividualCustomer", b =>
                 {
-                    b.HasBaseType("Domain.Entities.Abstarct.Customer");
+                    b.HasBaseType("Core.Security.Entities.User");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -733,13 +717,13 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Invoice", b =>
                 {
-                    b.HasOne("Domain.Entities.Abstarct.Customer", "Customer")
+                    b.HasOne("Core.Security.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Customer");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Entities.Model", b =>
@@ -800,18 +784,18 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.FindexScore.FindexScore", b =>
                 {
-                    b.HasOne("Domain.Entities.Abstarct.Customer", "Customer")
+                    b.HasOne("Core.Security.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Customer");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Entities.CorporateCustomer", b =>
                 {
-                    b.HasOne("Domain.Entities.Abstarct.Customer", null)
+                    b.HasOne("Core.Security.Entities.User", null)
                         .WithOne()
                         .HasForeignKey("Domain.Entities.CorporateCustomer", "Id")
                         .OnDelete(DeleteBehavior.ClientCascade)
@@ -820,7 +804,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.IndividualCustomer", b =>
                 {
-                    b.HasOne("Domain.Entities.Abstarct.Customer", null)
+                    b.HasOne("Core.Security.Entities.User", null)
                         .WithOne()
                         .HasForeignKey("Domain.Entities.IndividualCustomer", "Id")
                         .OnDelete(DeleteBehavior.ClientCascade)

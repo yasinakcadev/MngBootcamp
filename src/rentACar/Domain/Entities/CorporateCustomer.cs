@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Abstarct;
+﻿using Core.Security.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class CorporateCustomer: Customer
+    public class CorporateCustomer: User
     {
   
         public CorporateCustomer()
@@ -15,9 +15,13 @@ namespace Domain.Entities
 
         }
 
-        public CorporateCustomer(int id,string companyName, string taxNumber): this()
+        public CorporateCustomer(int id, string email, byte[] passwordSalt, byte[] passwordHash, bool status,string companyName, string taxNumber): this()
         {
             Id = id;
+            Email = email;
+            PasswordSalt = passwordSalt;
+            PasswordHash = passwordHash;
+            Status = status;
             CompanyName = companyName;
             TaxNumber = taxNumber;
         }

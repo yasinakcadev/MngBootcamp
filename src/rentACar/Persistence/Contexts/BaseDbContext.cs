@@ -1,6 +1,5 @@
 ﻿using Core.Security.Entities;
 using Domain.Entities;
-using Domain.Entities.Abstarct;
 using Domain.Enums;
 using Domain.FindexScore;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +22,7 @@ namespace Persistence
         public DbSet<Color> Colors { get; set; }
         public DbSet<Transmission> Transmissions { get; set; }
         public DbSet<Fuel> Fuels { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+        //public DbSet<Customer> Customers { get; set; }
         public DbSet<CorporateCustomer> CorporateCustomers { get; set; }
         public DbSet<IndividualCustomer> IndividualCustomers { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
@@ -86,9 +85,9 @@ namespace Persistence
             {
                 f.ToTable("FindexScores").HasKey(k => k.Id);
                 f.Property(p => p.Id).HasColumnName("Id");
-                f.Property(p => p.CustomerId).HasColumnName("CustomerId");
+                f.Property(p => p.UserId).HasColumnName("UserId");
                 f.Property(p => p.Score).HasColumnName("Score");
-                f.HasOne(p => p.Customer);
+                f.HasOne(p => p.User);
             });
 
             modelBuilder.Entity<Fuel>(f =>
@@ -123,12 +122,13 @@ namespace Persistence
                 b.HasMany(p => p.Models);
             });
 
-            modelBuilder.Entity<Customer>(c =>
-            {
-                c.ToTable("Customers").HasKey(k => k.Id);
-                c.Property(p => p.Id).HasColumnName("Id");
-                c.Property(p => p.Email).HasColumnName("Email");
-            });
+            //modelBuilder.Entity<Customer>(c =>
+            //{
+            //    c.ToTable("Customers").HasKey(k => k.Id);
+            //    c.Property(p => p.Id).HasColumnName("Id");
+            //    c.Property(p => p.Email).HasColumnName("Email");
+            
+            //});
 
             modelBuilder.Entity<IndividualCustomer>(ic =>
             {
@@ -153,8 +153,9 @@ namespace Persistence
                 i.Property(p => p.RentEndDate).HasColumnName("RentEndDate");
                 i.Property(p => p.TotalRentDay).HasColumnName("TotalRentDay");
                 i.Property(p => p.TotalRentAmount).HasColumnName("TotalRentAmount");
-                i.Property(p => p.CustomerId).HasColumnName("CustomerId");
-                i.HasOne(p => p.Customer);
+                i.Property(p => p.AdditionalRentAmount).HasColumnName("AdditionalRentAmount");
+                i.Property(p => p.UserId).HasColumnName("UserId");
+                i.HasOne(p => p.User);
                 i.HasMany(p => p.Cars);
             });
 
@@ -187,8 +188,8 @@ namespace Persistence
             modelBuilder.Entity<User>(r =>
             {
                 r.ToTable("Users").HasKey(i => i.Id);
-                r.Property(r => r.FirstName).HasColumnName("FirstName");
-                r.Property(r => r.LastName).HasColumnName("LastName");
+                //r.Property(r => r.FirstName).HasColumnName("FirstName");
+                //r.Property(r => r.LastName).HasColumnName("LastName");
                 r.Property(r => r.Email).HasColumnName("Email");
                 r.Property(r => r.PasswordHash).HasColumnName("PasswordHash");
                 r.Property(r => r.PasswordSalt).HasColumnName("PasswordSalt");
@@ -233,6 +234,11 @@ namespace Persistence
             var model1 = new Model(1,"418i",1000,2,1,1,"");
             var model2 = new Model(2,"CLA 180D",600,2,1,2,"");
             modelBuilder.Entity<Model>().HasData(model1, model2);
+
+            var operationClaim1 = new OperationClaim(1, "Admin");
+            var operationClaim2 = new OperationClaim(2, "Member");
+          
+            modelBuilder.Entity<OperationClaim>().HasData(operationClaim1, operationClaim2);
 
             modelBuilder.Entity<Car>().HasData(new Car(1,1,1,"06ABC06",1,2018,CarState.Available,100,300));
             modelBuilder.Entity<Car>().HasData(new Car(2,2,2,"34ABC34",1,2018,CarState.Available,10,500));
