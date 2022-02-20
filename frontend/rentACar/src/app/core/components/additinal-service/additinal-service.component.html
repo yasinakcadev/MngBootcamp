@@ -1,0 +1,15 @@
+<div
+  class="container"
+  [(ngModel)]="selectedItem"
+  *ngFor="let item of additionalServices.items"
+  (click)="getSelectedList(selectedItem)"
+>
+  <input
+    class="form-check-input"
+    type="checkbox"
+    name="{{ item.id }}"
+    id="inlineRadio1"
+    value="{{ item.id }}"
+  />
+  <label class="form-check-label" for="inlineRadio1">{{ item.name }}</label>
+</div>
