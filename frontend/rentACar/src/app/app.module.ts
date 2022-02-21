@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrandComponent } from './features/rentals/components/brand/brand.component';
@@ -31,6 +33,8 @@ import { ModelComponent } from './core/components/model/model.component';
 import { HomeComponent } from './features/rentals/components/home/home.component';
 import { CityComponent } from './core/components/city/city.component';
 import { AdditinalServiceComponent } from './core/components/additinal-service/additinal-service.component';
+import { RentComponent } from './features/rentals/components/rent/rent.component';
+import { CarComponent } from './core/components/car/car.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +57,9 @@ import { AdditinalServiceComponent } from './core/components/additinal-service/a
     HomeComponent,
     CityComponent,
     AdditinalServiceComponent,
+    RentComponent,
+    CarComponent
+
   ],
   imports: [
     BrowserModule,

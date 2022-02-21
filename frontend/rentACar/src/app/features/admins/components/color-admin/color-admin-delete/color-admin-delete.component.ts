@@ -1,9 +1,12 @@
+
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Color } from '../../../models/color';
+
 import { ColorCrudService } from '../../../services/color-crud.service';
 import { FuelCrudService } from '../../../services/fuel-crud.service';
+import { Color } from './../../../models/color';
 
 @Component({
   selector: 'app-color-admin-delete',

@@ -10,6 +10,7 @@ export class HomeComponent implements OnInit {
 
    alisSehriId:any;
    verisSehriId:any;
+   totalRentDay:number;
   constructor() { }
 
   ngOnInit(): void {
@@ -23,9 +24,15 @@ export class HomeComponent implements OnInit {
     console.log("rent için veriş şehri: ",cityId)
     this.verisSehriId=cityId;
   }
-  sehirleriYaz(){
+
+  giveTotalRentDay(totalRentDay:number){
+
+    console.log("rent için ",totalRentDay)
+  }
+  herseyiYaz(){
     console.log("rent için alış şehri: ",this.alisSehriId)
     console.log("rent için veriş şehri: ",this.verisSehriId)
+    console.log("Toplam gün: ",this.totalRentDay)
   }
 
 

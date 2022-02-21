@@ -1,3 +1,6 @@
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -36,7 +39,7 @@ export class ColorAdminUpdateComponent implements OnInit {
       this.toastrService.warning('There are missing fields.');
       return;
     }
-    let colorToUpdate: Color = { ...this.colorForm.value };
+    let colorToUpdate: Color= { ...this.colorForm.value };
     this.colorCrudService.updateColor(colorToUpdate).subscribe(() => {
       this.toastrService.success('Color has been updated.');
     });

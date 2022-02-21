@@ -15,7 +15,7 @@ export class ColorService {
     page: number,
     size: number
   ): Observable<ListResponseModel<ColorListModel>> {
-    let newPath = this.apiUrl + 'getAll?Page' + page + '&PageSize=' + size;
+    let newPath = this.apiUrl + 'getAll?Page=' + page + '&PageSize=' + size;
     return this.httpClient.get<ListResponseModel<ColorListModel>>(newPath);
   }
 }

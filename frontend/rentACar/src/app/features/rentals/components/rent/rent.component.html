@@ -1,0 +1,103 @@
+<!-- <div class="table-positioner">
+  <p-card header="Araç Ekle:" subheader="Card Subheader" [style]="{width: '360px'}" styleClass="p-card-shadow">
+
+      <form [formGroup]="rentForm" class="form-group">
+
+
+          <div *ngIf="this.citiesLoaded" class="form-outline mb-3">
+              <p-dropdown [options]="cities" formControlName="alisCityId" optionLabel="name" optionValue="id"></p-dropdown>
+          </div>
+          <div *ngIf="this.citiesLoaded" class="form-outline mb-3">
+            <p-dropdown [options]="cities" formControlName="verisCityId" optionLabel="name" optionValue="id"></p-dropdown>
+        </div>
+        <div *ngIf="this.carsLoaded" class="form-outline mb-3">
+          <p-dropdown [options]="cartOfTheCity" formControlName="carId" optionLabel="name" optionValue="id"></p-dropdown>
+      </div>
+
+
+          <div class="form-outline mb-3">
+              <input type="number" placeholder="Toplam rent süresi:" formControlName="totalRentDay" class="form-control" name="totalRentDay"/>
+          </div>
+
+          <div *ngIf="this.additionalServicesLoaded" class="form-outline mb-3">
+            <p-dropdown [options]="additionalServices" formControlName="additionalServicesList" optionLabel="id" optionValue="id"></p-dropdown>
+        </div>
+
+      </form>
+
+      <ng-template pTemplate="footer">
+          <p-button label="Araç Kirala" icon="pi pi-check" [disabled]="addCarForm.invalid" (click)="rentACar()"></p-button>
+          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" routerLink="/adminalThings/cars" [style]="{'margin-left': '.5em'}"></p-button>
+      </ng-template>
+  </p-card>
+</div>
+ -->
+
+ <div class="container">
+ <div class="card-body">
+  <form *ngIf="rentCarForm" [formGroup]="rentCarForm">
+    <div class="form-group mb-3">
+      <label for="model-name-input" class="fw-bold mb-3">İd</label>
+      <input
+        type="number"
+        id="model-name-input"
+        formControlName="id"
+        class="form-control"
+        placeholder="id"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="model-name-input" class="fw-bold mb-3">Taking City İd</label>
+      <input
+        type="number"
+        id="model-name-input"
+        formControlName="takingCityId"
+        class="form-control"
+        placeholder="takingCityId"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="model-name-input" class="fw-bold mb-3">Giving City İd</label>
+      <input
+        type="number"
+        id="model-name-input"
+        formControlName="givingCityId"
+        class="form-control"
+        placeholder="givingCityId"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="model-name-input" class="fw-bold mb-3">User İd</label>
+      <input
+        type="number"
+        id="model-name-input"
+        formControlName="userId"
+        class="form-control"
+        placeholder="userId"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="model-name-input" class="fw-bold mb-3">Total Rent Day</label>
+      <input
+        type="number"
+        id="model-name-input"
+        formControlName="totalRentDay"
+        class="form-control"
+        placeholder="totalRentDay"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="model-name-input" class="fw-bold mb-3">Additional Services</label>
+      <input
+        type="number"
+        id="model-name-input"
+        formControlName="additionalServices"
+        class="form-control"
+        placeholder="Additional Services"
+      />
+    </div>
+  </form>
+  <button class="btn btn-primary" (click)="rentCar()">Rent</button>
+</div>
+ </div>
+
