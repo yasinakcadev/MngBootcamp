@@ -38,33 +38,49 @@
   <form *ngIf="rentCarForm" [formGroup]="rentCarForm">
     <div class="form-group mb-3">
       <label for="model-name-input" class="fw-bold mb-3">İd</label>
-      <input
-        type="number"
-        id="model-name-input"
-        formControlName="id"
-        class="form-control"
-        placeholder="id"
-      />
+
+
+      <div *ngIf="this.carsLoaded" class="form-outline mb-3">
+
+        <select formControlName="id"  [(ngModel)]="selectedCar" (change)="giveSelectedCityId()">
+         <option selected >Seçiniz</option>
+          <option
+          *ngFor="let car of cars.items" id="model-name-input"  value="{{car.id}}"> {{car.plate}}</option>
+        </select>
+
+
+      </div>
+
     </div>
     <div class="form-group mb-3">
       <label for="model-name-input" class="fw-bold mb-3">Taking City İd</label>
-      <input
-        type="number"
-        id="model-name-input"
-        formControlName="takingCityId"
-        class="form-control"
-        placeholder="takingCityId"
-      />
+
     </div>
+     <div *ngIf="this.citiesLoaded" class="form-outline mb-3">
+
+        <select formControlName="takingCityId"  [(ngModel)]="selectedTakingCity" (change)="giveSelectedCityId()">
+         <option selected >Seçiniz</option>
+          <option
+          *ngFor="let city of cities.items" id="model-name-input"  value="{{city.id}}"> {{city.name}}</option>
+        </select>
+
+
+      </div>
+
+
     <div class="form-group mb-3">
       <label for="model-name-input" class="fw-bold mb-3">Giving City İd</label>
-      <input
-        type="number"
-        id="model-name-input"
-        formControlName="givingCityId"
-        class="form-control"
-        placeholder="givingCityId"
-      />
+
+    </div>
+    <div *ngIf="this.citiesLoaded" class="form-outline mb-3">
+
+      <select formControlName="givingCityId"  [(ngModel)]="selectedGivingCity" (change)="giveSelectedCityId()">
+       <option selected >Seçiniz</option>
+        <option
+        *ngFor="let city of cities.items" id="model-name-input"  value="{{city.id}}"> {{city.name}}</option>
+      </select>
+
+
     </div>
     <div class="form-group mb-3">
       <label for="model-name-input" class="fw-bold mb-3">User İd</label>
@@ -98,6 +114,8 @@
     </div>
   </form>
   <button class="btn btn-primary" (click)="rentCar()">Rent</button>
-</div>
  </div>
+</div>
+
+
 
