@@ -41,7 +41,6 @@ namespace Application.Features.Fuel.Commands
                
                 await _fuelRepository.UpdateAsync(fuel);
                 return _mapper.Map<FuelDto>(fuel);
-                
             }
         }
     }

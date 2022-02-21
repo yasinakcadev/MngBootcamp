@@ -13,7 +13,7 @@ namespace Application.Features.Damages.Commands
 {
     public class CreateDamageCommand: IRequest<Damage>
     {
-        public int CardId { get; set; }
+        public int CarId { get; set; }
         public string DamageDetail { get; set; }
 
         public class CreateDamageCommandHandler : IRequestHandler<CreateDamageCommand, Damage>
@@ -31,7 +31,7 @@ namespace Application.Features.Damages.Commands
 
             public async Task<Damage> Handle(CreateDamageCommand request, CancellationToken cancellationToken)
             {
-                await _damageBusinessRules.CarIdCanNotBeNull(request.CardId);
+                await _damageBusinessRules.CarIdCanNotBeNull(request.CarId);
                 var mappedDamage = _mapper.Map<Damage>(request);
                 var createdDamage = await _damageRepository.AddAsync(mappedDamage);
                 return createdDamage;

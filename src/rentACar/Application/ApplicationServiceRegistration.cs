@@ -5,7 +5,7 @@ using Application.Features.Damages.Rules;
 using Application.Features.IndividualCustomer.Rules;
 using Application.Features.Invoices.Rules;
 using Application.Features.Models.Rules;
-using Application.Features.Transmission.Rules;
+using Application.Features.Transmissions.Rules;
 using Core.Application.Pipelines.Validation;
 using FluentValidation;
 using MediatR;

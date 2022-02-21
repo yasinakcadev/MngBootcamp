@@ -17,6 +17,8 @@ namespace Application.Features.Cars.Profiles
         public CarMappingProfiles()
         {
             CreateMap<Car, CreateCarCommand>().ReverseMap();
+            CreateMap<Car, DeleteCarCommand>().ReverseMap();
+            CreateMap<Car, UpdateCarCommand>().ReverseMap();
             CreateMap<Car, CarDto>().ReverseMap();
             CreateMap<Car, CarListDto>().ReverseMap();
             CreateMap<CarListModel, IPaginate<Car>>().ReverseMap();

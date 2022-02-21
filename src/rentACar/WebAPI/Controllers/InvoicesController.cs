@@ -28,5 +28,19 @@ namespace WebAPI.Controllers
             var result = await Mediator.Send(query);
             return Ok(result);
         }
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> Delete([FromBody] DeleteInvoiceCommand deleteInvoiceCommand)
+        {
+            var result = await Mediator.Send(deleteInvoiceCommand);
+            return Ok(result);
+        }
+
+        [HttpPut("update")]
+        public async Task<IActionResult> Update([FromBody] UpdateInvoiceCommand updateInvoiceCommand)
+        {
+            var result = await Mediator.Send(updateInvoiceCommand);
+            return Ok(result);
+        }
     }
 }

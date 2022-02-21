@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Transmission.Dtos
+namespace Application.Features.Transmissions.Dtos
 {
     public class TransmissionDto
     {

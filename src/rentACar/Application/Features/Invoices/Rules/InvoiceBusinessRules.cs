@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Application.Services.Repositories;
 
 namespace Application.Features.Invoices.Rules
 {
     public class InvoiceBusinessRules
     {
-        
+        private IInvoiceRepository _invoiceRepository;
+
+        public InvoiceBusinessRules(IInvoiceRepository invoiceRepository)
+        {
+            _invoiceRepository = invoiceRepository;
+        }
     }
 }

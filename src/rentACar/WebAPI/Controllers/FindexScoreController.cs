@@ -10,9 +10,9 @@ namespace WebAPI.Controllers
     public class FindexScoreController : BaseController
     {
         [HttpPost("add")]
-        public async Task<IActionResult> Add([FromBody] CreateFindexScoreCommand createColorCommand)
+        public async Task<IActionResult> Add([FromBody] CreateFindexScoreCommand createFindexScoreCommand)
         {
-            var result = await Mediator.Send(createColorCommand);
+            var result = await Mediator.Send(createFindexScoreCommand);
             return Created("", result);
         }
 

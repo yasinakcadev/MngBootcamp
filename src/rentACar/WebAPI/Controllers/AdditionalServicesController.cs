@@ -23,7 +23,6 @@ namespace WebAPI.Controllers
             query.PageRequest = pageRequest;
             var result = await Mediator.Send(query);
             return Ok(result);
-
         }
 
         [HttpPut("update")]
@@ -32,5 +31,13 @@ namespace WebAPI.Controllers
             var result = await Mediator.Send(updateAdditionalServiceCommand);
             return Ok(result);
         }
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> Delete([FromBody] DeleteAdditionalServiceCommand deleteAdditionalServiceCommand)
+        {
+            var result = await Mediator.Send(deleteAdditionalServiceCommand);
+            return Ok(result);
+        }
+
     }
 }
