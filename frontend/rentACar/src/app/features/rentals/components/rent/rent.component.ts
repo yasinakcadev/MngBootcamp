@@ -1,3 +1,4 @@
+import { CityListModel } from './../../../../core/models/listModels/cityListModel';
 import { CityService } from './../../../../core/services/city.service';
 import { CarService } from './../../services/car.service';
 import { RentModel } from './../../models/rentModel';
@@ -7,7 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
-import { CityListModel } from 'src/app/core/models/listModels/cityListModel';
+import { CarListModel } from 'src/app/core/models/listModels/carListModel';
+
 
 @Component({
   selector: 'app-rent',
@@ -26,36 +28,28 @@ export class RentComponent implements OnInit {
 
   rent: RentModel;
   rentCarForm!:FormGroup;
-  // rentForm : FormGroup;
-  // createCarModel : CreateCarModel = new CreateCarModel();
+  selectedCar:CarListModel;
+  selectedTakingCity:CityListModel;
+  selectedGivingCity:CityListModel;
+  //totalRentDay: number;
+
+
   // users : ModelListModel[] = [];
   // additionalServices: ListResponseModel<AdditionalServiceListModel> = {
   //   items: [],
   // };
   cities: ListResponseModel<CityListModel> = { items: [] };
+  cars:  ListResponseModel<CarListModel> = { items: [] };
 
-  // selectedCity:CityListModel;
-  //  alisSehriId: any;
-  // verisSehriId: any;
-  // totalRentDay: number;
 
-  // modelsLoaded = false;
   // additionalServicesLoaded = false;
+  carsLoaded=false;
   citiesLoaded = false;
   ngOnInit(): void {
+    this.getCars();
+    this.getCities();
     this.createRentForm();
   }
-
-  // createRentForm() {
-  //   this.rentForm = this.formBuilder.group({
-  //     id: [this.rent?.id || '', Validators.required],
-  //     takingCityId: [this.rent?.takingCityId || '', Validators.required],
-  //     givingCityId: [this.rent?.givingCityId || '', Validators.required],
-  //     userId: [this.rent?.userId || '', Validators.required],
-  //     totalRentDay: [this.rent?.totalRentDay || '', Validators.required],
-
-  //   });
-  // }
 
   createRentForm() {
     this.rentCarForm = this.formBuilder.group({
@@ -86,7 +80,26 @@ export class RentComponent implements OnInit {
       this.cities = data;
       this.citiesLoaded=true;
 
+      console.log(this.cities)
+
     });
+
+  }
+  getCars() {
+    this.carService.getCars(0, 100).subscribe((data) => {
+      this.cars = data;
+      this.carsLoaded=true;
+
+      console.log(this.cars)
+
+    });
+
+  }
+  giveSelectedCityId(){
+
+    console.log(this.selectedCar)
+
+
   }
 
 
