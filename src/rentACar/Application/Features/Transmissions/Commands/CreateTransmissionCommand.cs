@@ -1,4 +1,4 @@
-﻿using Application.Features.Transmission.Rules;
+﻿using Application.Features.Transmissions.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using MediatR;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Transmission.Commands
+namespace Application.Features.Transmissions.Commands
 {
     public class CreateTransmissionCommand: IRequest<Domain.Entities.Transmission>
     {

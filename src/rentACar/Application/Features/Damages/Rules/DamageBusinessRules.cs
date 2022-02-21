@@ -11,16 +11,18 @@ namespace Application.Features.Damages.Rules
     public class DamageBusinessRules
     {
         IDamageRepository _damageRepository;
+        ICarRepository _carRepository;
 
-        public DamageBusinessRules(IDamageRepository damageRepository)
+        public DamageBusinessRules(IDamageRepository damageRepository, ICarRepository carRepository)
         {
             _damageRepository = damageRepository;
+            _carRepository = carRepository;
         }
 
         public async Task CarIdCanNotBeNull(int carId)
         {
-            var result = await _damageRepository.GetListAsync(d => d.CarId == carId);
-            if (result.Items.Any())
+            var car = await _carRepository.GetAsync(d => d.Id == carId);
+            if (car == null)
                 throw new BusinessException("Car can not be null");
         }
     }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Transmission.Rules
+namespace Application.Features.Transmissions.Rules
 {
     public class TransmissionBusinessRules
     {

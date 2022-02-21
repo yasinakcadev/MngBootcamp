@@ -25,10 +25,10 @@ namespace Application.Features.FindexScores.Commands
 
             public async Task<NoContent> Handle(DeleteFindexScoreCommand request, CancellationToken cancellationToken)
             {
-                var color = await _findexScoreRepository.GetAsync(c => c.Id == request.Id);
-                if (color == null)
-                    throw new BusinessException("FindexScore not found");
-                await _findexScoreRepository.DeleteAsync(color);
+                var findexScore = await _findexScoreRepository.GetAsync(c => c.Id == request.Id);
+                if (findexScore == null)
+                    throw new BusinessException("Findex Score not found");
+                await _findexScoreRepository.DeleteAsync(findexScore);
                 return new NoContent();
             }
         }

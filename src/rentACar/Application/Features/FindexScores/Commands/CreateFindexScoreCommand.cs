@@ -15,7 +15,7 @@ namespace Application.Features.FindexScores.Commands
 {
     public class CreateFindexScoreCommand : IRequest<FindexScore>
     {
-        public int CustomerId { get; set; }
+        public int UserId { get; set; }
         public short Score { get; set; }
 
         public class CreateFindexScoreCommandHandler : IRequestHandler<CreateFindexScoreCommand, FindexScore>
@@ -35,9 +35,8 @@ namespace Application.Features.FindexScores.Commands
 
             public async Task<FindexScore> Handle(CreateFindexScoreCommand request, CancellationToken cancellationToken)
             {
-                await _findexScoreBusinessRules.CustomerIdCanNotBeDublicated(request.CustomerId);
-             
-                var score=  _findexCreditService.GetFindexScore(request.CustomerId);
+                await _findexScoreBusinessRules.CustomerIdCanNotBeDublicated(request.UserId);
+                var score = _findexCreditService.GetFindexScore(request.UserId);
                 request.Score = score;
                 var mappedFindexScore = _mapper.Map<FindexScore>(request);
                 var findexScore =  await _findexScoreRepository.AddAsync(mappedFindexScore);

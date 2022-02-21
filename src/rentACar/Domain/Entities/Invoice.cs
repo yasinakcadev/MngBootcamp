@@ -26,7 +26,6 @@ namespace Domain.Entities
             UserId = userId;
             AdditionalRentAmount = additionalRentAmount;
         }
-
    
         public int InvoiceNo { get; set; }
         public DateTime CreationDate { get; set; }
@@ -38,6 +37,5 @@ namespace Domain.Entities
         public int UserId { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<Car> Cars { get; set; }
-
     }
 }

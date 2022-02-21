@@ -18,7 +18,7 @@ namespace Application.Features.FindexScores.Commands
     public class UpdateFindexScoreCommand : IRequest<FindexScoreDto>
     {
         public int Id { get; set; }
-        public int CustomerId { get; set; }
+        public int UserId { get; set; }
         public short Score { get; set; } 
 
         public class UpdateFindexScoreHandler : IRequestHandler<UpdateFindexScoreCommand, FindexScoreDto>
@@ -39,11 +39,11 @@ namespace Application.Features.FindexScores.Commands
             {
                 var findexScore = await _findexScoreRepository.GetAsync(c => c.Id == request.Id);
                 if (findexScore == null)
-                    throw new BusinessException("Color cannot found");
+                    throw new BusinessException("Findex score cannot found");
                 
-                await _findexScoreBusinessRules.CustomerIdCanNotBeDublicated(request.CustomerId);
+                await _findexScoreBusinessRules.CustomerIdCanNotBeDublicated(request.UserId);
                 _mapper.Map(request, findexScore);
-                var score = _findexCreditService.GetFindexScore(request.CustomerId);
+                var score = _findexCreditService.GetFindexScore(request.UserId);
                 request.Score = score;
                 await _findexScoreRepository.UpdateAsync(findexScore);
                 return _mapper.Map<FindexScoreDto>(findexScore);

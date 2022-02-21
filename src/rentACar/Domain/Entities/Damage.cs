@@ -16,7 +16,7 @@ namespace Domain.Entities
 
         }
 
-        public Damage(int carId, string damageDetail, Car car): this()
+        public Damage(int carId, string damageDetail): this()
         {
             CarId = carId;
             DamageDetail = damageDetail;

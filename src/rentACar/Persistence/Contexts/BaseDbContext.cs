@@ -84,7 +84,6 @@ namespace Persistence
             modelBuilder.Entity<FindexScore>(f =>
             {
                 f.ToTable("FindexScores").HasKey(k => k.Id);
-                f.Property(p => p.Id).HasColumnName("Id");
                 f.Property(p => p.UserId).HasColumnName("UserId");
                 f.Property(p => p.Score).HasColumnName("Score");
                 f.HasOne(p => p.User);
