@@ -6,5 +6,5 @@ export interface RentModel{
   givingCityId:number;
   userId:number;
   totalRentDay:number;
-  additionalServices:AdditionalServiceListModel[]
+  additionalServices:number[]
 }

@@ -12,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { CarListModel } from 'src/app/core/models/listModels/carListModel';
 
-
 @Component({
   selector: 'app-rent',
   templateUrl: './rent.component.html',
@@ -20,9 +19,9 @@ import { CarListModel } from 'src/app/core/models/listModels/carListModel';
 })
 export class RentComponent implements OnInit {
   constructor(
-    private additionalService:AdditionalServiceService,
-    private authService:AuthService,
-    private cityService:CityService,
+    private additionalService: AdditionalServiceService,
+    private authService: AuthService,
+    private cityService: CityService,
     private carService: CarService,
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
@@ -30,29 +29,26 @@ export class RentComponent implements OnInit {
   ) {}
 
   rent: RentModel;
-  rentCarForm!:FormGroup;
-  selectedCar:CarListModel;
-  selectedTakingCity:CityListModel;
-  selectedGivingCity:CityListModel;
-  userId:number;
+  rentCarForm!: FormGroup;
+  selectedCar: CarListModel;
+  selectedTakingCity: CityListModel;
+  selectedGivingCity: CityListModel;
+  userId: number;
   //totalRentDay: number;
-
 
   // users : ModelListModel[] = [];
   // additionalServices: ListResponseModel<AdditionalServiceListModel> = {
   //   items: [],
   // };
   cities: ListResponseModel<CityListModel> = { items: [] };
-  cars:  ListResponseModel<CarListModel> = { items: [] };
+  cars: ListResponseModel<CarListModel> = { items: [] };
   additionalServices: ListResponseModel<AdditionalServiceListModel> = {
     items: [],
   };
-  selectedList: ListResponseModel<AdditionalServiceListModel> = { items: [] };
+  selectedList: ListResponseModel<number> = { items: [] };
   selectedItem: any;
 
-
-
-  carsLoaded=false;
+  carsLoaded = false;
   citiesLoaded = false;
   additionalServicesLoaded = false;
   ngOnInit(): void {
@@ -71,7 +67,6 @@ export class RentComponent implements OnInit {
       userId: [this.rent?.userId || this.getUser(), Validators.required],
       totalRentDay: [this.rent?.totalRentDay || 0, Validators.required],
       // additionalServices: [this.rent?.additionalServices || [], Validators.required],
-
     });
   }
 
@@ -81,10 +76,10 @@ export class RentComponent implements OnInit {
       return;
     }
     let rentToAdd: RentModel = { ...this.rentCarForm.value };
-    rentToAdd.additionalServices=this.selectedList.items;
-    console.log(rentToAdd)
+    rentToAdd.additionalServices = this.selectedList.items;
+    console.log(rentToAdd);
     this.carService.rentCar(rentToAdd).subscribe(() => {
-      console.log("buradayız")
+
       this.toastrService.success('Car has been rented.');
     });
   }
@@ -92,63 +87,47 @@ export class RentComponent implements OnInit {
   getCities() {
     this.cityService.getCities(0, 100).subscribe((data) => {
       this.cities = data;
-      this.citiesLoaded=true;
-
-
+      this.citiesLoaded = true;
     });
-
   }
   getAdditionalServices() {
     this.additionalService.getAdditionalServices(0, 100).subscribe((data) => {
       this.additionalServices = data;
-      this.additionalServicesLoaded=true;
-
-      console.log("liste yüklendi",this.additionalServices)
+      this.additionalServicesLoaded = true;
 
     });
-
   }
   getCars() {
     this.carService.getCars(0, 100).subscribe((data) => {
       this.cars = data;
-      this.carsLoaded=true;
-
-
-
+      this.carsLoaded = true;
     });
-
   }
-  giveSelectedCityId(){
-
-    console.log(this.selectedCar)
-
-
+  giveSelectedCityId() {
+    console.log(this.selectedCar);
   }
-  getUser():number{
-   let user= this.authService.giveUser();
+  getUser(): number {
+    let user = this.authService.giveUser();
 
-console.log(user.id);
-console.log(user.email);
-console.log(user.claims);
-return user.id;
+    return user.id;
   }
-  addSelectedList(item:AdditionalServiceListModel) {
-
-    let additionalService=this.selectedList.items.find(ad=>ad.id===item.id)
-    if(additionalService){
-      this.selectedList.items.splice(this.selectedList.items.indexOf(additionalService),1)
-
-
-    }else{
-      this.selectedList.items.push(item);
+  addSelectedList(item: AdditionalServiceListModel) {
+    let additionalService = this.selectedList.items.find(
+      (ad) => ad === item.id
+    );
+    if (additionalService) {
+      this.selectedList.items.splice(
+        this.selectedList.items.indexOf(additionalService),
+        1
+      );
+    } else {
+      this.selectedList.items.push(item.id);
     }
 
-   this.getSelectedList()
+    this.getSelectedList();
   }
-  getSelectedList(){
+  getSelectedList() {
     console.log('selected item', this.selectedList);
     return this.selectedList;
   }
-
-
 }
