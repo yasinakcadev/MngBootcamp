@@ -14,5 +14,5 @@ public class Transmission : Entity
         Name = name;
     }
     public string Name { get; set; }
-    public ICollection<Model> Models { get; set; }
+    public virtual ICollection<Model> Models { get; set; }
 }

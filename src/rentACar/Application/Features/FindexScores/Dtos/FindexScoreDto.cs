@@ -9,7 +9,7 @@ namespace Application.Features.FindexScores.Dtos
     public class FindexScoreDto
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public int CustomerId { get; set; }
         public short Score { get; set; }
     }
 }

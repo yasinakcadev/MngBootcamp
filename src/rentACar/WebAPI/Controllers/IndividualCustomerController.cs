@@ -1,5 +1,5 @@
-﻿using Application.Features.IndividualCustomer.Commands;
-using Application.Features.IndividualCustomer.Queries;
+﻿using Application.Features.IndividualCustomers.Commands;
+using Application.Features.IndividualCustomers.Queries;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,9 +33,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] DeleteIndividualCustomerCommand deleteIndividualCustomerCommand)
+        public async Task<IActionResult> Update([FromBody] UpdateIndividualCustomerCommand updateIndividualCustomerCommand)
         {
-            var result = await Mediator.Send(deleteIndividualCustomerCommand);
+            var result = await Mediator.Send(updateIndividualCustomerCommand);
             return Ok(result);
         }
 

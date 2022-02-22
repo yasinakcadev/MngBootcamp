@@ -1,5 +1,5 @@
-﻿using Application.Features.Fuel.Commands;
-using Application.Features.Fuel.Queries;
+﻿using Application.Features.Fuels.Commands;
+using Application.Features.Fuels.Queries;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;
 

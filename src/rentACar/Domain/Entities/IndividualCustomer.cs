@@ -7,17 +7,14 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class IndividualCustomer: User
+    public class IndividualCustomer: Customer
     {
 
 
-        public IndividualCustomer(int id, string email, byte[] passwordSalt, byte[] passwordHash, bool status,string firstName, string lastName, string nationalId): this()
+        public IndividualCustomer(int id, int userId, string firstName, string lastName, string nationalId): this()
         {
             Id = id;
-            Email = email;
-            PasswordSalt = passwordSalt;
-            PasswordHash = passwordHash;
-            Status = status;
+            UserId = userId;
             FirstName = firstName;
             LastName = lastName;
             NationalId = nationalId;

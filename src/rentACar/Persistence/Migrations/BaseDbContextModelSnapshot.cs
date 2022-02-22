@@ -325,6 +325,25 @@ namespace Persistence.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Domain.Entities.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Customers", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Damage", b =>
                 {
                     b.Property<int>("Id")
@@ -396,6 +415,10 @@ namespace Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("CreationDate");
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int")
+                        .HasColumnName("CustomerId");
+
                     b.Property<int>("InvoiceNo")
                         .HasColumnType("int");
 
@@ -415,13 +438,9 @@ namespace Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("TotalRentDay");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserId");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Invoices", (string)null);
                 });
@@ -580,29 +599,28 @@ namespace Persistence.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int")
+                        .HasColumnName("CustomerId");
 
                     b.Property<short>("Score")
                         .HasColumnType("smallint")
                         .HasColumnName("Score");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserId");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("FindexScores", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.CorporateCustomer", b =>
                 {
-                    b.HasBaseType("Core.Security.Entities.User");
+                    b.HasBaseType("Domain.Entities.Customer");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -619,7 +637,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.IndividualCustomer", b =>
                 {
-                    b.HasBaseType("Core.Security.Entities.User");
+                    b.HasBaseType("Domain.Entities.Customer");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -704,6 +722,17 @@ namespace Persistence.Migrations
                     b.Navigation("Model");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Customer", b =>
+                {
+                    b.HasOne("Core.Security.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Domain.Entities.Damage", b =>
                 {
                     b.HasOne("Domain.Entities.Car", "Car")
@@ -717,13 +746,13 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Invoice", b =>
                 {
-                    b.HasOne("Core.Security.Entities.User", "User")
+                    b.HasOne("Domain.Entities.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Domain.Entities.Model", b =>
@@ -784,18 +813,18 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.FindexScore.FindexScore", b =>
                 {
-                    b.HasOne("Core.Security.Entities.User", "User")
+                    b.HasOne("Domain.Entities.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Domain.Entities.CorporateCustomer", b =>
                 {
-                    b.HasOne("Core.Security.Entities.User", null)
+                    b.HasOne("Domain.Entities.Customer", null)
                         .WithOne()
                         .HasForeignKey("Domain.Entities.CorporateCustomer", "Id")
                         .OnDelete(DeleteBehavior.ClientCascade)
@@ -804,7 +833,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.IndividualCustomer", b =>
                 {
-                    b.HasOne("Core.Security.Entities.User", null)
+                    b.HasOne("Domain.Entities.Customer", null)
                         .WithOne()
                         .HasForeignKey("Domain.Entities.IndividualCustomer", "Id")
                         .OnDelete(DeleteBehavior.ClientCascade)

@@ -1,5 +1,5 @@
-﻿using Application.Features.Color.Commands;
-using Application.Features.Color.Queries;
+﻿using Application.Features.Colors.Commands;
+using Application.Features.Colors.Queries;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;
 

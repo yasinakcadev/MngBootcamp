@@ -1,7 +1,5 @@
 ﻿using Application.Features.Cities.Dtos;
 using Application.Features.Cities.Rules;
-using Application.Features.Color.Dtos;
-using Application.Features.Color.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.CrossCuttingConcerns.Exceptions;

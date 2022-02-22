@@ -1,8 +1,6 @@
 ﻿using Application.Features.Brands.Rules;
 using Application.Features.Cars.Rules;
-using Application.Features.Color.Rules;
 using Application.Features.Damages.Rules;
-using Application.Features.IndividualCustomer.Rules;
 using Application.Features.Invoices.Rules;
 using Application.Features.Models.Rules;
 using Application.Features.Transmissions.Rules;
@@ -26,6 +24,10 @@ using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Application.Pipelines.Logging;
 using Core.Application.Pipelines.Caching;
 using Application.Features.Cities.Rules;
+using Application.Features.IndividualCustomers.Rules;
+using Application.Features.CorporateCustomers.Rules;
+using Application.Features.Colors.Rules;
+using Application.Features.Fuels.Rules;
 
 namespace Application
 {
@@ -46,6 +48,7 @@ namespace Application
             services.AddScoped<TransmissionBusinessRules>();
             services.AddScoped<CarBusinessRules>();
             services.AddScoped<IndividualCustomerBusinessRules>();
+            services.AddScoped<CorporateCustomerBusinessRules>();
             services.AddScoped<InvoiceBusinessRules>();
             services.AddScoped<RentBusinessRules>();
             services.AddScoped<FindexScoreBusinessRules>();

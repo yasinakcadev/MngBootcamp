@@ -1,9 +1,6 @@
 ﻿using Application.Features.Cities.Commands;
 using Application.Features.Cities.Dtos;
 using Application.Features.Cities.Models;
-using Application.Features.Color.Commands;
-using Application.Features.Color.Dtos;
-using Application.Features.Color.Models;
 using AutoMapper;
 using Core.Persistence.Paging;
 using Domain.Entities;

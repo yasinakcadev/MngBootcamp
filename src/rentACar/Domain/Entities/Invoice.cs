@@ -14,7 +14,7 @@ namespace Domain.Entities
         {
             Cars = new HashSet<Car>();
         }
-        public Invoice(int id,int invoiceNo, DateTime creationDate, DateTime rentEndDate, DateTime rentStartDate, int totalRentDay, double totalRentAmount, int customerId,int userId, double additionalRentAmount): this()
+        public Invoice(int id,int invoiceNo, DateTime creationDate, DateTime rentEndDate, DateTime rentStartDate, int totalRentDay, double totalRentAmount, int customerId, double additionalRentAmount): this()
         {
             Id = id;
             InvoiceNo = invoiceNo;
@@ -23,7 +23,7 @@ namespace Domain.Entities
             RentStartDate = rentStartDate;
             TotalRentDay = totalRentDay;
             TotalRentAmount = totalRentAmount;
-            UserId = userId;
+            CustomerId = customerId;
             AdditionalRentAmount = additionalRentAmount;
         }
    
@@ -34,8 +34,8 @@ namespace Domain.Entities
         public int TotalRentDay { get; set; }
         public double TotalRentAmount { get; set; }
         public double AdditionalRentAmount { get; set; }
-        public int UserId { get; set; }
-        public virtual User User { get; set; }
+        public int CustomerId { get; set; }
+        public virtual Customer Customer { get; set; }
         public virtual ICollection<Car> Cars { get; set; }
     }
 }

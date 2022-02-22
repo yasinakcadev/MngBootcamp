@@ -22,7 +22,7 @@ namespace Persistence
         public DbSet<Color> Colors { get; set; }
         public DbSet<Transmission> Transmissions { get; set; }
         public DbSet<Fuel> Fuels { get; set; }
-        //public DbSet<Customer> Customers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<CorporateCustomer> CorporateCustomers { get; set; }
         public DbSet<IndividualCustomer> IndividualCustomers { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
@@ -84,9 +84,9 @@ namespace Persistence
             modelBuilder.Entity<FindexScore>(f =>
             {
                 f.ToTable("FindexScores").HasKey(k => k.Id);
-                f.Property(p => p.UserId).HasColumnName("UserId");
+                f.Property(p => p.CustomerId).HasColumnName("CustomerId");
                 f.Property(p => p.Score).HasColumnName("Score");
-                f.HasOne(p => p.User);
+                f.HasOne(p => p.Customer);
             });
 
             modelBuilder.Entity<Fuel>(f =>
@@ -121,13 +121,13 @@ namespace Persistence
                 b.HasMany(p => p.Models);
             });
 
-            //modelBuilder.Entity<Customer>(c =>
-            //{
-            //    c.ToTable("Customers").HasKey(k => k.Id);
-            //    c.Property(p => p.Id).HasColumnName("Id");
-            //    c.Property(p => p.Email).HasColumnName("Email");
-            
-            //});
+            modelBuilder.Entity<Customer>(c =>
+            {
+                c.ToTable("Customers").HasKey(k => k.Id);
+                c.Property(p => p.UserId).HasColumnName("UserId");
+                c.HasOne(c => c.User);
+
+            });
 
             modelBuilder.Entity<IndividualCustomer>(ic =>
             {
@@ -153,8 +153,8 @@ namespace Persistence
                 i.Property(p => p.TotalRentDay).HasColumnName("TotalRentDay");
                 i.Property(p => p.TotalRentAmount).HasColumnName("TotalRentAmount");
                 i.Property(p => p.AdditionalRentAmount).HasColumnName("AdditionalRentAmount");
-                i.Property(p => p.UserId).HasColumnName("UserId");
-                i.HasOne(p => p.User);
+                i.Property(p => p.CustomerId).HasColumnName("CustomerId");
+                i.HasOne(p => p.Customer);
                 i.HasMany(p => p.Cars);
             });
 

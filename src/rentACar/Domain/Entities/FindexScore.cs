@@ -11,14 +11,14 @@ public class FindexScore : Entity
     {
         
     }
-    public FindexScore(int id, int userId, short score) : this()
+    public FindexScore(int id, int customerId, short score) : this()
     {
         Id = id;
-        UserId = userId;
+        CustomerId = customerId;
         Score = score;
     }
 
-    public int UserId { get; set; }
+    public int CustomerId { get; set; }
     public short Score { get; set; }
-    public virtual User User { get; set; }
+    public virtual Customer Customer { get; set; }
 }

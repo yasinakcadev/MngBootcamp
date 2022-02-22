@@ -17,17 +17,17 @@ namespace Application.Features.FindexScores.Rules
             _findexScoreRespository = findexScoreRespository;
         }
 
-        public async Task IsFindexScoreExistsForTheCustomer(int userId)
+        public async Task IsFindexScoreExistsForTheCustomer(int customerId)
         {
-            var findexScores = await _findexScoreRespository.GetAsync(x => x.UserId== userId);
+            var findexScores = await _findexScoreRespository.GetAsync(x => x.CustomerId == customerId);
             if(findexScores==null)
             {
                 throw new BusinessException("Findex Score cannot be found for the customer");
             }
         }
-        public async Task CustomerIdCanNotBeDublicated(int userId)
+        public async Task CustomerIdCanNotBeDublicated(int customerId)
         {
-            var findexScores = await _findexScoreRespository.GetListAsync(x => x.UserId == userId);
+            var findexScores = await _findexScoreRespository.GetListAsync(x => x.CustomerId == customerId);
             if (findexScores.Items.Any())
             {
                 throw new BusinessException("Customer cannot be dublicated");
