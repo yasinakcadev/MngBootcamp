@@ -35,5 +35,6 @@ export class AdditinalServiceComponent implements OnInit {
   }
   getSelectedList(){
     console.log('selected item', this.selectedList);
+
   }
 }

@@ -32,7 +32,7 @@ const routes: Routes = [
     component: ColorAdminAddComponent,
     canActivate: [ClaimGuard],
     data: {
-      requiredClaims: ['admin'],
+      requiredClaims: ['Admin'],
     },
   },
   {

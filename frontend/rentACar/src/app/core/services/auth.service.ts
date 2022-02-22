@@ -15,6 +15,8 @@ import { TokenUserModel } from '../models/tokenUserModel';
 export class AuthService {
   apiUrl = 'http://localhost:5228/api/Auths/';
 
+
+
   constructor(
     private httpClient: HttpClient,
     private jwtHelperService: JwtHelperService
@@ -33,32 +35,55 @@ export class AuthService {
     localStorage.removeItem('token');
   }
 
-  isAuthenticated(requiredClaims: string[]): boolean {
+  decodeToken():any{
     const decodedToken = this.jwtHelperService.decodeToken(
       this.jwtHelperService.tokenGetter()
     );
+    return decodedToken;
+  }
+  isAuthenticated(requiredClaims: string[]): boolean {
+    // const decodedToken = this.jwtHelperService.decodeToken(
+    //   this.jwtHelperService.tokenGetter()
+    // );
+   let decodedToken= this.decodeToken();
     if (!decodedToken) {
       return false;
     }
 
+    let userInfo=this.giveUser();;
 
-    const tokenUserModel: TokenUserModel = {
-      id: decodedToken[
-        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
-      ],
-      email: decodedToken['email'],
-      name: decodedToken[
-        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
-      ],
-      claims:
-      decodedToken[
-        'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
-      ]?
-        decodedToken[
-          'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
-        ].split(",") : []
-    };
-
+    //for new
+    // const tokenUserModel: TokenUserModel = {
+    //   id: decodedToken[
+    //     'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+    //   ],
+    //   email: decodedToken['email'],
+    //   claims:
+    //   decodedToken[
+    //     'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+    //   ]?
+    //     decodedToken[
+    //       'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+    //     ].split(",") : []
+    // };
+//___________________________________________________________________________________
+    //old
+    // const tokenUserModel: TokenUserModel = {
+    //   id: decodedToken[
+    //     'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+    //   ],
+    //   email: decodedToken['email'],
+    //   name: decodedToken[
+    //     'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
+    //   ],
+    //   claims:
+    //   decodedToken[
+    //     'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+    //   ]?
+    //     decodedToken[
+    //       'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+    //     ].split(",") : []
+    // };
 
 
     if (this.jwtHelperService.isTokenExpired()) {
@@ -67,10 +92,34 @@ export class AuthService {
     }
     if (
       requiredClaims &&
-      !requiredClaims.some((role) => tokenUserModel.claims.includes(role))
+      !requiredClaims.some((role) => userInfo.claims.includes(role))
     ) {
       return false;
     }
     return true;
   }
+
+  giveUser():TokenUserModel{
+
+
+    let decodedToken=this.decodeToken();
+
+    const tokenUserModel: TokenUserModel = {
+      id: decodedToken[
+        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+      ],
+      email: decodedToken['email'],
+      claims:
+      decodedToken[
+        'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+      ]?
+        decodedToken[
+          'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+        ].split(",") : []
+    };
+    return tokenUserModel;
+
+
+  }
+
 }
