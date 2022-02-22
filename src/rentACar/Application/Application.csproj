@@ -9,15 +9,15 @@
   <ItemGroup>
     <Compile Remove="Features\Brands\Tests\**" />
     <Compile Remove="Features\Cars\Tests\**" />
-    <Compile Remove="Features\Fuel\Tests\**" />
+    <Compile Remove="Features\Fuels\Tests\**" />
     <Compile Remove="Features\Invoices\Tests\**" />
     <EmbeddedResource Remove="Features\Brands\Tests\**" />
     <EmbeddedResource Remove="Features\Cars\Tests\**" />
-    <EmbeddedResource Remove="Features\Fuel\Tests\**" />
+    <EmbeddedResource Remove="Features\Fuels\Tests\**" />
     <EmbeddedResource Remove="Features\Invoices\Tests\**" />
     <None Remove="Features\Brands\Tests\**" />
     <None Remove="Features\Cars\Tests\**" />
-    <None Remove="Features\Fuel\Tests\**" />
+    <None Remove="Features\Fuels\Tests\**" />
     <None Remove="Features\Invoices\Tests\**" />
   </ItemGroup>
 
@@ -34,11 +34,6 @@
     <Folder Include="Features\AdditionalServices\Models\" />
     <Folder Include="Features\AdditionalServices\Profiles\" />
     <Folder Include="Features\AdditionalServices\Rules\" />
-    <Folder Include="Features\CorporateCustomer\Dtos\" />
-    <Folder Include="Features\CorporateCustomer\Models\" />
-    <Folder Include="Features\CorporateCustomer\Tests\" />
-    <Folder Include="Features\CorporateCustomer\Queries\" />
-    <Folder Include="Features\CorporateCustomer\Profiles\" />
     <Folder Include="Features\Models\Tests\" />
     <Folder Include="Features\Rents\Queries\" />
     <Folder Include="Features\Users\Queries\" />

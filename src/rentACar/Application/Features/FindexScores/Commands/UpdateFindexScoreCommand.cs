@@ -10,7 +10,7 @@ namespace Application.Features.FindexScores.Commands
     public class UpdateFindexScoreCommand : IRequest<FindexScoreDto>
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public int CustomerId { get; set; }
         public short Score { get; set; }
 
         public class UpdateFindexScoreHandler : IRequestHandler<UpdateFindexScoreCommand, FindexScoreDto>
@@ -32,7 +32,7 @@ namespace Application.Features.FindexScores.Commands
                     throw new BusinessException("Findex score cannot found");
 
                 _mapper.Map(request, findexScore);
-                var score = _findexCreditService.GetFindexScore(request.UserId);
+                var score = _findexCreditService.GetFindexScore(request.CustomerId);
                 request.Score = score;
                 await _findexScoreRepository.UpdateAsync(findexScore);
                 return _mapper.Map<FindexScoreDto>(findexScore);

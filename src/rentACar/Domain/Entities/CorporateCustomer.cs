@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class CorporateCustomer: User
+    public class CorporateCustomer: Customer
     {
   
         public CorporateCustomer()
@@ -15,13 +15,10 @@ namespace Domain.Entities
 
         }
 
-        public CorporateCustomer(int id, string email, byte[] passwordSalt, byte[] passwordHash, bool status,string companyName, string taxNumber): this()
+        public CorporateCustomer(int id, int userId,string companyName, string taxNumber): this()
         {
             Id = id;
-            Email = email;
-            PasswordSalt = passwordSalt;
-            PasswordHash = passwordHash;
-            Status = status;
+            UserId = userId;
             CompanyName = companyName;
             TaxNumber = taxNumber;
         }

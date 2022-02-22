@@ -1,5 +1,5 @@
 ﻿using Application.Features.Cars.Dtos;
-using Application.Features.Color.Rules;
+using Application.Features.Colors.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.CrossCuttingConcerns.Exceptions;
