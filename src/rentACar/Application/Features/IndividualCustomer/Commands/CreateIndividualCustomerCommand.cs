@@ -1,23 +1,15 @@
 ﻿using Application.Features.IndividualCustomer.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
-using Core.CrossCuttingConcerns.Exceptions;
-using Core.Security.Entities;
-using Core.Security.Hashing;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Features.IndividualCustomer.Commands
 {
-    public class CreateIndividualCustomerCommand: IRequest<Domain.Entities.IndividualCustomer>
+    public class CreateIndividualCustomerCommand : IRequest<Domain.Entities.IndividualCustomer>
     {
         public int Id { get; set; }
-      //  public string Email { get; set; }
-        public string Password { get; set; }
+        //public string Email { get; set; }
+        //public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string NationalId { get; set; }
@@ -43,7 +35,7 @@ namespace Application.Features.IndividualCustomer.Commands
                 await _individualCustomerBusinessRules.NationalIdCanBotBeDublicated(request.NationalId);
 
 
-               
+
                 //var userToBeIndividualCustomer = await _userRespository.GetAsync(x => x.Id == request.Id);
 
                 //if (userToBeIndividualCustomer == null)
