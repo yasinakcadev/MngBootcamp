@@ -18,6 +18,7 @@ public class CreateBrandCommand : IRequest<Brand>,ILoggableRequest
         IMapper _mapper;
         BrandBusinessRules _brandBusinessRules;
         IMailService _mailService;
+    
 
         public CreateBrandCommandHandler(IBrandRepository brandRepository, IMapper mapper,
             BrandBusinessRules brandBusinessRules, IMailService mailService)
