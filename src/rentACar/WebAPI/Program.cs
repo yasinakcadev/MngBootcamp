@@ -20,12 +20,17 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 //builder.Services.AddDistributedMemoryCache();
 //builder.Services.AddStackExchangeRedisCache(options=>options.Configuration="localhost:6379");
 
+builder.Services.AddDistributedMemoryCache();
 builder.Services.Configure<CacheSettings>(builder.Configuration.GetSection("CacheSettings"));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddLogging(config =>
+{
+    config.AddDebug();
+    config.AddConsole();
+});
 builder.Services.AddCors(options => options.AddDefaultPolicy(b =>
 {
     b.AllowAnyOrigin()
@@ -42,7 +47,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.ConfigureCustomExceptionMiddleware();
+app.ConfigureCustomExceptionMiddleware();
 app.UseAuthorization();
 
 app.MapControllers();
