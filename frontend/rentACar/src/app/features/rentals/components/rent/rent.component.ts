@@ -79,7 +79,6 @@ export class RentComponent implements OnInit {
     rentToAdd.additionalServices = this.selectedList.items;
     console.log(rentToAdd);
     this.carService.rentCar(rentToAdd).subscribe(() => {
-
       this.toastrService.success('Car has been rented.');
     });
   }
@@ -94,7 +93,6 @@ export class RentComponent implements OnInit {
     this.additionalService.getAdditionalServices(0, 100).subscribe((data) => {
       this.additionalServices = data;
       this.additionalServicesLoaded = true;
-
     });
   }
   getCars() {
@@ -103,9 +101,15 @@ export class RentComponent implements OnInit {
       this.carsLoaded = true;
     });
   }
+
   giveSelectedCityId() {
     console.log(this.selectedCar);
   }
+
+  giveSelectedCityId2(event: any) {
+    console.log(event.target.value);
+  }
+
   getUser(): number {
     let user = this.authService.giveUser();
 
