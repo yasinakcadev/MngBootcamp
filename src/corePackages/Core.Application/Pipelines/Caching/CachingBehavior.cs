@@ -6,22 +6,19 @@ using System.Text;
 
 namespace Core.Application.Pipelines.Caching
 {
-    public class CacheSettings
-    {
-        public int SlidingExpiration { get; set; }
 
-    }
     public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : ICachableRequest, IRequest<TResponse>
     {
         IDistributedCache _cache;
-        ILogger _logger;
-        //CacheSettings _settings;
+        ILogger<CachingBehavior<TRequest, TResponse>> _logger;
+        CacheSettings _settings;
 
-        public CachingBehavior(IDistributedCache cache, ILogger logger, CacheSettings settings)
+        public CachingBehavior(IDistributedCache cache, ILogger<CachingBehavior<TRequest, TResponse>> logger, CacheSettings settings)
         {
             _cache = cache;
-            //_settings = settings;
+            _logger = logger;
+            _settings = settings;
         }
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
@@ -44,11 +41,11 @@ namespace Core.Application.Pipelines.Caching
             if (cachedResponse != null)
             {
                 response = JsonConvert.DeserializeObject<TResponse>(Encoding.Default.GetString(cachedResponse));
-                //_logger.LogInformation($"Fetched from cache -> { request.CacheKey}");
+                _logger.LogInformation($"Fetched from cache -> { request.CacheKey}");
             }else
             {
                 response = await GetResponseAndAddToCache();
-                //_logger.LogInformation($"Added to cache -> {request.CacheKey}");
+                _logger.LogInformation($"Added to cache -> {request.CacheKey}");
             }
             return response;
         }
