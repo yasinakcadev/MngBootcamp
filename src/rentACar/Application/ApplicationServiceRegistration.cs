@@ -28,6 +28,7 @@ using Application.Features.IndividualCustomers.Rules;
 using Application.Features.CorporateCustomers.Rules;
 using Application.Features.Colors.Rules;
 using Application.Features.Fuels.Rules;
+using Core.ElasticSearch;
 
 namespace Application
 {
@@ -56,6 +57,7 @@ namespace Application
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<AdditionelServicesBusinessRules>();
 
+            services.AddSingleton<IElasticSearch, ElasticSearchManager>();
             services.AddTransient(typeof(IPipelineBehavior<,>),typeof(RequestValidationBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));

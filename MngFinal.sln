@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Application", "src\cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Mailing", "src\corePackages\Core.Mailing\Core.Mailing.csproj", "{5D816360-0D02-4930-B41D-F083421598DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Security", "src\corePackages\Core.Security\Core.Security.csproj", "{BC72F9F1-E98B-45A9-9E35-C028AC44B9A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Security", "src\corePackages\Core.Security\Core.Security.csproj", "{BC72F9F1-E98B-45A9-9E35-C028AC44B9A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.ElasticSearch", "src\corePackages\Core.ElasticSearch\Core.ElasticSearch.csproj", "{DF876617-0A51-419C-9ED7-D13E08C3B9C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{BC72F9F1-E98B-45A9-9E35-C028AC44B9A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC72F9F1-E98B-45A9-9E35-C028AC44B9A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC72F9F1-E98B-45A9-9E35-C028AC44B9A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF876617-0A51-419C-9ED7-D13E08C3B9C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF876617-0A51-419C-9ED7-D13E08C3B9C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF876617-0A51-419C-9ED7-D13E08C3B9C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF876617-0A51-419C-9ED7-D13E08C3B9C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{7E411F6E-7FC3-472B-B990-0D501842C156} = {ED2B3A2D-E653-40D9-82B3-BE87E1896282}
 		{5D816360-0D02-4930-B41D-F083421598DC} = {ED2B3A2D-E653-40D9-82B3-BE87E1896282}
 		{BC72F9F1-E98B-45A9-9E35-C028AC44B9A6} = {ED2B3A2D-E653-40D9-82B3-BE87E1896282}
+		{DF876617-0A51-419C-9ED7-D13E08C3B9C6} = {ED2B3A2D-E653-40D9-82B3-BE87E1896282}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5A82D92-4F10-4E3F-8757-8481E4D8EE3B}
