@@ -7,8 +7,7 @@ using MediatR;
 
 namespace Application.Features.Brands.Queries;
 
-public class GetBrandListQuery : IRequest<BrandListModel>
-    //, ICachableRequest
+public class GetBrandListQuery : IRequest<BrandListModel>, ICachableRequest
 {
     public PageRequest PageRequest { get; set; }
     public bool BypassCache { get; set; }
