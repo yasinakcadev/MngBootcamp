@@ -33,100 +33,115 @@
 </div>
  -->
 
- <div class="container">
- <div class="card-body">
-  <form *ngIf="rentCarForm" [formGroup]="rentCarForm">
-    <div class="form-group mb-3">
-      <label for="model-name-input" class="fw-bold mb-3">İd</label>
+<div class="container">
+  <div class="card-body">
+    <form *ngIf="rentCarForm" [formGroup]="rentCarForm">
+      <div class="form-group mb-3">
+        <label for="model-name-input" class="fw-bold mb-3">İd</label>
 
+        <div *ngIf="this.carsLoaded" class="form-outline mb-3">
+          <select formControlName="id" (change)="giveSelectedCityId2($event)">
+            <option [ngValue]="0" disabled>Seçiniz</option>
+            <option *ngFor="let car of cars.items" [ngValue]="car.id">
+              {{ car.plate }}
+            </option>
+          </select>
 
-      <div *ngIf="this.carsLoaded" class="form-outline mb-3">
-
-        <select formControlName="id"  [(ngModel)]="selectedCar" (change)="giveSelectedCityId()">
-         <option selected >Seçiniz</option>
-          <option
-          *ngFor="let car of cars.items" id="model-name-input"  value={{car.id}}> {{car.plate}}</option>
-        </select>
-
-
+          <!-- <select formControlName="id" required (change)="giveSelectedCityId()">
+            <option value="" disabled selected>Seçiniz</option>
+            <option
+              *ngFor="let car of cars.items"
+              id="model-name-input"
+              value="{{ car.id }}"
+            >
+              {{ car.plate }}
+            </option>
+          </select> -->
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="model-name-input" class="fw-bold mb-3"
+          >Taking City İd</label
+        >
+        <div *ngIf="this.citiesLoaded" class="form-outline mb-3">
+          <select
+            formControlName="takingCityId"
+            (change)="giveSelectedCityId()"
+          >
+            <option
+              *ngFor="let city of cities.items"
+              id="model-name-input"
+              value="{{ city.id }}"
+            >
+              {{ city.name }}
+            </option>
+          </select>
+        </div>
       </div>
 
-    </div>
-    <div class="form-group mb-3">
-      <label for="model-name-input" class="fw-bold mb-3">Taking City İd</label>
-
-    </div>
-     <div *ngIf="this.citiesLoaded" class="form-outline mb-3">
-
-        <select formControlName="takingCityId"  [(ngModel)]="selectedTakingCity" (change)="giveSelectedCityId()">
-
-          <option
-          *ngFor="let city of cities.items" id="model-name-input"  value={{city.id}}> {{city.name}}</option>
-        </select>
-
-
+      <div class="form-group mb-3">
+        <label for="model-name-input" class="fw-bold mb-3"
+          >Giving City İd</label
+        >
+        <div *ngIf="this.citiesLoaded" class="form-outline mb-3">
+          <select
+            formControlName="givingCityId"
+            (change)="giveSelectedCityId()"
+          >
+            <option
+              *ngFor="let city of cities.items"
+              id="model-name-input"
+              value="{{ city.id }}"
+            >
+              {{ city.name }}
+            </option>
+          </select>
+        </div>
       </div>
 
-
-    <div class="form-group mb-3">
-      <label for="model-name-input" class="fw-bold mb-3">Giving City İd</label>
-
+      <div class="form-group mb-3">
+        <label for="model-name-input" class="fw-bold mb-3">User İd</label>
+        <input
+          readonly
+          type="number"
+          id="model-name-input"
+          formControlName="userId"
+          class="form-control"
+          placeholder="userId"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label for="model-name-input" class="fw-bold mb-3"
+          >Total Rent Day</label
+        >
+        <input
+          type="number"
+          id="model-name-input"
+          formControlName="totalRentDay"
+          class="form-control"
+          placeholder="totalRentDay"
+        />
+      </div>
+    </form>
+    <div *ngIf="this.additionalServicesLoaded" class="form-group mb-3">
+      <div class="container" *ngFor="let item of additionalServices.items">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inlineRadio1"
+          value="{{ item.id }}"
+          (click)="addSelectedList(item)"
+        />
+        <label class="form-check-label" for="inlineRadio1">{{
+          item.name
+        }}</label>
+      </div>
     </div>
-    <div *ngIf="this.citiesLoaded" class="form-outline mb-3">
-
-      <select formControlName="givingCityId"  [(ngModel)]="selectedGivingCity" (change)="giveSelectedCityId()">
-
-        <option
-        *ngFor="let city of cities.items" id="model-name-input"  value={{city.id}}> {{city.name}}</option>
-      </select>
-
-
-    </div>
-    <div class="form-group mb-3">
-      <label for="model-name-input" class="fw-bold mb-3">User İd</label>
-      <input readonly
-        type="number"
-        id="model-name-input"
-        formControlName="userId"
-        class="form-control"
-        placeholder="userId"
-      />
-    </div>
-    <div class="form-group mb-3">
-      <label for="model-name-input" class="fw-bold mb-3">Total Rent Day</label>
-      <input
-        type="number"
-        id="model-name-input"
-        formControlName="totalRentDay"
-        class="form-control"
-        placeholder="totalRentDay"
-      />
-    </div>
-    <div  *ngIf="this.additionalServicesLoaded"  class="form-group mb-3">
-
-    <div
-  class="container"
-  *ngFor="let item of additionalServices.items"  [(ngModel)]="selectedItem"  formControlName="additionalServices"  >
-
-  <input
-
-
-    class="form-check-input"
-    type="checkbox"
-    id="inlineRadio1"
-    value="{{ item.id }}"
-    (click)="addSelectedList(item)"
-
-  />
-  <label class="form-check-label" for="inlineRadio1">{{ item.name }}</label>
-
+    <button class="btn btn-primary" (click)="rentCar()">Rent</button>
+  </div>
 </div>
-</div>
-
-  </form>
-  <button class="btn btn-primary" (click)="rentCar()">Rent</button>
- </div>
-</div>
-
-
-
+<select required>
+  <option value="" disabled selected>Select something...</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+</select>

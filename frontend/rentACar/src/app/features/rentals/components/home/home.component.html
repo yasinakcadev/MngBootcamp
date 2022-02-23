@@ -1,12 +1,12 @@
 <div class="container mt-5">
-  <div class="row hy-100">
-    <div class="col-md-6">
+  <div class="row">
+    <div class="col-12">
       <img
         src="https://img-s3.onedio.com/id-5caacbbc2095c3f80ed87da8/rev-0/w-620/f-jpg/s-7f69154e62a1df35e450b552e34fcb16dfd78206.jpg"
         alt=""
       />
     </div>
-    <div class="col-md-6 my-auto">
+    <div class="col-12 my-auto">
       <form class="">
         <fieldset>
           <div class="row align-middle">
@@ -15,7 +15,9 @@
                 <label for="disabledTextInput" class="form-label"
                   >Alış şehri</label
                 >
-                <app-city (giveSelectedCityIdEvent)="SetAlisSehri($event)"></app-city>
+                <app-city
+                  (giveSelectedCityIdEvent)="SetAlisSehri($event)"
+                ></app-city>
               </div>
             </div>
 
@@ -24,7 +26,9 @@
                 <label for="disabledTextInput" class="form-label"
                   >Veriş şehri</label
                 >
-                <app-city (giveSelectedCityIdEvent)="SetVerisSehri($event)"></app-city>
+                <app-city
+                  (giveSelectedCityIdEvent)="SetVerisSehri($event)"
+                ></app-city>
               </div>
             </div>
           </div>
@@ -35,7 +39,10 @@
                 <label for="disabledTextInput" class="form-label"
                   >Gün sayısı</label
                 >
-                <input type="number"  (change)="giveTotalRentDay(totalRentDay)" />
+                <input
+                  type="number"
+                  (change)="giveTotalRentDay(totalRentDay)"
+                />
               </div>
             </div>
             <div class="col-md-6">
@@ -44,7 +51,9 @@
               </div>
             </div>
           </div>
-          <button (click)="herseyiYaz()" type="text" class="btn btn-primary">Console'a şehirleri yaz</button>
+          <button (click)="herseyiYaz()" type="text" class="btn btn-primary">
+            Console'a şehirleri yaz
+          </button>
           <button routerLink="brands" type="submit" class="btn btn-primary">
             Listele
           </button>
