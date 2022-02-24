@@ -41,6 +41,8 @@ import { CorporateCustomerAddComponent } from './features/rentals/components/cor
 import { CorporateCustomerUpdateComponent } from './features/rentals/components/corporateCustomer/corporate-customer-update/corporate-customer-update.component';
 import { CorporateCustomerDeleteComponent } from './features/rentals/components/corporateCustomer/corporate-customer-delete/corporate-customer-delete.component';
 import { CustomerAddComponent } from './core/components/customer-add/customer-add.component';
+import { AdminComponent } from './features/admins/adminsLayout/components/admin/admin.component';
+import { CarDetailComponent } from './core/components/car-detail/car-detail.component';
 
 
 @NgModule({
@@ -75,6 +77,8 @@ import { CustomerAddComponent } from './core/components/customer-add/customer-ad
     CorporateCustomerUpdateComponent,
     CorporateCustomerDeleteComponent,
     CustomerAddComponent,
+    AdminComponent,
+    CarDetailComponent,
 
   ],
   imports: [

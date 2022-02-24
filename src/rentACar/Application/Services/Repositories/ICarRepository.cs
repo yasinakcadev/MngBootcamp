@@ -1,4 +1,5 @@
 ﻿using Core.Persistence.Repositories;
+using Domain.Dtos;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,12 @@ using System.Threading.Tasks;
 
 namespace Application.Services.Repositories
 {
-    public interface ICarRepository:IAsyncRepository<Car>
-    {
-    }
+   
+        public interface ICarRepository : IAsyncRepository<Car>
+        {
+
+            Task<List<CarDetailDto>> GetCarDetailToRental(int id);
+            Task<List<CarDetailDto>> GetAllCarDetailToRental();
+        }
+  
 }

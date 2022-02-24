@@ -1,3 +1,4 @@
+import { CarDetailListModel } from './../../../core/models/listModels/carDetailListModel';
 import { RentModel } from './../models/rentModel';
 import { CarListModel } from './../../../core/models/listModels/carListModel';
 import { ListResponseModel } from './../../../core/models/listResponseModel';
@@ -21,6 +22,17 @@ export class CarService {
   rentCar(rent:RentModel):Observable<ListResponseModel<RentModel>> {
     let newPath = this.apiUrl + 'rent';
     return this.httpClient.put<ListResponseModel<RentModel>>(newPath,rent);
+  }
+
+  getCarDetails():Observable<ListResponseModel<CarDetailListModel>> {
+    let newPath = this.apiUrl + 'get-all-car-detail';
+    return this.httpClient.get<ListResponseModel<CarDetailListModel>>(newPath);
+  }
+
+  //http://localhost:5228/api/Cars/get-all-car-detailByBrandId?id=1
+  getCarDetailsByBrandId(id:number):Observable<ListResponseModel<CarDetailListModel>> {
+    let newPath = this.apiUrl + 'get-all-car-detailByBrandId?id='+id;
+    return this.httpClient.get<ListResponseModel<CarDetailListModel>>(newPath);
   }
 
 }

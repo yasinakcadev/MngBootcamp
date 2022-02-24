@@ -1,0 +1,21 @@
+
+<div *ngIf="!isLoaded"  class="spinner-border" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<table *ngIf="isLoaded" class="table">
+  <thead>
+    <tr>
+      <td>Car Id</td>
+      <td>Color</td>
+      <td>Brand</td>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of carDetails.items">
+    <td>{{item.carId}}</td>
+    <td>{{item.color}}</td>
+    <td>{{item.brandName}}</td>
+    <td><button (click)="goToRent(item)">Rent</button>></td>
+  </tr>
+</tbody>
+</table>
