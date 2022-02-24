@@ -30,12 +30,20 @@ export class BrandComponent implements OnInit {
     console.log(this.selectedBrand.name);
   }
 
+  // getRouterLink() {
+  //   if (this.selectedBrand != null) {
+  //     console.log(this.selectedBrand.id);
+  //     return '/models/brand/' + this.selectedBrand.id;
+  //   } else {
+  //     return '/models/';
+  //   }
+  // }
   getRouterLink() {
     if (this.selectedBrand != null) {
       console.log(this.selectedBrand.id);
-      return '/models/brand/' + this.selectedBrand.id;
+      return '/cardetails/brand/' + this.selectedBrand.id;
     } else {
-      return '/models/';
+      return '/cardetails/';
     }
   }
 }
