@@ -99,17 +99,17 @@
         </div>
       </div>
 
-      <div class="form-group mb-3">
-        <label for="model-name-input" class="fw-bold mb-3">User İd</label>
+      <!-- <div *ngIf="customerIdLoaded" class="form-group mb-3">
+        <label for="model-name-input" class="fw-bold mb-3">Customer İd</label>
         <input
           readonly
           type="number"
           id="model-name-input"
-          formControlName="userId"
+          formControlName="customerId"
           class="form-control"
-          placeholder="userId"
+          placeholder="customerId"
         />
-      </div>
+      </div> -->
       <div class="form-group mb-3">
         <label for="model-name-input" class="fw-bold mb-3"
           >Total Rent Day</label
@@ -140,8 +140,8 @@
     <button class="btn btn-primary" (click)="rentCar()">Rent</button>
   </div>
 </div>
-<select required>
+<!-- <select required>
   <option value="" disabled selected>Select something...</option>
   <option value="1">One</option>
   <option value="2">Two</option>
-</select>
+</select> -->

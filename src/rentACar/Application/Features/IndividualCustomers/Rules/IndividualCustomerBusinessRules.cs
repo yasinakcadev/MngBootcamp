@@ -11,13 +11,14 @@ namespace Application.Features.IndividualCustomers.Rules
     public class IndividualCustomerBusinessRules
     {
         IIndividualCustomerRepository _individualCustomerRepository;
-       
+        ICustomerRepository _customerRepository;
 
 
-        public IndividualCustomerBusinessRules(IIndividualCustomerRepository individualCustomerRepository)
+
+        public IndividualCustomerBusinessRules(IIndividualCustomerRepository individualCustomerRepository, ICustomerRepository customerRepository)
         {
             _individualCustomerRepository = individualCustomerRepository;
-          
+            _customerRepository = customerRepository;
         }
 
         public async Task NationalIdCanBotBeDublicated(string nationalId)
@@ -30,7 +31,8 @@ namespace Application.Features.IndividualCustomers.Rules
         }
         public async Task UserIdCanBotBeDublicated(int userId)
         {
-            var result = await _individualCustomerRepository.GetListAsync(c => c.UserId == userId);
+            //var result = await _individualCustomerRepository.GetListAsync(c => c.UserId == userId);
+            var result = await _customerRepository.GetListAsync(c => c.UserId == userId);
             if (result.Items.Any())
             {
                 throw new BusinessException("UserId cannot be dublicated");

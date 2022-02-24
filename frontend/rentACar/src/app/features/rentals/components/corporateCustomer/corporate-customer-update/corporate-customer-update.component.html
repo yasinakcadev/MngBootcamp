@@ -1,0 +1,46 @@
+<div class="card-body">
+  <form *ngIf="corporateCustomerForm" [formGroup]="corporateCustomerForm">
+    <div class="form-group mb-3">
+      <label for="model-name-input" class="fw-bold mb-3">Id</label>
+      <input
+        type="number"
+        id="model-name-input"
+        formControlName="id"
+        class="form-control"
+        placeholder="Id"
+      />
+    </div>
+    <div>
+      <label for="model-name-input" class="fw-bold mb-3">User Id</label>
+      <input
+        type="number"
+        id="model-name-input"
+        formControlName="userId"
+        class="form-control"
+        placeholder="userId"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="model-name-input" class="fw-bold mb-3">Company Name</label>
+      <input
+        type="text"
+        id="model-name-input"
+        formControlName="companyName"
+        class="form-control"
+        placeholder="Company Name"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="model-name-input" class="fw-bold mb-3">Tax Number</label>
+      <input
+        type="text"
+        id="model-name-input"
+        formControlName="taxNumber"
+        class="form-control"
+        placeholder="Tax Number"
+      />
+    </div>
+  </form>
+  <button class="btn btn-primary" (click)="updateCorporateCustomer()">Update Corporate Customer</button>
+</div>
+

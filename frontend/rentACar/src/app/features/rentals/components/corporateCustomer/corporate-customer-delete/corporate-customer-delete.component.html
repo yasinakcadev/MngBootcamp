@@ -1,0 +1,15 @@
+<div class="card-body">
+  <form *ngIf="corporateCustomerForm" [formGroup]="corporateCustomerForm">
+    <div class="form-group mb-3">
+      <label for="model-name-input" class="fw-bold mb-3">Id</label>
+      <input
+        type="number"
+        id="model-name-input"
+        formControlName="id"
+        class="form-control"
+        placeholder="corporateCustomer id"
+      />
+    </div>
+  </form>
+  <button class="btn btn-primary" (click)="deleteCorporateCustomer()">Delete Corporate Customer</button>
+</div>

@@ -35,6 +35,7 @@
     <Folder Include="Features\AdditionalServices\Models\" />
     <Folder Include="Features\AdditionalServices\Profiles\" />
     <Folder Include="Features\AdditionalServices\Rules\" />
+    <Folder Include="Features\Customers\Commands\" />
     <Folder Include="Features\Models\Tests\" />
     <Folder Include="Features\Rents\Queries\" />
     <Folder Include="Features\Users\Queries\" />
