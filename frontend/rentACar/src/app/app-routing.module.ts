@@ -39,11 +39,26 @@ const routes: Routes = [
   { path: 'individualcustomers', component: IndividualCustomerComponent },
   { path: 'corporatecustomers', component: CorporateCustomerComponent },
   { path: 'corporatecustomers/add', component: CorporateCustomerAddComponent },
-  { path: 'corporatecustomers/update', component: CorporateCustomerUpdateComponent},
-  { path: 'corporatecustomers/delete', component: CorporateCustomerDeleteComponent},
-  { path: 'individualcustomers/add', component: IndividualCustomerAddComponent},
-  { path: 'individualcustomers/update', component: IndividualCustomerUpdateComponent},
-  { path: 'individualcustomers/delete', component: IndividualCustomerDeleteComponent},
+  {
+    path: 'corporatecustomers/update',
+    component: CorporateCustomerUpdateComponent,
+  },
+  {
+    path: 'corporatecustomers/delete',
+    component: CorporateCustomerDeleteComponent,
+  },
+  {
+    path: 'individualcustomers/add',
+    component: IndividualCustomerAddComponent,
+  },
+  {
+    path: 'individualcustomers/update',
+    component: IndividualCustomerUpdateComponent,
+  },
+  {
+    path: 'individualcustomers/delete',
+    component: IndividualCustomerDeleteComponent,
+  },
   { path: 'customeradd', component: CustomerAddComponent },
   {
     path: 'admins/color/add',

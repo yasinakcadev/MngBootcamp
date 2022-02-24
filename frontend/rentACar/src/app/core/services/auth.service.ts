@@ -8,6 +8,7 @@ import { AccessTokenModel } from '../models/accessTokenModel';
 import { LoginModel } from '../models/loginModel';
 import { LoginResponseModel } from '../models/loginResponseModel';
 import { TokenUserModel } from '../models/tokenUserModel';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +16,10 @@ import { TokenUserModel } from '../models/tokenUserModel';
 export class AuthService {
   apiUrl = 'http://localhost:5228/api/Auths/';
 
-
-
   constructor(
     private httpClient: HttpClient,
-    private jwtHelperService: JwtHelperService
+    private jwtHelperService: JwtHelperService,
+    private router: Router
   ) {}
 
   login(loginModel: LoginModel): Observable<LoginResponseModel> {
@@ -33,9 +33,10 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    this.router.navigate(['login']);
   }
 
-  decodeToken():any{
+  decodeToken(): any {
     const decodedToken = this.jwtHelperService.decodeToken(
       this.jwtHelperService.tokenGetter()
     );
@@ -45,12 +46,12 @@ export class AuthService {
     // const decodedToken = this.jwtHelperService.decodeToken(
     //   this.jwtHelperService.tokenGetter()
     // );
-   let decodedToken= this.decodeToken();
+    let decodedToken = this.decodeToken();
     if (!decodedToken) {
       return false;
     }
 
-    let userInfo=this.giveUser();;
+    let userInfo = this.giveUser();
 
     //for new
     // const tokenUserModel: TokenUserModel = {
@@ -66,7 +67,7 @@ export class AuthService {
     //       'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
     //     ].split(",") : []
     // };
-//___________________________________________________________________________________
+    //___________________________________________________________________________________
     //old
     // const tokenUserModel: TokenUserModel = {
     //   id: decodedToken[
@@ -85,7 +86,6 @@ export class AuthService {
     //     ].split(",") : []
     // };
 
-
     if (this.jwtHelperService.isTokenExpired()) {
       this.logout();
       return false;
@@ -99,27 +99,22 @@ export class AuthService {
     return true;
   }
 
-  giveUser():TokenUserModel{
-
-
-    let decodedToken=this.decodeToken();
+  giveUser(): TokenUserModel {
+    let decodedToken = this.decodeToken();
 
     const tokenUserModel: TokenUserModel = {
       id: decodedToken[
         'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
       ],
       email: decodedToken['email'],
-      claims:
-      decodedToken[
+      claims: decodedToken[
         'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
-      ]?
-        decodedToken[
-          'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
-        ].split(",") : []
+      ]
+        ? decodedToken[
+            'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+          ].split(',')
+        : [],
     };
     return tokenUserModel;
-
-
   }
-
 }
