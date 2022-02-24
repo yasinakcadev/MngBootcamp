@@ -1,4 +1,5 @@
 ﻿using Core.Persistence.Repositories;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services.Repositories
 {
-    public interface IColorRepository: IAsyncRepository<Domain.Entities.Color>
+    public interface IColorRepository: IAsyncRepository<Color>
     {
     }
 }

@@ -24,6 +24,14 @@ namespace WebAPI.Controllers
             var result = await Mediator.Send(query);
             return Ok(result);
         }
+        [HttpGet("getcustomerbyuserid")]
+        public async Task<IActionResult> GetCustomerByUserId([FromQuery] PageRequest pageRequest)
+        {
+            var query = new GetCorporateCustomerListQuery();
+            query.PageRequest = pageRequest;
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
 
         [HttpDelete("delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteCorporateCustomerCommand deleteCorporateCustomerCommand)

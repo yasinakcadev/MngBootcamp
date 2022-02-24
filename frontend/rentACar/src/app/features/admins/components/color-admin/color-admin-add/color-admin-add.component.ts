@@ -39,6 +39,7 @@ export class ColorAdminAddComponent implements OnInit {
     let colorToAdd: Color = { ...this.colorForm.value };
     this.colorCrudService.addColor(colorToAdd).subscribe(() => {
       this.toastrService.success('Color has been added.');
+
     });
   }
 

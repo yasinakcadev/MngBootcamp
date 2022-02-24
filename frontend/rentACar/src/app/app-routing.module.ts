@@ -1,3 +1,12 @@
+import { CustomerAddComponent } from './core/components/customer-add/customer-add.component';
+import { IndividualCustomerDeleteComponent } from './features/rentals/components/individualCustomer/individual-customer-delete/individual-customer-delete.component';
+import { IndividualCustomerUpdateComponent } from './features/rentals/components/individualCustomer/individual-customer-update/individual-customer-update.component';
+import { IndividualCustomerAddComponent } from './features/rentals/components/individualCustomer/individual-customer-add/individual-customer-add.component';
+import { CorporateCustomerAddComponent } from './features/rentals/components/corporateCustomer/corporate-customer-add/corporate-customer-add.component';
+import { CorporateCustomerDeleteComponent } from './features/rentals/components/corporateCustomer/corporate-customer-delete/corporate-customer-delete.component';
+import { CorporateCustomerUpdateComponent } from './features/rentals/components/corporateCustomer/corporate-customer-update/corporate-customer-update.component';
+import { CorporateCustomerComponent } from './core/components/corporate-customer/corporate-customer.component';
+import { IndividualCustomerComponent } from './core/components/individual-customer/individual-customer.component';
 import { ColorAdminUpdateComponent } from './features/admins/components/color-admin/color-admin-update/color-admin-update.component';
 import { ColorComponent } from './core/components/color/color.component';
 import { CarComponent } from './core/components/car/car.component';
@@ -27,6 +36,15 @@ const routes: Routes = [
   { path: 'rents', component: RentComponent },
   { path: 'cars', component: CarComponent },
   { path: 'colors/update', component: ColorAdminUpdateComponent },
+  { path: 'individualcustomers', component: IndividualCustomerComponent },
+  { path: 'corporatecustomers', component: CorporateCustomerComponent },
+  { path: 'corporatecustomers/add', component: CorporateCustomerAddComponent },
+  { path: 'corporatecustomers/update', component: CorporateCustomerUpdateComponent},
+  { path: 'corporatecustomers/delete', component: CorporateCustomerDeleteComponent},
+  { path: 'individualcustomers/add', component: IndividualCustomerAddComponent},
+  { path: 'individualcustomers/update', component: IndividualCustomerUpdateComponent},
+  { path: 'individualcustomers/delete', component: IndividualCustomerDeleteComponent},
+  { path: 'customeradd', component: CustomerAddComponent },
   {
     path: 'admins/color/add',
     component: ColorAdminAddComponent,

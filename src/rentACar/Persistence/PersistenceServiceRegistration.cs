@@ -34,6 +34,8 @@ namespace Persistence
             services.AddScoped<IRentRepository, RentRepository>();
             services.AddScoped<IIndividualCustomerRepository, IndividualCustomerRepository>();
             services.AddScoped<ICorporateCustomerRepository, CorporateCustomerRepository>();
+
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();
             services.AddScoped<IFindexCreditService, MyFindexScore>();
             services.AddScoped<IDamageRepository, DamageRepository>();

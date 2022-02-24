@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Core.Security.Entities
 {
     public class User : Entity
@@ -15,7 +16,8 @@ namespace Core.Security.Entities
         public byte[] PasswordSalt { get; set; }
         public byte[] PasswordHash { get; set; }
         public bool Status { get; set; }
-    
+
+
 
         public User(int id, string email, byte[] passwordSalt, byte[] passwordHash, bool status): this()
         {

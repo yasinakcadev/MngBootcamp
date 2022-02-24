@@ -11,13 +11,14 @@ namespace Application.Features.CorporateCustomers.Rules
     public class CorporateCustomerBusinessRules
     {
         ICorporateCustomerRepository _corporateCustomerRepository;
-       
+        ICustomerRepository _customerRepository;
 
 
-        public CorporateCustomerBusinessRules(ICorporateCustomerRepository corporateCustomerRepository)
+
+        public CorporateCustomerBusinessRules(ICorporateCustomerRepository corporateCustomerRepository, ICustomerRepository customerRepository = null)
         {
             _corporateCustomerRepository = corporateCustomerRepository;
-          
+            _customerRepository = customerRepository;
         }
 
         public async Task TaxNumberCanBotBeDublicated(string taxNumber)
@@ -30,7 +31,7 @@ namespace Application.Features.CorporateCustomers.Rules
         }
         public async Task UserIdCanBotBeDublicated(int userId)
         {
-            var result = await _corporateCustomerRepository.GetListAsync(c => c.UserId == userId);
+            var result = await _customerRepository.GetListAsync(c => c.UserId == userId);
             if (result.Items.Any())
             {
                 throw new BusinessException("UserId cannot be dublicated");

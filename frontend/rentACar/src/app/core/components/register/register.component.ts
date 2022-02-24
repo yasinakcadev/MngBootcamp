@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
       this.toastrService.success('User registered in.');
     });
 
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('customeradd');
   }
 
 }

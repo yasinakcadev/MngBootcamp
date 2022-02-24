@@ -32,6 +32,16 @@ import { CityComponent } from './core/components/city/city.component';
 import { AdditinalServiceComponent } from './core/components/additinal-service/additinal-service.component';
 import { RentComponent } from './features/rentals/components/rent/rent.component';
 import { CarComponent } from './core/components/car/car.component';
+import { IndividualCustomerComponent } from './core/components/individual-customer/individual-customer.component';
+import { CorporateCustomerComponent } from './core/components/corporate-customer/corporate-customer.component';
+import { IndividualCustomerAddComponent } from './features/rentals/components/individualCustomer/individual-customer-add/individual-customer-add.component';
+import { IndividualCustomerUpdateComponent } from './features/rentals/components/individualCustomer/individual-customer-update/individual-customer-update.component';
+import { IndividualCustomerDeleteComponent } from './features/rentals/components/individualCustomer/individual-customer-delete/individual-customer-delete.component';
+import { CorporateCustomerAddComponent } from './features/rentals/components/corporateCustomer/corporate-customer-add/corporate-customer-add.component';
+import { CorporateCustomerUpdateComponent } from './features/rentals/components/corporateCustomer/corporate-customer-update/corporate-customer-update.component';
+import { CorporateCustomerDeleteComponent } from './features/rentals/components/corporateCustomer/corporate-customer-delete/corporate-customer-delete.component';
+import { CustomerAddComponent } from './core/components/customer-add/customer-add.component';
+
 
 @NgModule({
   declarations: [
@@ -56,6 +66,16 @@ import { CarComponent } from './core/components/car/car.component';
     AdditinalServiceComponent,
     RentComponent,
     CarComponent,
+    IndividualCustomerComponent,
+    CorporateCustomerComponent,
+    IndividualCustomerAddComponent,
+    IndividualCustomerUpdateComponent,
+    IndividualCustomerDeleteComponent,
+    CorporateCustomerAddComponent,
+    CorporateCustomerUpdateComponent,
+    CorporateCustomerDeleteComponent,
+    CustomerAddComponent,
+
   ],
   imports: [
     BrowserModule,
