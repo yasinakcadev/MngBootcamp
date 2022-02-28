@@ -33,13 +33,25 @@
 </div>
  -->
 
+       <div>
+        <label for="model-name-input" class="fw-bold mb-3">Car İd</label>
+        <input
+          readonly
+          type="number"
+          [(ngModel)]="carId"
+          id="model-name-input"
+          class="form-control"
+          placeholder="carId"
+        />
+      </div>
+
 <div class="container">
   <div class="card-body">
     <form *ngIf="rentCarForm" [formGroup]="rentCarForm">
-      <div class="form-group mb-3">
+      <!-- <div class="form-group mb-3">
         <label for="model-name-input" class="fw-bold mb-3">İd</label>
 
-        <div *ngIf="this.carsLoaded" class="form-outline mb-3">
+        <!-- <div *ngIf="this.carsLoaded" class="form-outline mb-3">
           <select formControlName="id" (change)="giveSelectedCityId2($event)">
             <option [ngValue]="0" disabled>Seçiniz</option>
             <option *ngFor="let car of cars.items" [ngValue]="car.id">
@@ -56,9 +68,9 @@
             >
               {{ car.plate }}
             </option>
-          </select> -->
+          </select>
         </div>
-      </div>
+      </div> -->
       <div class="form-group mb-3">
         <label for="model-name-input" class="fw-bold mb-3"
           >Taking City İd</label

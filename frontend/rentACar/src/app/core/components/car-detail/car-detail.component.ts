@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CarDetailListModel } from './../../models/listModels/carDetailListModel';
 import { ListResponseModel } from './../../models/listResponseModel';
 import { CarService } from './../../../features/rentals/services/car.service';
@@ -15,7 +15,8 @@ export class CarDetailComponent implements OnInit {
   selectedCar: CarDetailListModel;
   constructor(
     private carService: CarService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -40,5 +41,10 @@ export class CarDetailComponent implements OnInit {
       console.log(data);
     });
   }
-  goToRent(item) {}
+  goToRent(item:CarDetailListModel) {
+    this.router.navigateByUrl("/rents/car/"+ item.carId)
+    console.log(item)
+
+  }
+
 }

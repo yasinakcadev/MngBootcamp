@@ -10,7 +10,7 @@ import { RentModel } from './../../models/rentModel';
 import { AdditionalServiceListModel } from './../../../../core/models/listModels/additionalServiceListModel';
 import { ListResponseModel } from './../../../../core/models/listResponseModel';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { CarListModel } from 'src/app/core/models/listModels/carListModel';
@@ -30,7 +30,8 @@ export class RentComponent implements OnInit {
     private carService: CarService,
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
-    private router: Router
+    private router: Router,
+    private activatedRoute:ActivatedRoute
   ) {}
 
   rent: RentModel;
@@ -41,6 +42,7 @@ export class RentComponent implements OnInit {
   userId: number;
   customer:Customer;
   customerId:number;
+  carId:number;
   //totalRentDay: number;
 
   // users : ModelListModel[] = [];
@@ -63,6 +65,7 @@ export class RentComponent implements OnInit {
   additionalServicesLoaded = false;
    ngOnInit(): void {
      this.customer=new Customer();
+     this.get();
 
     this.getUserId();
     this.getCustomerByUserId();
@@ -75,7 +78,7 @@ export class RentComponent implements OnInit {
 
   createRentForm() {
     this.rentCarForm = this.formBuilder.group({
-      id: [this.rent?.id || 0, Validators.required],
+     // id: [this.rent?.id || 0, Validators.required],
       takingCityId: [this.rent?.takingCityId || 0, Validators.required],
       givingCityId: [this.rent?.givingCityId || 0, Validators.required],
     //  customerId: [this.rent?.customerId || '', Validators.required],
@@ -93,6 +96,7 @@ export class RentComponent implements OnInit {
     let rentToAdd: RentModel = { ...this.rentCarForm.value };
     rentToAdd.additionalServices = this.selectedList.items;
     rentToAdd.customerId=this.customer.id;
+    rentToAdd.id=this.carId;
     console.log(rentToAdd);
     this.carService.rentCar(rentToAdd).subscribe(() => {
       this.toastrService.success('Car has been rented.');
@@ -187,4 +191,22 @@ export class RentComponent implements OnInit {
     console.log('selected item', this.selectedList);
     return this.selectedList;
   }
+
+  get(){
+    this.activatedRoute.params.subscribe((params)=>{
+      if(params['carId']){
+        this.carId=params['carId'];
+      }
+    })
+  }
+
+  // ngOnInit(): void {
+  //   this.activatedRoute.params.subscribe((params) => {
+  //     if (params['brandId']) {
+  //       this.getModelDetailsByBrandId(params['brandId']);
+  //     } else {
+  //       this.getModelDetails();
+  //     }
+  //   });
+  // }
 }
