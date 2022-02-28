@@ -2,7 +2,8 @@
   <form *ngIf="corporateCustomerForm" [formGroup]="corporateCustomerForm">
     <div class="form-group mb-3">
       <label for="model-name-input" class="fw-bold mb-3">User Id</label>
-      <input   readonly
+      <input
+        readonly
         type="number"
         id="model-name-input"
         formControlName="userId"
@@ -31,6 +32,7 @@
       />
     </div>
   </form>
-  <button class="btn btn-primary" (click)="addCorporateCustomer()">Add Corporate Customer</button>
+  <button class="btn btn-primary" (click)="addCorporateCustomer()">
+    Add Corporate Customer
+  </button>
 </div>
-
